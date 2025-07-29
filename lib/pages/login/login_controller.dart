@@ -5,18 +5,15 @@ import 'package:get/get.dart';
 
 class LoginController extends GetxController {
   final authService = Get.find<AuthService>();
-
-  var email = ''.obs;
-  var password = ''.obs;
   var visiblePassword = false.obs;
 
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
 
   Future<void> submitForm() async {
-    debugPrint('Email: ${email.value}, Password: ${password.value}');
+    debugPrint('Email: ${emailController.text}, Password: ${passwordController.text}');
     try {
-      final user = await authService.login(email.value, password.value);
+      final user = await authService.login(emailController.text, passwordController.text);
       Get.snackbar('Giriş Başarılı', 'Hoş geldiniz, ${user.email}');
       Get.offAllNamed(AppRoutesConstants.HOME);
     } catch (e) {

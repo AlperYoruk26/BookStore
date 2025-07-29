@@ -1,3 +1,4 @@
+import 'package:book_store/l10n/app_localizations.dart';
 import 'package:book_store/services/auth_service.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get_core/src/get_main.dart';
@@ -8,6 +9,7 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final local = AppLocalizations.of(context)!;
     final _authService = Get.find<AuthService>();
     return Scaffold(
       body: Center(
@@ -18,11 +20,22 @@ class HomePage extends StatelessWidget {
             Text('Home Page'),
             SizedBox(height: 20),
             ElevatedButton(
+                onPressed: () {
+                  debugPrint('Navigating to Login Page');
+                  _authService.logout();
+                },
+                child: Text('Logout')),
+            Text('Home Page', style: Theme.of(context).textTheme.bodyMedium),
+            SizedBox(height: 20),
+            ElevatedButton(
               onPressed: () {
-                debugPrint('Navigating to Login Page');
+                // Navigating to Login Page
                 _authService.logout();
               },
-              child: Text('Logout'),
+              style: ElevatedButton.styleFrom(
+                  backgroundColor: Theme.of(context).colorScheme.primary,
+                  foregroundColor: Theme.of(context).colorScheme.onPrimary),
+              child: Text(local.logout),
             ),
           ],
         ),

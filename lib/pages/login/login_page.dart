@@ -1,6 +1,8 @@
+import 'package:book_store/core/constants/app_routes_constant.dart';
+import 'package:book_store/l10n/app_localizations.dart';
 import 'package:book_store/pages/login/login_controller.dart';
-import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
+import 'package:form_field_validator/form_field_validator.dart';
 import 'package:get/get.dart';
 
 class LoginPage extends GetView<LoginController> {
@@ -8,8 +10,42 @@ class LoginPage extends GetView<LoginController> {
 
   @override
   Widget build(BuildContext context) {
+    final local = AppLocalizations.of(context)!;
     final _formKey = GlobalKey<FormState>();
     return Scaffold(
+      appBar: AppBar(
+        title: ElevatedButton(
+            onPressed: () {
+              Get.updateLocale(Get.locale!.languageCode == 'en' ? Locale('tr') : Locale('en'));
+            },
+            style: ElevatedButton.styleFrom(
+                backgroundColor: Colors.transparent,
+                elevation: 0,
+                foregroundColor: Theme.of(context).colorScheme.onSecondary,
+                fixedSize: Size(55, 55),
+                padding: EdgeInsets.zero),
+            child: Image.network(
+                width: 20,
+                Get.locale!.languageCode == 'en'
+                    ? 'https://www.clipartmax.com/png/full/41-413003_english-uk-flag-circle-vector.png'
+                    : 'https://cdn.countryflags.com/thumbs/turkey/flag-round-250.png')),
+        actions: [
+          ElevatedButton(
+              onPressed: () {
+                Get.changeThemeMode(Get.isDarkMode ? ThemeMode.light : ThemeMode.dark);
+              },
+              style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.transparent,
+                  elevation: 0,
+                  foregroundColor: Theme.of(context).colorScheme.onSecondary,
+                  fixedSize: Size(55, 55),
+                  padding: EdgeInsets.zero),
+              child: Icon(
+                Get.isDarkMode ? Icons.dark_mode_rounded : Icons.light_mode_rounded,
+                size: 20,
+              ))
+        ],
+      ),
       body: Center(
         child: Obx(
           () => Form(
@@ -20,22 +56,18 @@ class LoginPage extends GetView<LoginController> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   TextFormField(
-                    decoration: InputDecoration(border: OutlineInputBorder(), labelText: 'Email'),
-                    controller: controller.emailController,
-                    onChanged: (val) => controller.email.value = val,
-                    autovalidateMode: AutovalidateMode.onUserInteraction,
-                    validator: (value) {
-                      if (!EmailValidator.validate(value!)) {
-                        return 'Geçerli bir email adresi giriniz';
-                      }
-                      return null;
-                    },
-                  ),
+                      decoration: InputDecoration(labelText: local.login_email),
+                      controller: controller.emailController,
+                      textInputAction: TextInputAction.next,
+                      autovalidateMode: AutovalidateMode.onUserInteraction,
+                      validator: MultiValidator([
+                        RequiredValidator(errorText: local.emailRequired),
+                        EmailValidator(errorText: local.emailInvalid)
+                      ]).call),
                   SizedBox(height: 20),
                   TextFormField(
                     decoration: InputDecoration(
-                      border: OutlineInputBorder(),
-                      labelText: 'Password',
+                      labelText: local.login_password,
                       suffixIcon: IconButton(
                         onPressed: () {
                           controller.visiblePassword.value = !controller.visiblePassword.value;
@@ -49,15 +81,18 @@ class LoginPage extends GetView<LoginController> {
                     ),
                     obscureText: !controller.visiblePassword.value,
                     controller: controller.passwordController,
-                    onChanged: (val) => controller.password.value = val,
-                    autovalidateMode: AutovalidateMode.onUserInteraction,
-                    validator: (value) {
-                      if (value!.length < 6) {
-                        return 'Şifre en az 6 karakter olmalıdır';
-                      } else {
-                        return null;
-                      }
+                    onFieldSubmitted: (value) {
+                      controller.submitForm();
                     },
+                    autovalidateMode: AutovalidateMode.onUserInteraction,
+                    validator: MultiValidator([
+                      RequiredValidator(errorText: local.passwordRequired),
+                      MinLengthValidator(8, errorText: local.passwordMinLength),
+                      PatternValidator(r'[A-Z]', errorText: local.passwordUpperCase),
+                      PatternValidator(r'[a-z]', errorText: local.passwordUpperCase),
+                      PatternValidator(r'[!@#\$&*~%^()_\-+=<>?/.,]',
+                          errorText: local.passwordSymbol)
+                    ]).call,
                   ),
                   SizedBox(height: 20),
                   ElevatedButton(
@@ -67,11 +102,22 @@ class LoginPage extends GetView<LoginController> {
                       }
                     },
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: Color(0xFFD45555),
-                      foregroundColor: Colors.white,
-                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8.0)),
+                      backgroundColor: Theme.of(context).colorScheme.primary,
+                      foregroundColor: Theme.of(context).colorScheme.onPrimary,
                     ),
-                    child: Text('Submit'),
+                    child: Text(local.signIn),
+                  ),
+                  SizedBox(height: 20),
+                  ElevatedButton(
+                    onPressed: () {
+                      _formKey.currentState?.reset();
+                      Get.toNamed(AppRoutesConstants.REGISTER);
+                    },
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Theme.of(context).colorScheme.secondary,
+                      foregroundColor: Theme.of(context).colorScheme.onPrimary,
+                    ),
+                    child: Text(local.signUp),
                   ),
                 ],
               ),

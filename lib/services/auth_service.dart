@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import 'package:book_store/core/constants/app_routes_constant.dart';
 import 'package:book_store/core/constants/storage_constant.dart';
 import 'package:book_store/services/api_service.dart';
@@ -42,6 +40,21 @@ class AuthService extends GetxService {
       return response.user!;
     } catch (e) {
       debugPrint('Supabase login error $e');
+      rethrow;
+    }
+  }
+
+  Future<User> createAccount(
+      String email, String password, String firstName, String lastName) async {
+    try {
+      final response = await _supabase.auth.signUp(
+          email: email, password: password, data: {'first_name': firstName, 'last_name': lastName});
+      if (response.user == null) {
+        throw Exception('Account creation failed: user not found.');
+      }
+      return response.user!;
+    } catch (e) {
+      debugPrint('Supabase register error $e');
       rethrow;
     }
   }

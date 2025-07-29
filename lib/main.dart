@@ -1,9 +1,12 @@
 import 'package:book_store/bindings/app_bindings.dart';
 import 'package:book_store/core/constants/app_routes_constant.dart';
+import 'package:book_store/l10n/app_localizations.dart';
 import 'package:book_store/routes/app_pages.dart';
+import 'package:book_store/theme/app_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:get/get.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -22,10 +25,17 @@ class MyApp extends StatelessWidget {
       getPages: AppPages.pages,
       title: 'BookStore',
       debugShowCheckedModeBanner: false,
-      home: Scaffold(
-        appBar: AppBar(title: Text('Book Store')),
-        body: Center(child: Text('Books...', style: TextStyle(fontSize: 24))),
-      ),
+      theme: AppTheme.lightTheme,
+      darkTheme: AppTheme.darkTheme,
+      themeMode: ThemeMode.system,
+      supportedLocales: const [Locale('tr'), Locale('en')],
+      localizationsDelegates: [
+        AppLocalizations.delegate,
+        GlobalMaterialLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+        GlobalCupertinoLocalizations.delegate,
+      ],
+      locale: const Locale('en'),
     );
   }
 }

@@ -1,4 +1,5 @@
 import 'package:book_store/core/constants/api_constant.dart';
+import 'package:book_store/core/constants/app_routes_constant.dart';
 import 'package:book_store/core/constants/storage_constant.dart';
 import 'package:book_store/services/storage_service.dart';
 import 'package:dio/dio.dart';
@@ -32,7 +33,7 @@ class ApiService extends GetxService {
         onError: (error, handler) async {
           if (error.response?.statusCode == 401) {
             await _storageService.remove(StorageConstants.userToken);
-            //todo: Hata verirse login sayfasına yönlendir
+            Get.offAllNamed(AppRoutesConstants.LOGIN);
           }
           return handler.next(error);
         },

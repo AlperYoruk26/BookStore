@@ -1,7 +1,4 @@
-import 'dart:convert';
-
 import 'package:book_store/core/constants/app_routes_constant.dart';
-import 'package:book_store/core/constants/storage_constant.dart';
 import 'package:book_store/services/api_service.dart';
 import 'package:book_store/services/auth_service.dart';
 import 'package:book_store/services/storage_service.dart';
@@ -21,7 +18,7 @@ class SplashController extends GetxController {
     while (!Get.isRegistered<StorageService>() &&
         !Get.isRegistered<ApiService>() &&
         !Get.isRegistered<AuthService>()) {
-      await Future.delayed(Duration(seconds: 1));
+      await Future.delayed(Duration(seconds: 3));
     }
 
     // final storageService = Get.find<StorageService>();
