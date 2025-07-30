@@ -1,6 +1,6 @@
 # book_store
 
-A new Flutter project.
+A book store demo
 
 ## Getting Started
 
