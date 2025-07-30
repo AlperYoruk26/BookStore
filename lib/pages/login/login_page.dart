@@ -1,6 +1,5 @@
 import 'package:book_store/core/constants/app_routes_constant.dart';
 import 'package:book_store/l10n/app_localizations.dart';
-import 'package:book_store/models/language_model.dart';
 import 'package:book_store/pages/login/login_controller.dart';
 import 'package:country_flags/country_flags.dart';
 import 'package:flutter/material.dart';
