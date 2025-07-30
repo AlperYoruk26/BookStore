@@ -20,5 +20,7 @@
   "signIn": "Giriş Yap",
   "signUp": "Kayıt Ol",
   "register": "Kayıt Ol",
-  "logout": "Çıkış"
+  "logout": "Çıkış",
+  "save": "Kaydet",
+  "languageSelectionTitle": "Lütfen dilinizi seçin"
 }

@@ -21,21 +21,28 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetMaterialApp(
       initialBinding: AppBindings(),
-      initialRoute: AppRoutesConstants.SPLASH,
+      initialRoute: AppRoutesConstants.INITIAL,
       getPages: AppPages.pages,
       title: 'BookStore',
       debugShowCheckedModeBanner: false,
       theme: AppTheme.lightTheme,
       darkTheme: AppTheme.darkTheme,
       themeMode: ThemeMode.system,
-      supportedLocales: const [Locale('tr'), Locale('en')],
+      supportedLocales: const [
+        Locale('en'),
+        Locale('tr'),
+        Locale('de'),
+        Locale('fr'),
+        Locale('it'),
+        Locale('es'),
+      ],
       localizationsDelegates: [
         AppLocalizations.delegate,
         GlobalMaterialLocalizations.delegate,
         GlobalWidgetsLocalizations.delegate,
         GlobalCupertinoLocalizations.delegate,
       ],
-      locale: const Locale('en'),
+      locale: Get.deviceLocale,
     );
   }
 }

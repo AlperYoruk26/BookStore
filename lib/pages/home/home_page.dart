@@ -24,19 +24,10 @@ class HomePage extends StatelessWidget {
                   debugPrint('Navigating to Login Page');
                   _authService.logout();
                 },
+                style: ElevatedButton.styleFrom(
+                    backgroundColor: Theme.of(context).colorScheme.primary,
+                    foregroundColor: Theme.of(context).colorScheme.onPrimary),
                 child: Text('Logout')),
-            Text('Home Page', style: Theme.of(context).textTheme.bodyMedium),
-            SizedBox(height: 20),
-            ElevatedButton(
-              onPressed: () {
-                // Navigating to Login Page
-                _authService.logout();
-              },
-              style: ElevatedButton.styleFrom(
-                  backgroundColor: Theme.of(context).colorScheme.primary,
-                  foregroundColor: Theme.of(context).colorScheme.onPrimary),
-              child: Text(local.logout),
-            ),
           ],
         ),
       ),

@@ -20,5 +20,7 @@
   "signIn": "Sign In",
   "signUp": "Sign Up",
   "register": "Register",
-  "logout": "Logout"
+  "logout": "Logout",
+  "save": "Save",
+  "languageSelectionTitle": "Please select your language"
 }

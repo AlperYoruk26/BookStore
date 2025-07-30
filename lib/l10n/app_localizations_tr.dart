@@ -70,4 +70,10 @@ class AppLocalizationsTr extends AppLocalizations {
 
   @override
   String get logout => 'Çıkış';
+
+  @override
+  String get save => 'Kaydet';
+
+  @override
+  String get languageSelectionTitle => 'Lütfen dilinizi seçin';
 }

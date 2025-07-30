@@ -17,7 +17,7 @@ class LoginController extends GetxController {
       Get.snackbar('Giriş Başarılı', 'Hoş geldiniz, ${user.email}');
       Get.offAllNamed(AppRoutesConstants.HOME);
     } catch (e) {
-      Get.snackbar('Giriş Hatası', 'Email veya şifre hatalı: $e');
+      Get.snackbar('Giriş Hatası', 'Email veya şifre hatalı');
     }
   }
 }

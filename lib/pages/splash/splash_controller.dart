@@ -1,4 +1,5 @@
 import 'package:book_store/core/constants/app_routes_constant.dart';
+import 'package:book_store/core/constants/storage_constant.dart';
 import 'package:book_store/services/api_service.dart';
 import 'package:book_store/services/auth_service.dart';
 import 'package:book_store/services/storage_service.dart';
@@ -11,31 +12,46 @@ class SplashController extends GetxController {
   void onInit() async {
     super.onInit();
     await waitForService();
-    await checkTokenAndRedirect();
+    await checkAndRedirect();
+    // await checkLanguageSelected();
   }
 
   Future<void> waitForService() async {
-    while (!Get.isRegistered<StorageService>() &&
-        !Get.isRegistered<ApiService>() &&
-        !Get.isRegistered<AuthService>()) {
+    while (!(Get.isRegistered<StorageService>() &&
+        Get.isRegistered<ApiService>() &&
+        Get.isRegistered<AuthService>())) {
       await Future.delayed(Duration(seconds: 3));
     }
-
     // final storageService = Get.find<StorageService>();
-    // await storageService.remove(StorageConstants.userToken);
+    // await storageService.remove(StorageConstants.appLanguage);
     var map = Get.find<StorageService>().getAllValues();
     // debugPrint('Storage Values: $map');
   }
 
-  Future<void> checkTokenAndRedirect() async {
+  Future<void> checkAndRedirect() async {
     final session = Supabase.instance.client.auth.currentSession;
-    if (session != null) {
-      Get.offAllNamed(AppRoutesConstants.HOME);
-      // debugPrint('Current Session: ${JsonEncoder.withIndent(' ').convert(session.user.toJson())}');
-      debugPrint('Access Token: ${session.accessToken}');
-    } else {
-      debugPrint('No active session found, redirecting to login.');
-      Get.offAllNamed(AppRoutesConstants.LOGIN);
+    final storageService = Get.find<StorageService>();
+    try {
+      if (session != null) {
+        Get.offAllNamed(AppRoutesConstants.HOME);
+        // debugPrint('Current Session: ${JsonEncoder.withIndent(' ').convert(session.user.toJson())}');
+        debugPrint('Access Token: ${session.accessToken}');
+        return;
+      }
+    } catch (e) {
+      debugPrint('Error checking session: $e');
+    }
+
+    try {
+      final savedLanguage = await storageService.getValue<String>(StorageConstants.appLanguage);
+      if (savedLanguage != null) {
+        Get.updateLocale(Locale(savedLanguage));
+        Get.offAllNamed(AppRoutesConstants.LOGIN);
+      } else {
+        Get.offAllNamed(AppRoutesConstants.LANGUAGE_SELECTOR);
+      }
+    } catch (e) {
+      debugPrint('Error checking language selection: $e');
     }
   }
 }

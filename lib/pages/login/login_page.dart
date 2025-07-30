@@ -1,6 +1,8 @@
 import 'package:book_store/core/constants/app_routes_constant.dart';
 import 'package:book_store/l10n/app_localizations.dart';
+import 'package:book_store/models/language_model.dart';
 import 'package:book_store/pages/login/login_controller.dart';
+import 'package:country_flags/country_flags.dart';
 import 'package:flutter/material.dart';
 import 'package:form_field_validator/form_field_validator.dart';
 import 'package:get/get.dart';
@@ -14,21 +16,21 @@ class LoginPage extends GetView<LoginController> {
     final _formKey = GlobalKey<FormState>();
     return Scaffold(
       appBar: AppBar(
-        title: ElevatedButton(
-            onPressed: () {
-              Get.updateLocale(Get.locale!.languageCode == 'en' ? Locale('tr') : Locale('en'));
-            },
-            style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.transparent,
-                elevation: 0,
-                foregroundColor: Theme.of(context).colorScheme.onSecondary,
-                fixedSize: Size(55, 55),
-                padding: EdgeInsets.zero),
-            child: Image.network(
-                width: 20,
-                Get.locale!.languageCode == 'en'
-                    ? 'https://www.clipartmax.com/png/full/41-413003_english-uk-flag-circle-vector.png'
-                    : 'https://cdn.countryflags.com/thumbs/turkey/flag-round-250.png')),
+        // title: ElevatedButton(
+        //     onPressed: () {
+        //       Get.updateLocale(Get.locale!.languageCode == 'en' ? Locale('tr') : Locale('en'));
+        //     },
+        //     style: ElevatedButton.styleFrom(
+        //         backgroundColor: Colors.transparent,
+        //         elevation: 0,
+        //         foregroundColor: Theme.of(context).colorScheme.onSecondary,
+        //         fixedSize: Size(55, 55),
+        //         padding: EdgeInsets.zero),
+        //     child: Image.network(
+        //         width: 20,
+        //         Get.locale!.languageCode == 'en'
+        //             ? 'https://www.clipartmax.com/png/full/41-413003_english-uk-flag-circle-vector.png'
+        //             : 'https://cdn.countryflags.com/thumbs/turkey/flag-round-250.png')),
         actions: [
           ElevatedButton(
               onPressed: () {

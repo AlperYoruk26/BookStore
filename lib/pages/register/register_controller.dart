@@ -24,7 +24,7 @@ class RegisterController extends GetxController {
       Get.snackbar('Kayıt Başarılı', '');
       Get.offAllNamed(AppRoutesConstants.LOGIN);
     } catch (e) {
-      Get.snackbar('Kayıt Hatası', 'Email veya şifreler hatalı: $e');
+      Get.snackbar('Kayıt Hatası', 'Email veya şifreler hatalı');
     }
   }
 }
