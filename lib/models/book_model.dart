@@ -1,35 +1,51 @@
-class BooksModel {
+class Books {
   int id;
-  DateTime createdAt;
+  int typeId;
+  int categoryId;
   String name;
+  String description;
+  String language;
   String author;
-  String category;
+  int sales;
+  double price;
   String cover;
 
-  BooksModel({
+  Books({
     required this.id,
-    required this.createdAt,
+    required this.typeId,
+    required this.categoryId,
     required this.name,
+    required this.description,
+    required this.language,
     required this.author,
-    required this.category,
+    required this.sales,
+    required this.price,
     required this.cover,
   });
 
-  factory BooksModel.fromJson(Map<String, dynamic> json) => BooksModel(
-    id: json["id"],
-    createdAt: DateTime.parse(json["created_at"]),
-    name: json["name"],
-    author: json["author"],
-    category: json["category"],
-    cover: json["cover"],
-  );
+  factory Books.fromJson(Map<String, dynamic> json) => Books(
+        id: json["id"],
+        typeId: json["type_id"],
+        categoryId: json["category_id"],
+        name: json["name"],
+        description: json["description"],
+        language: json["language"],
+        author: json["author"],
+        sales: json["sales"],
+        price: json["price"]?.toDouble(),
+        cover: json["cover"],
+      );
 
   Map<String, dynamic> toJson() => {
-    "id": id,
-    "created_at": createdAt.toIso8601String(),
-    "name": name,
-    "author": author,
-    "category": category,
-    "cover": cover,
-  };
+        "id": id,
+        "type_id": typeId,
+        "category_id": categoryId,
+        "name": name,
+        "description": description,
+        "language": language,
+        "author": author,
+        "sales": sales,
+        "price": price,
+        "cover": cover,
+      };
 }

@@ -4,5 +4,7 @@ abstract class AppRoutesConstants {
   static const LANGUAGE_SELECTOR = '/language_selector';
   static const LOGIN = '/login';
   static const REGISTER = '/register';
+  static const MAIN = '/main';
   static const HOME = '/home';
+  static const PROFILE = '/profile';
 }

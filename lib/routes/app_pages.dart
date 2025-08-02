@@ -5,6 +5,10 @@ import 'package:book_store/pages/language_selector/language_selector_binding.dar
 import 'package:book_store/pages/language_selector/language_selector_page.dart';
 import 'package:book_store/pages/login/login_binding.dart';
 import 'package:book_store/pages/login/login_page.dart';
+import 'package:book_store/pages/main/main_binding.dart';
+import 'package:book_store/pages/main/main_page.dart';
+import 'package:book_store/pages/profile/profile_binding.dart';
+import 'package:book_store/pages/profile/profile_page.dart';
 import 'package:book_store/pages/register/register_binding.dart';
 import 'package:book_store/pages/register/register_page.dart';
 import 'package:book_store/pages/splash/splash_binding.dart';
@@ -24,6 +28,8 @@ class AppPages {
       page: () => RegisterPage(),
       binding: RegisterBinding(),
     ),
+    GetPage(name: AppRoutesConstants.MAIN, page: () => MainPage(), binding: MainBinding()),
     GetPage(name: AppRoutesConstants.HOME, page: () => HomePage(), binding: HomeBinding()),
+    GetPage(name: AppRoutesConstants.PROFILE, page: () => ProfilePage(), binding: ProfileBinding()),
   ];
 }

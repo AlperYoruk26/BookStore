@@ -1,10 +1,14 @@
+import 'package:book_store/widgets/book_best_sellers.dart';
+import 'package:book_store/widgets/book_categories.dart';
+import 'package:book_store/widgets/book_types.dart';
 import 'package:book_store/l10n/app_localizations.dart';
+import 'package:book_store/pages/home/home_controller.dart';
+import 'package:book_store/pages/splash/splash_page.dart';
 import 'package:book_store/services/auth_service.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get_core/src/get_main.dart';
-import 'package:get/get_instance/get_instance.dart';
+import 'package:get/get.dart';
 
-class HomePage extends StatelessWidget {
+class HomePage extends GetView<HomeController> {
   const HomePage({super.key});
 
   @override
@@ -12,25 +16,49 @@ class HomePage extends StatelessWidget {
     final local = AppLocalizations.of(context)!;
     final _authService = Get.find<AuthService>();
     return Scaffold(
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            Text('Home Page'),
-            SizedBox(height: 20),
-            ElevatedButton(
-                onPressed: () {
-                  debugPrint('Navigating to Login Page');
-                  _authService.logout();
-                },
-                style: ElevatedButton.styleFrom(
-                    backgroundColor: Theme.of(context).colorScheme.primary,
-                    foregroundColor: Theme.of(context).colorScheme.onPrimary),
-                child: Text('Logout')),
-          ],
-        ),
-      ),
+      appBar: AppBar(),
+      body: Obx(() {
+        if (controller.isLoading.value) {
+          return SplashPage();
+        } else {
+          return CustomScrollView(
+            slivers: [
+              SliverToBoxAdapter(
+                child: Center(
+                  child: Padding(
+                      padding: const EdgeInsets.all(16.0),
+                      child: Stack(alignment: AlignmentGeometry.xy(0, -0.35), children: [
+                        ClipRRect(
+                          borderRadius: BorderRadius.circular(8),
+                          child: Image.asset(
+                            'assets/images/book_store_banner.jpg',
+                            width: MediaQuery.of(context).size.width * 0.85,
+                            fit: BoxFit.cover,
+                          ),
+                        ),
+                        Text(
+                          'Welcome to the Book ',
+                          style: Theme.of(context)
+                              .textTheme
+                              .headlineLarge
+                              ?.copyWith(color: Colors.white),
+                        ),
+                      ])),
+                ),
+              ),
+              SliverToBoxAdapter(
+                child: BookBestSellers(),
+              ),
+              SliverToBoxAdapter(
+                child: BookTypes(),
+              ),
+              SliverToBoxAdapter(
+                child: BookCategories(),
+              ),
+            ],
+          );
+        }
+      }),
     );
   }
 }

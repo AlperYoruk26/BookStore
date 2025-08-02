@@ -1,7 +1,9 @@
 import 'package:book_store/bindings/app_bindings.dart';
 import 'package:book_store/core/constants/app_routes_constant.dart';
+import 'package:book_store/core/constants/storage_constant.dart';
 import 'package:book_store/l10n/app_localizations.dart';
 import 'package:book_store/routes/app_pages.dart';
+import 'package:book_store/services/storage_service.dart';
 import 'package:book_store/theme/app_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
@@ -11,16 +13,23 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await dotenv.load(fileName: ".env");
-  runApp(const MyApp());
+  await AppBindings().dependencies();
+
+  // StorageService'i bul ve dil kodunu al
+  final _storageService = Get.find<StorageService>();
+  await _storageService.setValue(StorageConstants.appLanguage, 'en');
+  final savedLang = await _storageService.getValue<String>(StorageConstants.appLanguage) ?? 'en';
+
+  runApp(MyApp(initialLang: savedLang));
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  final String initialLang;
+  const MyApp({Key? key, required this.initialLang}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
-      initialBinding: AppBindings(),
       initialRoute: AppRoutesConstants.INITIAL,
       getPages: AppPages.pages,
       title: 'BookStore',
@@ -31,10 +40,6 @@ class MyApp extends StatelessWidget {
       supportedLocales: const [
         Locale('en'),
         Locale('tr'),
-        Locale('de'),
-        Locale('fr'),
-        Locale('it'),
-        Locale('es'),
       ],
       localizationsDelegates: [
         AppLocalizations.delegate,
@@ -42,7 +47,7 @@ class MyApp extends StatelessWidget {
         GlobalWidgetsLocalizations.delegate,
         GlobalCupertinoLocalizations.delegate,
       ],
-      locale: Get.deviceLocale,
+      locale: Locale(initialLang),
     );
   }
 }

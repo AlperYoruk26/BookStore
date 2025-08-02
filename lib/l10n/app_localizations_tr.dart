@@ -76,4 +76,24 @@ class AppLocalizationsTr extends AppLocalizations {
 
   @override
   String get languageSelectionTitle => 'Lütfen dilinizi seçin';
+
+  @override
+  String get login_success_title => 'Giriş Başarılı';
+
+  @override
+  String login_success_message(Object email) {
+    return 'Hoş geldiniz, $email';
+  }
+
+  @override
+  String get login_error_title => 'Giriş Hatası';
+
+  @override
+  String get login_error_message => 'Email veya şifre hatalı';
+
+  @override
+  String get book_category_see_all => 'Tümünü Gör';
+
+  @override
+  String get no_category_title => 'Kategori yok';
 }

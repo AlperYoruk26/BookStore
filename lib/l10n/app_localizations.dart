@@ -5,11 +5,7 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:intl/intl.dart' as intl;
 
-import 'app_localizations_de.dart';
 import 'app_localizations_en.dart';
-import 'app_localizations_es.dart';
-import 'app_localizations_fr.dart';
-import 'app_localizations_it.dart';
 import 'app_localizations_tr.dart';
 
 // ignore_for_file: type=lint
@@ -95,11 +91,7 @@ abstract class AppLocalizations {
 
   /// A list of this localizations delegate's supported locales.
   static const List<Locale> supportedLocales = <Locale>[
-    Locale('de'),
     Locale('en'),
-    Locale('es'),
-    Locale('fr'),
-    Locale('it'),
     Locale('tr')
   ];
 
@@ -240,6 +232,42 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Please select your language'**
   String get languageSelectionTitle;
+
+  /// No description provided for @login_success_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Login Successful'**
+  String get login_success_title;
+
+  /// No description provided for @login_success_message.
+  ///
+  /// In en, this message translates to:
+  /// **'Welcome, {email}'**
+  String login_success_message(Object email);
+
+  /// No description provided for @login_error_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Login Error'**
+  String get login_error_title;
+
+  /// No description provided for @login_error_message.
+  ///
+  /// In en, this message translates to:
+  /// **'Email or password is incorrect'**
+  String get login_error_message;
+
+  /// No description provided for @book_category_see_all.
+  ///
+  /// In en, this message translates to:
+  /// **'See All'**
+  String get book_category_see_all;
+
+  /// No description provided for @no_category_title.
+  ///
+  /// In en, this message translates to:
+  /// **'No categories available'**
+  String get no_category_title;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {
@@ -251,7 +279,7 @@ class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> 
   }
 
   @override
-  bool isSupported(Locale locale) => <String>['de', 'en', 'es', 'fr', 'it', 'tr'].contains(locale.languageCode);
+  bool isSupported(Locale locale) => <String>['en', 'tr'].contains(locale.languageCode);
 
   @override
   bool shouldReload(_AppLocalizationsDelegate old) => false;
@@ -262,11 +290,7 @@ AppLocalizations lookupAppLocalizations(Locale locale) {
 
   // Lookup logic when only language code is specified.
   switch (locale.languageCode) {
-    case 'de': return AppLocalizationsDe();
     case 'en': return AppLocalizationsEn();
-    case 'es': return AppLocalizationsEs();
-    case 'fr': return AppLocalizationsFr();
-    case 'it': return AppLocalizationsIt();
     case 'tr': return AppLocalizationsTr();
   }
 

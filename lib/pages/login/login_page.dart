@@ -83,23 +83,28 @@ class LoginPage extends GetView<LoginController> {
                     obscureText: !controller.visiblePassword.value,
                     controller: controller.passwordController,
                     onFieldSubmitted: (value) {
-                      controller.submitForm();
+                      controller.submitForm(
+                          successTitle: local.login_success_title,
+                          successMessage:
+                              local.login_success_message(controller.emailController.text),
+                          errorTitle: local.login_error_title,
+                          errorMessage: local.login_error_message);
                     },
                     autovalidateMode: AutovalidateMode.onUserInteraction,
                     validator: MultiValidator([
                       RequiredValidator(errorText: local.passwordRequired),
-                      MinLengthValidator(8, errorText: local.passwordMinLength),
-                      PatternValidator(r'[A-Z]', errorText: local.passwordUpperCase),
-                      PatternValidator(r'[a-z]', errorText: local.passwordUpperCase),
-                      PatternValidator(r'[!@#\$&*~%^()_\-+=<>?/.,]',
-                          errorText: local.passwordSymbol)
                     ]).call,
                   ),
                   SizedBox(height: 20),
                   ElevatedButton(
                     onPressed: () {
                       if (_formKey.currentState!.validate()) {
-                        controller.submitForm();
+                        controller.submitForm(
+                            successTitle: local.login_success_title,
+                            successMessage:
+                                local.login_success_message(controller.emailController.text),
+                            errorTitle: local.login_error_title,
+                            errorMessage: local.login_error_message);
                       }
                     },
                     style: ElevatedButton.styleFrom(

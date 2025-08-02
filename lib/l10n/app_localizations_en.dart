@@ -76,4 +76,24 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get languageSelectionTitle => 'Please select your language';
+
+  @override
+  String get login_success_title => 'Login Successful';
+
+  @override
+  String login_success_message(Object email) {
+    return 'Welcome, $email';
+  }
+
+  @override
+  String get login_error_title => 'Login Error';
+
+  @override
+  String get login_error_message => 'Email or password is incorrect';
+
+  @override
+  String get book_category_see_all => 'See All';
+
+  @override
+  String get no_category_title => 'No categories available';
 }

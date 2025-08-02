@@ -11,6 +11,7 @@ class ApiService extends GetxService {
   late Dio _dio;
 
   Future<ApiService> init() async {
+    _storageService = Get.find<StorageService>();
     _dio = Dio(
       BaseOptions(
         baseUrl: ApiConstants.baseUrl,
@@ -102,6 +103,4 @@ class ApiService extends GetxService {
       rethrow;
     }
   }
-
-  getBooks() {}
 }

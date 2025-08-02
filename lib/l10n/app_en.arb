@@ -22,5 +22,12 @@
   "register": "Register",
   "logout": "Logout",
   "save": "Save",
-  "languageSelectionTitle": "Please select your language"
+  "languageSelectionTitle": "Please select your language",
+  "login_success_title": "Login Successful",
+  "login_success_message": "Welcome, {email}",
+  "login_error_title": "Login Error",
+  "login_error_message": "Email or password is incorrect",
+  "book_category_see_all": "See All",
+  "no_category_title": "No categories available",
+  "home_banner_title": "Welcome to the Book Store"
 }

@@ -22,5 +22,12 @@
   "register": "Kayıt Ol",
   "logout": "Çıkış",
   "save": "Kaydet",
-  "languageSelectionTitle": "Lütfen dilinizi seçin"
+  "languageSelectionTitle": "Lütfen dilinizi seçin",
+  "login_success_title": "Giriş Başarılı",
+  "login_success_message": "Hoş geldiniz, {email}",
+  "login_error_title": "Giriş Hatası",
+  "login_error_message": "Email veya şifre hatalı",
+  "book_category_see_all": "Tümünü Gör",
+  "no_category_title": "Kategori yok",
+  "home_banner_title": "Kitapçıya Hoş Geldiniz"
 }
