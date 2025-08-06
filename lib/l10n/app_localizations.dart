@@ -268,6 +268,54 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'No categories available'**
   String get no_category_title;
+
+  /// No description provided for @home_banner_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Welcome to the Book Store'**
+  String get home_banner_title;
+
+  /// No description provided for @profile_title.
+  ///
+  /// In en, this message translates to:
+  /// **'My Account'**
+  String get profile_title;
+
+  /// No description provided for @profile_name.
+  ///
+  /// In en, this message translates to:
+  /// **'Name'**
+  String get profile_name;
+
+  /// No description provided for @profile_email.
+  ///
+  /// In en, this message translates to:
+  /// **'Email'**
+  String get profile_email;
+
+  /// No description provided for @actionSheet_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Seçim yap'**
+  String get actionSheet_title;
+
+  /// No description provided for @actionSheet_camera.
+  ///
+  /// In en, this message translates to:
+  /// **'Kamera'**
+  String get actionSheet_camera;
+
+  /// No description provided for @actionSheet_gallery.
+  ///
+  /// In en, this message translates to:
+  /// **'Galeri'**
+  String get actionSheet_gallery;
+
+  /// No description provided for @actionSheet_cancel.
+  ///
+  /// In en, this message translates to:
+  /// **'İptal'**
+  String get actionSheet_cancel;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

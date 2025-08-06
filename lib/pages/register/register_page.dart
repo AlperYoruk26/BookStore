@@ -23,6 +23,7 @@ class RegisterPage extends GetView<RegisterController> {
                 children: [
                   TextFormField(
                     decoration: InputDecoration(labelText: local.register_first_name),
+                    style: TextStyle(color: Theme.of(context).colorScheme.onSecondary),
                     controller: controller.firstNameController,
                     textInputAction: TextInputAction.next,
                     autovalidateMode: AutovalidateMode.onUserInteraction,
@@ -36,6 +37,7 @@ class RegisterPage extends GetView<RegisterController> {
                   SizedBox(height: 20),
                   TextFormField(
                     decoration: InputDecoration(labelText: local.register_last_name),
+                    style: TextStyle(color: Theme.of(context).colorScheme.onSecondary),
                     controller: controller.lastNameController,
                     textInputAction: TextInputAction.next,
                     autovalidateMode: AutovalidateMode.onUserInteraction,
@@ -49,6 +51,7 @@ class RegisterPage extends GetView<RegisterController> {
                   SizedBox(height: 20),
                   TextFormField(
                       decoration: InputDecoration(labelText: local.register_email),
+                      style: TextStyle(color: Theme.of(context).colorScheme.onSecondary),
                       controller: controller.emailController,
                       textInputAction: TextInputAction.next,
                       autovalidateMode: AutovalidateMode.onUserInteraction,
@@ -67,6 +70,7 @@ class RegisterPage extends GetView<RegisterController> {
                             icon: Icon(controller.visiblePassword.value
                                 ? Icons.visibility
                                 : Icons.visibility_off))),
+                    style: TextStyle(color: Theme.of(context).colorScheme.onSecondary),
                     obscureText: !controller.visiblePassword.value,
                     controller: controller.passwordController,
                     textInputAction: TextInputAction.next,
@@ -92,6 +96,7 @@ class RegisterPage extends GetView<RegisterController> {
                             icon: Icon(controller.visibleConfirmPassword.value
                                 ? Icons.visibility
                                 : Icons.visibility_off))),
+                    style: TextStyle(color: Theme.of(context).colorScheme.onSecondary),
                     obscureText: !controller.visibleConfirmPassword.value,
                     controller: controller.confirmPasswordController,
                     textInputAction: TextInputAction.done,

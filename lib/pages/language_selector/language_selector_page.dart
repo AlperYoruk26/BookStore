@@ -24,7 +24,7 @@ class LanguageSelectorPage extends GetView<LanguageSelectorController> {
                     children: [
                       Text(
                         local.languageSelectionTitle,
-                        style: Theme.of(context).textTheme.headlineLarge,
+                        style: Theme.of(context).textTheme.headlineMedium,
                       ),
                       SizedBox(
                         height: 20,

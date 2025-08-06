@@ -18,7 +18,7 @@ class TabScreens {
       ),
       PersistentBottomNavBarItem(
         icon: const Icon(Icons.person),
-        activeColorPrimary: Theme.of(context).bottomNavigationBarTheme.unselectedItemColor!,
+        activeColorPrimary: Theme.of(context).bottomNavigationBarTheme.selectedItemColor!,
         inactiveColorPrimary: Colors.grey,
       ),
     ];

@@ -96,4 +96,28 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get no_category_title => 'No categories available';
+
+  @override
+  String get home_banner_title => 'Welcome to the Book Store';
+
+  @override
+  String get profile_title => 'My Account';
+
+  @override
+  String get profile_name => 'Name';
+
+  @override
+  String get profile_email => 'Email';
+
+  @override
+  String get actionSheet_title => 'Seçim yap';
+
+  @override
+  String get actionSheet_camera => 'Kamera';
+
+  @override
+  String get actionSheet_gallery => 'Galeri';
+
+  @override
+  String get actionSheet_cancel => 'İptal';
 }

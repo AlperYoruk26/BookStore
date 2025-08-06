@@ -11,8 +11,13 @@ class AppTheme {
         elevation: 0,
       ),
       textTheme: TextTheme(
-        // headlineLarge: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
-        headlineLarge: GoogleFonts.poppins(
+        // headlineMedium: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+        headlineMedium: GoogleFonts.poppins(
+          fontSize: 24,
+          color: Color(0xff19191b),
+          fontWeight: FontWeight.w600,
+        ),
+        headlineSmall: GoogleFonts.poppins(
           fontSize: 24,
           color: Color(0xff19191b),
           fontWeight: FontWeight.w600,
@@ -71,15 +76,15 @@ class AppTheme {
 
   // Dark Theme
   static ThemeData darkTheme = ThemeData(
-      scaffoldBackgroundColor: Color(0xFF14141C),
+      scaffoldBackgroundColor: Color(0xFF0F0F12),
       appBarTheme: AppBarTheme(
-        backgroundColor: Color(0xFF14141C),
+        backgroundColor: Color(0xFF0F0F12),
         foregroundColor: Colors.white70,
         elevation: 0,
       ),
       textTheme: TextTheme(
-        // headlineLarge: TextStyle(fontSize: 24, fontWeight: FontWeight.bold, color: Colors.white),
-        headlineLarge: GoogleFonts.poppins(
+        // headlineMedium: TextStyle(fontSize: 24, fontWeight: FontWeight.bold, color: Colors.white),
+        headlineMedium: GoogleFonts.poppins(
           fontSize: 24,
           color: Colors.white,
           fontWeight: FontWeight.w600,

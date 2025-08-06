@@ -6,18 +6,21 @@ import 'package:book_store/routes/app_pages.dart';
 import 'package:book_store/services/storage_service.dart';
 import 'package:book_store/theme/app_theme.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:get/get.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await SystemChrome.setPreferredOrientations([
+    DeviceOrientation.portraitUp,
+  ]);
   await dotenv.load(fileName: ".env");
   await AppBindings().dependencies();
 
   // StorageService'i bul ve dil kodunu al
   final _storageService = Get.find<StorageService>();
-  await _storageService.setValue(StorageConstants.appLanguage, 'en');
   final savedLang = await _storageService.getValue<String>(StorageConstants.appLanguage) ?? 'en';
 
   runApp(MyApp(initialLang: savedLang));

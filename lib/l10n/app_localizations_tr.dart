@@ -96,4 +96,28 @@ class AppLocalizationsTr extends AppLocalizations {
 
   @override
   String get no_category_title => 'Kategori yok';
+
+  @override
+  String get home_banner_title => 'Kitapçıya Hoş Geldiniz';
+
+  @override
+  String get profile_title => 'Hesabım';
+
+  @override
+  String get profile_name => 'İsim';
+
+  @override
+  String get profile_email => 'Eposta';
+
+  @override
+  String get actionSheet_title => 'Make a selection';
+
+  @override
+  String get actionSheet_camera => 'Camera';
+
+  @override
+  String get actionSheet_gallery => 'Gallery';
+
+  @override
+  String get actionSheet_cancel => 'Cancel';
 }

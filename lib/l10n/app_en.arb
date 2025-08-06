@@ -29,5 +29,13 @@
   "login_error_message": "Email or password is incorrect",
   "book_category_see_all": "See All",
   "no_category_title": "No categories available",
-  "home_banner_title": "Welcome to the Book Store"
+  "home_banner_title": "Welcome to the Book Store",
+  "profile_title": "My Account",
+  "profile_name": "Name",
+  "profile_email": "Email",
+  "actionSheet_title": "Seçim yap",
+  "actionSheet_camera": "Kamera",
+  "actionSheet_gallery": "Galeri",
+  "actionSheet_cancel": "İptal",
+  "logout": "Logout"
 }

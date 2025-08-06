@@ -58,6 +58,7 @@ class LoginPage extends GetView<LoginController> {
                 children: [
                   TextFormField(
                       decoration: InputDecoration(labelText: local.login_email),
+                      style: TextStyle(color: Theme.of(context).colorScheme.onSecondary),
                       controller: controller.emailController,
                       textInputAction: TextInputAction.next,
                       autovalidateMode: AutovalidateMode.onUserInteraction,
@@ -80,6 +81,7 @@ class LoginPage extends GetView<LoginController> {
                         ),
                       ),
                     ),
+                    style: TextStyle(color: Theme.of(context).colorScheme.onSecondary),
                     obscureText: !controller.visiblePassword.value,
                     controller: controller.passwordController,
                     onFieldSubmitted: (value) {

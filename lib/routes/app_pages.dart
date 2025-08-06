@@ -3,6 +3,8 @@ import 'package:book_store/pages/home/home_binding.dart';
 import 'package:book_store/pages/home/home_page.dart';
 import 'package:book_store/pages/language_selector/language_selector_binding.dart';
 import 'package:book_store/pages/language_selector/language_selector_page.dart';
+import 'package:book_store/pages/loading/loading_binding.dart';
+import 'package:book_store/pages/loading/loading_page.dart';
 import 'package:book_store/pages/login/login_binding.dart';
 import 'package:book_store/pages/login/login_page.dart';
 import 'package:book_store/pages/main/main_binding.dart';
@@ -22,6 +24,7 @@ class AppPages {
         name: AppRoutesConstants.LANGUAGE_SELECTOR,
         page: () => LanguageSelectorPage(),
         binding: LanguageSelectorBinding()),
+    GetPage(name: AppRoutesConstants.LOADING, page: () => LoadingPage(), binding: LoadingBinding()),
     GetPage(name: AppRoutesConstants.LOGIN, page: () => LoginPage(), binding: LoginBinding()),
     GetPage(
       name: AppRoutesConstants.REGISTER,

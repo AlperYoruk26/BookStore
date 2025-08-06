@@ -32,7 +32,7 @@ class SplashController extends GetxController {
 
   Future<void> checkAndRedirect() async {
     final storageService = Get.find<StorageService>();
-    Supabase.instance.client.auth.onAuthStateChange.listen((data) async {
+    await Supabase.instance.client.auth.onAuthStateChange.listen((data) async {
       final session = data.session;
       try {
         if (session != null) {

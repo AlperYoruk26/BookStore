@@ -14,7 +14,7 @@ class BookBestSellers extends GetView<HomeController> {
             children: [
               Text(
                 'Best Sellers',
-                style: Theme.of(context).textTheme.headlineLarge,
+                style: Theme.of(context).textTheme.headlineMedium,
               ),
               ConstrainedBox(
                 constraints: BoxConstraints(
@@ -30,8 +30,9 @@ class BookBestSellers extends GetView<HomeController> {
                         .map((book) {
                       return Card(
                         child: Padding(
-                          padding:
-                              const EdgeInsets.only(right: 8.0), //TODO: daha iyi bir yöntem bul
+                          padding: const EdgeInsets.symmetric(
+                            horizontal: 8.0,
+                          ), //TODO: daha iyi bir yöntem bul
                           child: Column(
                             children: [
                               Container(

@@ -29,5 +29,13 @@
   "login_error_message": "Email veya şifre hatalı",
   "book_category_see_all": "Tümünü Gör",
   "no_category_title": "Kategori yok",
-  "home_banner_title": "Kitapçıya Hoş Geldiniz"
+  "home_banner_title": "Kitapçıya Hoş Geldiniz",
+  "profile_title": "Hesabım",
+  "profile_name": "İsim",
+  "profile_email": "Eposta",
+  "actionSheet_title": "Make a selection",
+  "actionSheet_camera": "Camera",
+  "actionSheet_gallery": "Gallery",
+  "actionSheet_cancel": "Cancel",
+  "logout": "Çıkış"
 }

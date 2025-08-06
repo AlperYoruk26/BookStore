@@ -37,7 +37,7 @@ class BookCategories extends GetView<HomeController> {
                   child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
                     ListTile(
                       leading:
-                          Text(category.name, style: Theme.of(context).textTheme.headlineLarge),
+                          Text(category.name, style: Theme.of(context).textTheme.headlineMedium),
                       trailing: GestureDetector(
                         onTap: () {
                           debugPrint('tıkladım');

@@ -1,9 +1,9 @@
+import 'package:book_store/pages/loading/loading_page.dart';
 import 'package:book_store/widgets/book_best_sellers.dart';
 import 'package:book_store/widgets/book_categories.dart';
 import 'package:book_store/widgets/book_types.dart';
 import 'package:book_store/l10n/app_localizations.dart';
 import 'package:book_store/pages/home/home_controller.dart';
-import 'package:book_store/pages/splash/splash_page.dart';
 import 'package:book_store/services/auth_service.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -19,7 +19,7 @@ class HomePage extends GetView<HomeController> {
       appBar: AppBar(),
       body: Obx(() {
         if (controller.isLoading.value) {
-          return SplashPage();
+          return LoadingPage();
         } else {
           return CustomScrollView(
             slivers: [
@@ -37,10 +37,10 @@ class HomePage extends GetView<HomeController> {
                           ),
                         ),
                         Text(
-                          'Welcome to the Book ',
+                          local.home_banner_title,
                           style: Theme.of(context)
                               .textTheme
-                              .headlineLarge
+                              .headlineMedium
                               ?.copyWith(color: Colors.white),
                         ),
                       ])),

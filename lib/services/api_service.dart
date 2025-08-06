@@ -85,6 +85,20 @@ class ApiService extends GetxService {
     }
   }
 
+  Future<Response> patch(
+    String path, {
+    dynamic data,
+    Map<String, dynamic>? queryParameters,
+    Options? options,
+  }) async {
+    try {
+      return await _dio.patch(path, data: data, queryParameters: queryParameters, options: options);
+    } catch (e) {
+      debugPrint('Dio patch Error: $e');
+      rethrow;
+    }
+  }
+
   Future<Response> delete(
     String path, {
     dynamic data,
