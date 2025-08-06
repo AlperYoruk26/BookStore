@@ -1,6 +1,7 @@
 import 'package:book_store/bindings/app_bindings.dart';
 import 'package:book_store/core/constants/app_routes_constant.dart';
 import 'package:book_store/core/constants/storage_constant.dart';
+import 'package:book_store/core/constants/theme_constant.dart';
 import 'package:book_store/l10n/app_localizations.dart';
 import 'package:book_store/routes/app_pages.dart';
 import 'package:book_store/services/storage_service.dart';
@@ -22,13 +23,19 @@ Future<void> main() async {
   // StorageService'i bul ve dil kodunu al
   final _storageService = Get.find<StorageService>();
   final savedLang = await _storageService.getValue<String>(StorageConstants.appLanguage) ?? 'en';
+  final savedTheme =
+      await _storageService.getValue<String>(StorageConstants.appTheme) ?? ThemeConstants.light;
 
-  runApp(MyApp(initialLang: savedLang));
+  runApp(MyApp(
+    initialLang: savedLang,
+    initialTheme: savedTheme,
+  ));
 }
 
 class MyApp extends StatelessWidget {
   final String initialLang;
-  const MyApp({Key? key, required this.initialLang}) : super(key: key);
+  final String initialTheme;
+  const MyApp({Key? key, required this.initialLang, required this.initialTheme}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -39,7 +46,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: AppTheme.lightTheme,
       darkTheme: AppTheme.darkTheme,
-      themeMode: ThemeMode.system,
+      themeMode: initialTheme == ThemeConstants.light ? ThemeMode.dark : ThemeMode.light,
       supportedLocales: const [
         Locale('en'),
         Locale('tr'),

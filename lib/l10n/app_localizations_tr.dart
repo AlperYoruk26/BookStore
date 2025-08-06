@@ -75,6 +75,9 @@ class AppLocalizationsTr extends AppLocalizations {
   String get save => 'Kaydet';
 
   @override
+  String get change => 'Değiştir';
+
+  @override
   String get languageSelectionTitle => 'Lütfen dilinizi seçin';
 
   @override
@@ -120,4 +123,13 @@ class AppLocalizationsTr extends AppLocalizations {
 
   @override
   String get actionSheet_cancel => 'Cancel';
+
+  @override
+  String get app_settings => 'Uygulama Ayarları';
+
+  @override
+  String get language => 'Dil';
+
+  @override
+  String get theme => 'Tema';
 }

@@ -19,4 +19,13 @@ class LanguageSelectorController extends GetxController {
       debugPrint('Set appLanguage error: $e');
     }
   }
+
+  Future<void> change() async {
+    try {
+      await _storageService.setValue(StorageConstants.appLanguage, selectedLang.value!.code);
+      Get.offAllNamed(AppRoutesConstants.MAIN);
+    } catch (e) {
+      debugPrint('Set appLanguage error: $e');
+    }
+  }
 }

@@ -70,7 +70,8 @@ class AppTheme {
       ),
       navigationBarTheme: NavigationBarThemeData(shadowColor: const Color(0xFFD5D5D5)),
       cardTheme: CardThemeData(
-        color: Color(0xFFFDFDFD),
+        color: Color(0xFFF2F2F2),
+        shadowColor: Color(0xFFF2F2F2),
         elevation: 0,
       ));
 
@@ -137,7 +138,8 @@ class AppTheme {
       ),
       navigationBarTheme: NavigationBarThemeData(shadowColor: const Color(0xFF1F1F2A)),
       cardTheme: CardThemeData(
-        color: Color(0xFF14141C),
+        color: Color(0xFF1E1E28),
+        shadowColor: Color(0xFF1E1E28),
         elevation: 0,
       ));
 }

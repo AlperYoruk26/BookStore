@@ -23,7 +23,6 @@ class BookTypes extends GetView<HomeController> {
                   selected: controller.selectedTypeId.value == type.id,
                   selectedColor: Color(0xFFD45555),
                   labelStyle: TextStyle(color: Colors.white),
-                  backgroundColor: const Color.fromARGB(255, 50, 50, 50),
                   onSelected: (selected) async {
                     if (selected) {
                       await controller.getBooks(lang, type.id);

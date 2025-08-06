@@ -12,8 +12,10 @@ class LanguageSelectorPage extends GetView<LanguageSelectorController> {
 
   @override
   Widget build(BuildContext context) {
+    final fromSettings = Get.arguments ?? false;
     final local = AppLocalizations.of(context)!;
     return Scaffold(
+      appBar: fromSettings ? AppBar() : null,
       body: Center(
         child: Obx(() => Column(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -79,13 +81,11 @@ class LanguageSelectorPage extends GetView<LanguageSelectorController> {
                         height: MediaQuery.of(context).size.height * 0.3,
                       ),
                       ElevatedButton(
-                          onPressed: () {
-                            controller.save();
-                          },
+                          onPressed: () => fromSettings ? controller.change() : controller.save(),
                           style: ElevatedButton.styleFrom(
                               backgroundColor: Theme.of(context).colorScheme.primary,
                               foregroundColor: Theme.of(context).colorScheme.onPrimary),
-                          child: Text(local.save)),
+                          child: Text(fromSettings ? local.change : local.save)),
                     ],
                   ),
                 ),

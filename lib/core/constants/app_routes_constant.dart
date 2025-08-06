@@ -8,4 +8,5 @@ abstract class AppRoutesConstants {
   static const MAIN = '/main';
   static const HOME = '/home';
   static const PROFILE = '/profile';
+  static const SETTINGS = '/settings';
 }

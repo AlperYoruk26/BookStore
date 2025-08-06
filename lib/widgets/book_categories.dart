@@ -68,6 +68,7 @@ class BookCategories extends GetView<HomeController> {
                                 .map((book) {
                           // Mevcut card kodunuz aynı kalacak
                           return Card(
+                            color: Colors.transparent,
                             child: Padding(
                                 padding: const EdgeInsets.symmetric(
                                   horizontal: 8.0,
@@ -80,8 +81,15 @@ class BookCategories extends GetView<HomeController> {
                                       Container(
                                         width: MediaQuery.of(context).size.width * 0.44,
                                         height: MediaQuery.of(context).size.width * 0.66,
+                                        decoration: BoxDecoration(boxShadow: [
+                                          BoxShadow(
+                                              color: Color(0x7006070D),
+                                              spreadRadius: 0,
+                                              blurRadius: 7,
+                                              offset: Offset(0, 7))
+                                        ], borderRadius: BorderRadius.circular(20)),
                                         child: ClipRRect(
-                                          borderRadius: BorderRadius.all(Radius.circular(8)),
+                                          borderRadius: BorderRadius.all(Radius.circular(20)),
                                           child: Image.network(
                                             book.cover,
                                             fit: BoxFit.cover,
@@ -91,8 +99,16 @@ class BookCategories extends GetView<HomeController> {
                                     if (book.cover.split('.')[1] == 'jpg')
                                       Container(
                                         decoration: BoxDecoration(
-                                            border: BoxBorder.all(width: 1),
-                                            borderRadius: BorderRadius.all(Radius.circular(8))),
+                                          border: BoxBorder.all(width: 1),
+                                          borderRadius: BorderRadius.circular(20),
+                                          boxShadow: [
+                                            BoxShadow(
+                                                color: Color(0x7006070D),
+                                                spreadRadius: 0,
+                                                blurRadius: 7,
+                                                offset: Offset(0, 7))
+                                          ],
+                                        ),
                                         width: MediaQuery.of(context).size.width * 0.44,
                                         height: MediaQuery.of(context).size.width * 0.66,
                                       ),

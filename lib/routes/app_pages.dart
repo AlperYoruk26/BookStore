@@ -13,6 +13,8 @@ import 'package:book_store/pages/profile/profile_binding.dart';
 import 'package:book_store/pages/profile/profile_page.dart';
 import 'package:book_store/pages/register/register_binding.dart';
 import 'package:book_store/pages/register/register_page.dart';
+import 'package:book_store/pages/settings/settings_binding.dart';
+import 'package:book_store/pages/settings/settings_page.dart';
 import 'package:book_store/pages/splash/splash_binding.dart';
 import 'package:book_store/pages/splash/splash_page.dart';
 import 'package:get/get_navigation/src/routes/get_route.dart';
@@ -34,5 +36,7 @@ class AppPages {
     GetPage(name: AppRoutesConstants.MAIN, page: () => MainPage(), binding: MainBinding()),
     GetPage(name: AppRoutesConstants.HOME, page: () => HomePage(), binding: HomeBinding()),
     GetPage(name: AppRoutesConstants.PROFILE, page: () => ProfilePage(), binding: ProfileBinding()),
+    GetPage(
+        name: AppRoutesConstants.SETTINGS, page: () => SettingsPage(), binding: SettingsBinding()),
   ];
 }

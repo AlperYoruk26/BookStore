@@ -15,38 +15,38 @@ class LoginPage extends GetView<LoginController> {
     final _formKey = GlobalKey<FormState>();
     return Scaffold(
       appBar: AppBar(
-        // title: ElevatedButton(
-        //     onPressed: () {
-        //       Get.updateLocale(Get.locale!.languageCode == 'en' ? Locale('tr') : Locale('en'));
-        //     },
-        //     style: ElevatedButton.styleFrom(
-        //         backgroundColor: Colors.transparent,
-        //         elevation: 0,
-        //         foregroundColor: Theme.of(context).colorScheme.onSecondary,
-        //         fixedSize: Size(55, 55),
-        //         padding: EdgeInsets.zero),
-        //     child: Image.network(
-        //         width: 20,
-        //         Get.locale!.languageCode == 'en'
-        //             ? 'https://www.clipartmax.com/png/full/41-413003_english-uk-flag-circle-vector.png'
-        //             : 'https://cdn.countryflags.com/thumbs/turkey/flag-round-250.png')),
-        actions: [
-          ElevatedButton(
-              onPressed: () {
-                Get.changeThemeMode(Get.isDarkMode ? ThemeMode.light : ThemeMode.dark);
-              },
-              style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.transparent,
-                  elevation: 0,
-                  foregroundColor: Theme.of(context).colorScheme.onSecondary,
-                  fixedSize: Size(55, 55),
-                  padding: EdgeInsets.zero),
-              child: Icon(
-                Get.isDarkMode ? Icons.dark_mode_rounded : Icons.light_mode_rounded,
-                size: 20,
-              ))
-        ],
-      ),
+          // title: ElevatedButton(
+          //     onPressed: () {
+          //       Get.updateLocale(Get.locale!.languageCode == 'en' ? Locale('tr') : Locale('en'));
+          //     },
+          //     style: ElevatedButton.styleFrom(
+          //         backgroundColor: Colors.transparent,
+          //         elevation: 0,
+          //         foregroundColor: Theme.of(context).colorScheme.onSecondary,
+          //         fixedSize: Size(55, 55),
+          //         padding: EdgeInsets.zero),
+          //     child: Image.network(
+          //         width: 20,
+          //         Get.locale!.languageCode == 'en'
+          //             ? 'https://www.clipartmax.com/png/full/41-413003_english-uk-flag-circle-vector.png'
+          //             : 'https://cdn.countryflags.com/thumbs/turkey/flag-round-250.png')),
+          // actions: [
+          //   ElevatedButton(
+          //       onPressed: () {
+          //         Get.changeThemeMode(Get.isDarkMode ? ThemeMode.light : ThemeMode.dark);
+          //       },
+          //       style: ElevatedButton.styleFrom(
+          //           backgroundColor: Colors.transparent,
+          //           elevation: 0,
+          //           foregroundColor: Theme.of(context).colorScheme.onSecondary,
+          //           fixedSize: Size(55, 55),
+          //           padding: EdgeInsets.zero),
+          //       child: Icon(
+          //         Get.isDarkMode ? Icons.dark_mode_rounded : Icons.light_mode_rounded,
+          //         size: 20,
+          //       ))
+          // ],
+          ),
       body: Center(
         child: Obx(
           () => Form(

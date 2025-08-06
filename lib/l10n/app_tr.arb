@@ -22,6 +22,7 @@
   "register": "Kayıt Ol",
   "logout": "Çıkış",
   "save": "Kaydet",
+  "change": "Değiştir",
   "languageSelectionTitle": "Lütfen dilinizi seçin",
   "login_success_title": "Giriş Başarılı",
   "login_success_message": "Hoş geldiniz, {email}",
@@ -37,5 +38,8 @@
   "actionSheet_camera": "Camera",
   "actionSheet_gallery": "Gallery",
   "actionSheet_cancel": "Cancel",
-  "logout": "Çıkış"
+  "logout": "Çıkış",
+  "app_settings": "Uygulama Ayarları",
+  "language": "Dil",
+  "theme": "Tema"
 }

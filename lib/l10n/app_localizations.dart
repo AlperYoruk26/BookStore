@@ -227,6 +227,12 @@ abstract class AppLocalizations {
   /// **'Save'**
   String get save;
 
+  /// No description provided for @change.
+  ///
+  /// In en, this message translates to:
+  /// **'Change'**
+  String get change;
+
   /// No description provided for @languageSelectionTitle.
   ///
   /// In en, this message translates to:
@@ -316,6 +322,24 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'İptal'**
   String get actionSheet_cancel;
+
+  /// No description provided for @app_settings.
+  ///
+  /// In en, this message translates to:
+  /// **'App Settings'**
+  String get app_settings;
+
+  /// No description provided for @language.
+  ///
+  /// In en, this message translates to:
+  /// **'Language'**
+  String get language;
+
+  /// No description provided for @theme.
+  ///
+  /// In en, this message translates to:
+  /// **'Theme'**
+  String get theme;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

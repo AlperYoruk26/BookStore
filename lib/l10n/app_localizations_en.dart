@@ -75,6 +75,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get save => 'Save';
 
   @override
+  String get change => 'Change';
+
+  @override
   String get languageSelectionTitle => 'Please select your language';
 
   @override
@@ -120,4 +123,13 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get actionSheet_cancel => 'İptal';
+
+  @override
+  String get app_settings => 'App Settings';
+
+  @override
+  String get language => 'Language';
+
+  @override
+  String get theme => 'Theme';
 }

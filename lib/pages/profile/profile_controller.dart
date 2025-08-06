@@ -44,7 +44,7 @@ class ProfileController extends GetxController {
     try {
       final pickedFile = await picker.pickImage(source: ImageSource.gallery);
       if (pickedFile != null) {
-        final fileName = '${user.value?.id}_${pickedFile.name}.jpg';
+        final fileName = '${user.value?.id}_${pickedFile.name}';
         await Supabase.instance.client.storage
             .from('avatars')
             .upload(fileName, File(pickedFile.path), fileOptions: const FileOptions(upsert: true));

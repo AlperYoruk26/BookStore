@@ -22,6 +22,7 @@
   "register": "Register",
   "logout": "Logout",
   "save": "Save",
+  "change": "Change",
   "languageSelectionTitle": "Please select your language",
   "login_success_title": "Login Successful",
   "login_success_message": "Welcome, {email}",
@@ -37,5 +38,8 @@
   "actionSheet_camera": "Kamera",
   "actionSheet_gallery": "Galeri",
   "actionSheet_cancel": "İptal",
-  "logout": "Logout"
+  "logout": "Logout",
+  "app_settings": "App Settings",
+  "language": "Language",
+  "theme": "Theme"
 }

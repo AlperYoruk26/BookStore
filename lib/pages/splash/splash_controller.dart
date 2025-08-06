@@ -39,7 +39,7 @@ class SplashController extends GetxController {
           await storageService.setValue(StorageConstants.userToken, session.accessToken);
           Get.offAllNamed(AppRoutesConstants.MAIN);
           // debugPrint('Current Session: ${JsonEncoder.withIndent(' ').convert(session.user.toJson())}');
-          debugPrint('Access Token: ${session.accessToken}');
+          // debugPrint('Access Token: ${session.accessToken}');
           return;
         }
       } catch (e) {

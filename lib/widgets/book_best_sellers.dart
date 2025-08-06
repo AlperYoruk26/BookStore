@@ -29,6 +29,7 @@ class BookBestSellers extends GetView<HomeController> {
                         .take(4)
                         .map((book) {
                       return Card(
+                        color: Colors.transparent,
                         child: Padding(
                           padding: const EdgeInsets.symmetric(
                             horizontal: 8.0,
@@ -37,8 +38,16 @@ class BookBestSellers extends GetView<HomeController> {
                             children: [
                               Container(
                                 decoration: BoxDecoration(
-                                    border: BoxBorder.all(width: 1),
-                                    borderRadius: BorderRadius.all(Radius.circular(8))),
+                                  border: BoxBorder.all(width: 1),
+                                  borderRadius: BorderRadius.circular(20),
+                                  boxShadow: [
+                                    BoxShadow(
+                                        color: Color(0x7006070D),
+                                        spreadRadius: 0,
+                                        blurRadius: 7,
+                                        offset: Offset(0, 7))
+                                  ],
+                                ),
                                 width: MediaQuery.of(context).size.width * 0.44,
                                 height: MediaQuery.of(context).size.width * 0.66,
                               ),
