@@ -39,8 +39,8 @@ class ProfilePage extends GetView<ProfileController> {
                             child: ClipRRect(
                                 borderRadius: BorderRadius.circular(100),
                                 child: controller.avatar.isEmpty
-                                    ? Image.network(
-                                        'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png',
+                                    ? Image.asset(
+                                        'assets/images/no_profile_picture.jpg',
                                         fit: BoxFit.cover,
                                         width: MediaQuery.of(context).size.width * 0.5,
                                         height: MediaQuery.of(context).size.width * 0.5,
