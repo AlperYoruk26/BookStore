@@ -10,14 +10,18 @@ class LoginController extends GetxController {
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
 
-  Future<void> submitForm() async {
+  Future<void> submitForm(
+      {required successTitle,
+      required successMessage,
+      required errorTitle,
+      required errorMessage}) async {
     debugPrint('Email: ${emailController.text}, Password: ${passwordController.text}');
     try {
       final user = await authService.login(emailController.text, passwordController.text);
-      Get.snackbar('Giriş Başarılı', 'Hoş geldiniz, ${user.email}');
+      Get.snackbar(successTitle, successMessage);
       Get.offAllNamed(AppRoutesConstants.HOME);
     } catch (e) {
-      Get.snackbar('Giriş Hatası', 'Email veya şifre hatalı: $e');
+      Get.snackbar(errorTitle, errorMessage);
     }
   }
 }

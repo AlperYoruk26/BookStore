@@ -67,7 +67,6 @@ class AuthService extends GetxService {
       rethrow;
     } finally {
       await _storageService.remove(StorageConstants.userToken);
-      Get.offAllNamed(AppRoutesConstants.LOGIN);
     }
   }
 }

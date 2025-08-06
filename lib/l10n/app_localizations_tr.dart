@@ -70,4 +70,54 @@ class AppLocalizationsTr extends AppLocalizations {
 
   @override
   String get logout => 'Çıkış';
+
+  @override
+  String get save => 'Kaydet';
+
+  @override
+  String get languageSelectionTitle => 'Lütfen dilinizi seçin';
+
+  @override
+  String get login_success_title => 'Giriş Başarılı';
+
+  @override
+  String login_success_message(Object email) {
+    return 'Hoş geldiniz, $email';
+  }
+
+  @override
+  String get login_error_title => 'Giriş Hatası';
+
+  @override
+  String get login_error_message => 'Email veya şifre hatalı';
+
+  @override
+  String get book_category_see_all => 'Tümünü Gör';
+
+  @override
+  String get no_category_title => 'Kategori yok';
+
+  @override
+  String get home_banner_title => 'Kitapçıya Hoş Geldiniz';
+
+  @override
+  String get profile_title => 'Hesabım';
+
+  @override
+  String get profile_name => 'İsim';
+
+  @override
+  String get profile_email => 'Eposta';
+
+  @override
+  String get actionSheet_title => 'Make a selection';
+
+  @override
+  String get actionSheet_camera => 'Camera';
+
+  @override
+  String get actionSheet_gallery => 'Gallery';
+
+  @override
+  String get actionSheet_cancel => 'Cancel';
 }

@@ -220,6 +220,102 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Logout'**
   String get logout;
+
+  /// No description provided for @save.
+  ///
+  /// In en, this message translates to:
+  /// **'Save'**
+  String get save;
+
+  /// No description provided for @languageSelectionTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Please select your language'**
+  String get languageSelectionTitle;
+
+  /// No description provided for @login_success_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Login Successful'**
+  String get login_success_title;
+
+  /// No description provided for @login_success_message.
+  ///
+  /// In en, this message translates to:
+  /// **'Welcome, {email}'**
+  String login_success_message(Object email);
+
+  /// No description provided for @login_error_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Login Error'**
+  String get login_error_title;
+
+  /// No description provided for @login_error_message.
+  ///
+  /// In en, this message translates to:
+  /// **'Email or password is incorrect'**
+  String get login_error_message;
+
+  /// No description provided for @book_category_see_all.
+  ///
+  /// In en, this message translates to:
+  /// **'See All'**
+  String get book_category_see_all;
+
+  /// No description provided for @no_category_title.
+  ///
+  /// In en, this message translates to:
+  /// **'No categories available'**
+  String get no_category_title;
+
+  /// No description provided for @home_banner_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Welcome to the Book Store'**
+  String get home_banner_title;
+
+  /// No description provided for @profile_title.
+  ///
+  /// In en, this message translates to:
+  /// **'My Account'**
+  String get profile_title;
+
+  /// No description provided for @profile_name.
+  ///
+  /// In en, this message translates to:
+  /// **'Name'**
+  String get profile_name;
+
+  /// No description provided for @profile_email.
+  ///
+  /// In en, this message translates to:
+  /// **'Email'**
+  String get profile_email;
+
+  /// No description provided for @actionSheet_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Seçim yap'**
+  String get actionSheet_title;
+
+  /// No description provided for @actionSheet_camera.
+  ///
+  /// In en, this message translates to:
+  /// **'Kamera'**
+  String get actionSheet_camera;
+
+  /// No description provided for @actionSheet_gallery.
+  ///
+  /// In en, this message translates to:
+  /// **'Galeri'**
+  String get actionSheet_gallery;
+
+  /// No description provided for @actionSheet_cancel.
+  ///
+  /// In en, this message translates to:
+  /// **'İptal'**
+  String get actionSheet_cancel;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

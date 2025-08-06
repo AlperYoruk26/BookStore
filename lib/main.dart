@@ -1,41 +1,56 @@
 import 'package:book_store/bindings/app_bindings.dart';
 import 'package:book_store/core/constants/app_routes_constant.dart';
+import 'package:book_store/core/constants/storage_constant.dart';
 import 'package:book_store/l10n/app_localizations.dart';
 import 'package:book_store/routes/app_pages.dart';
+import 'package:book_store/services/storage_service.dart';
 import 'package:book_store/theme/app_theme.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:get/get.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await SystemChrome.setPreferredOrientations([
+    DeviceOrientation.portraitUp,
+  ]);
   await dotenv.load(fileName: ".env");
-  runApp(const MyApp());
+  await AppBindings().dependencies();
+
+  // StorageService'i bul ve dil kodunu al
+  final _storageService = Get.find<StorageService>();
+  final savedLang = await _storageService.getValue<String>(StorageConstants.appLanguage) ?? 'en';
+
+  runApp(MyApp(initialLang: savedLang));
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  final String initialLang;
+  const MyApp({Key? key, required this.initialLang}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
-      initialBinding: AppBindings(),
-      initialRoute: AppRoutesConstants.SPLASH,
+      initialRoute: AppRoutesConstants.INITIAL,
       getPages: AppPages.pages,
       title: 'BookStore',
       debugShowCheckedModeBanner: false,
       theme: AppTheme.lightTheme,
       darkTheme: AppTheme.darkTheme,
       themeMode: ThemeMode.system,
-      supportedLocales: const [Locale('tr'), Locale('en')],
+      supportedLocales: const [
+        Locale('en'),
+        Locale('tr'),
+      ],
       localizationsDelegates: [
         AppLocalizations.delegate,
         GlobalMaterialLocalizations.delegate,
         GlobalWidgetsLocalizations.delegate,
         GlobalCupertinoLocalizations.delegate,
       ],
-      locale: const Locale('en'),
+      locale: Locale(initialLang),
     );
   }
 }
