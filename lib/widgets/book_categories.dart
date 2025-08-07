@@ -1,3 +1,4 @@
+import 'package:book_store/core/constants/app_routes_constant.dart';
 import 'package:book_store/l10n/app_localizations.dart';
 import 'package:book_store/pages/home/home_controller.dart';
 import 'package:flutter/material.dart';
@@ -17,12 +18,10 @@ class BookCategories extends GetView<HomeController> {
 
       if (totalMatches == 0) {
         return Center(
-          child: Padding(
-            padding: const EdgeInsets.all(50.0),
-            child: Text(
-              local.no_category_title,
-              style: Theme.of(context).textTheme.headlineMedium,
-            ),
+          heightFactor: MediaQuery.of(context).size.height * 0.005,
+          child: Text(
+            local.no_category_title,
+            style: Theme.of(context).textTheme.headlineMedium,
           ),
         );
       }
@@ -39,9 +38,12 @@ class BookCategories extends GetView<HomeController> {
                       leading:
                           Text(category.name, style: Theme.of(context).textTheme.headlineMedium),
                       trailing: GestureDetector(
-                        onTap: () {
-                          debugPrint('tıkladım');
-                        },
+                        onTap: () => Get.toNamed(AppRoutesConstants.CATEGORY_DETAILS, arguments: {
+                          'language': Get.locale?.languageCode,
+                          'category_id': category.id,
+                          'type_id': controller.selectedTypeId.value,
+                          'category_name': category.name
+                        }),
                         child: Row(
                           mainAxisSize: MainAxisSize.min,
                           children: [
@@ -58,7 +60,7 @@ class BookCategories extends GetView<HomeController> {
                       ),
                     ),
                     SizedBox(
-                      height: MediaQuery.of(context).size.width * 0.66 + 80, // Card yüksekliği
+                      height: MediaQuery.of(context).size.width * 0.66 + 80,
                       child: SingleChildScrollView(
                         scrollDirection: Axis.horizontal,
                         child: Row(
@@ -66,7 +68,6 @@ class BookCategories extends GetView<HomeController> {
                                 .where((b) => b.categoryId == category.id)
                                 .take(4)
                                 .map((book) {
-                          // Mevcut card kodunuz aynı kalacak
                           return Card(
                             color: Colors.transparent,
                             child: Padding(
@@ -92,7 +93,7 @@ class BookCategories extends GetView<HomeController> {
                                           borderRadius: BorderRadius.all(Radius.circular(20)),
                                           child: Image.network(
                                             book.cover,
-                                            fit: BoxFit.cover,
+                                            fit: BoxFit.fill,
                                           ),
                                         ),
                                       ),
@@ -113,7 +114,6 @@ class BookCategories extends GetView<HomeController> {
                                         height: MediaQuery.of(context).size.width * 0.66,
                                       ),
                                     SizedBox(height: 10),
-                                    // Text kısmı aynı
                                     Container(
                                       width: MediaQuery.of(context).size.width * 0.44,
                                       child: Row(

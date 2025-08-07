@@ -25,7 +25,6 @@ class HomeController extends GetxController {
     super.onInit();
     isLoading.value = true;
     final language = await _storageService.getValue<String>(StorageConstants.appLanguage);
-    debugPrint('Lang: $language');
     await getTypes();
     await getCategories();
     await getBooks(language!, selectedTypeId.value);
@@ -35,7 +34,6 @@ class HomeController extends GetxController {
   Future<void> getTypes() async {
     try {
       final lang = await _storageService.getValue<String>(StorageConstants.appLanguage);
-      debugPrint('Lang: $lang');
       final response =
           await _apiService.post('${ApiConstants.baseUrl}/rpc/get_types', data: {"lang": lang});
       if (response.statusCode == 200) {

@@ -35,7 +35,7 @@ Future<void> main() async {
 class MyApp extends StatelessWidget {
   final String initialLang;
   final String initialTheme;
-  const MyApp({Key? key, required this.initialLang, required this.initialTheme}) : super(key: key);
+  const MyApp({required this.initialLang, required this.initialTheme}) : super();
 
   @override
   Widget build(BuildContext context) {

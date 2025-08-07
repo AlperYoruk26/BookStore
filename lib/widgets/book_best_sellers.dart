@@ -36,21 +36,41 @@ class BookBestSellers extends GetView<HomeController> {
                           ), //TODO: daha iyi bir yöntem bul
                           child: Column(
                             children: [
-                              Container(
-                                decoration: BoxDecoration(
-                                  border: BoxBorder.all(width: 1),
-                                  borderRadius: BorderRadius.circular(20),
-                                  boxShadow: [
+                              if (book.cover.split('.')[1] != 'jpg')
+                                Container(
+                                  width: MediaQuery.of(context).size.width * 0.44,
+                                  height: MediaQuery.of(context).size.width * 0.66,
+                                  decoration: BoxDecoration(boxShadow: [
                                     BoxShadow(
                                         color: Color(0x7006070D),
                                         spreadRadius: 0,
                                         blurRadius: 7,
                                         offset: Offset(0, 7))
-                                  ],
+                                  ], borderRadius: BorderRadius.circular(20)),
+                                  child: ClipRRect(
+                                    borderRadius: BorderRadius.all(Radius.circular(20)),
+                                    child: Image.network(
+                                      book.cover,
+                                      fit: BoxFit.cover,
+                                    ),
+                                  ),
                                 ),
-                                width: MediaQuery.of(context).size.width * 0.44,
-                                height: MediaQuery.of(context).size.width * 0.66,
-                              ),
+                              if (book.cover.split('.')[1] == 'jpg')
+                                Container(
+                                  decoration: BoxDecoration(
+                                    border: BoxBorder.all(width: 1),
+                                    borderRadius: BorderRadius.circular(20),
+                                    boxShadow: [
+                                      BoxShadow(
+                                          color: Color(0x7006070D),
+                                          spreadRadius: 0,
+                                          blurRadius: 7,
+                                          offset: Offset(0, 7))
+                                    ],
+                                  ),
+                                  width: MediaQuery.of(context).size.width * 0.44,
+                                  height: MediaQuery.of(context).size.width * 0.66,
+                                ),
                               SizedBox(height: 10),
                               Container(
                                 width: MediaQuery.of(context).size.width * 0.44,
