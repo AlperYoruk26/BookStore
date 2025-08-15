@@ -8,11 +8,28 @@ class CategoryDetailsPage extends GetView<CategoryDetailsController> {
 
   @override
   Widget build(BuildContext context) {
-    final categoryName = Get.arguments['category_name'];
+    final args = ModalRoute.of(context)!.settings.arguments as Map;
+
+    final typeId = args['type_id'];
+    final categoryId = args['category_id'];
+    final categoryName = args['category_name'];
+    final language = args['language'];
+
+    // controller.isLoading.value = true;
+    controller.getBooks(typeId, categoryId, language);
+    // controller.isLoading.value = false;
     return Scaffold(
-      appBar: AppBar(),
+      appBar: AppBar(
+        leading: GestureDetector(
+          onTap: () {
+            controller.books.value = [];
+            Navigator.pop(context);
+          },
+          child: Icon(Icons.arrow_back),
+        ),
+      ),
       body: Obx(() {
-        if (controller.isLoading.value) {
+        if (controller.books.isEmpty) {
           return LoadingPage();
         } else {
           return Column(
@@ -40,46 +57,26 @@ class CategoryDetailsPage extends GetView<CategoryDetailsController> {
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              // Resim kısmı aynı
-                              if (book.cover.split('.')[1] != 'jpg')
-                                Flexible(
-                                  child: Container(
-                                    width: MediaQuery.of(context).size.width * 0.44,
-                                    height: MediaQuery.of(context).size.width * 0.66,
-                                    decoration: BoxDecoration(boxShadow: [
-                                      BoxShadow(
-                                          color: Color(0x7006070D),
-                                          spreadRadius: 0,
-                                          blurRadius: 7,
-                                          offset: Offset(0, 7))
-                                    ], borderRadius: BorderRadius.circular(20)),
-                                    child: ClipRRect(
-                                      borderRadius: BorderRadius.all(Radius.circular(20)),
-                                      child: Image.network(
-                                        book.cover,
-                                        fit: BoxFit.fill,
-                                      ),
+                              Flexible(
+                                child: Container(
+                                  width: MediaQuery.of(context).size.width * 0.44,
+                                  height: MediaQuery.of(context).size.width * 0.66,
+                                  decoration: BoxDecoration(boxShadow: [
+                                    BoxShadow(
+                                        color: Color(0x7006070D),
+                                        spreadRadius: 0,
+                                        blurRadius: 7,
+                                        offset: Offset(0, 7))
+                                  ], borderRadius: BorderRadius.circular(20)),
+                                  child: ClipRRect(
+                                    borderRadius: BorderRadius.all(Radius.circular(20)),
+                                    child: Image.network(
+                                      book.cover,
+                                      fit: BoxFit.fill,
                                     ),
                                   ),
                                 ),
-                              if (book.cover.split('.')[1] == 'jpg')
-                                Flexible(
-                                  child: Container(
-                                    decoration: BoxDecoration(
-                                      border: BoxBorder.all(width: 1),
-                                      borderRadius: BorderRadius.circular(20),
-                                      boxShadow: [
-                                        BoxShadow(
-                                            color: Color(0x7006070D),
-                                            spreadRadius: 0,
-                                            blurRadius: 7,
-                                            offset: Offset(0, 7))
-                                      ],
-                                    ),
-                                    width: MediaQuery.of(context).size.width * 0.44,
-                                    height: MediaQuery.of(context).size.width * 0.66,
-                                  ),
-                                ),
+                              ),
                               SizedBox(height: 10),
                               // Text kısmı aynı
                               Container(

@@ -1,4 +1,6 @@
 import 'package:book_store/core/constants/app_routes_constant.dart';
+import 'package:book_store/pages/book_details/book_details_binding.dart';
+import 'package:book_store/pages/book_details/book_details_page.dart';
 import 'package:book_store/pages/category_details/category_details_binding.dart';
 import 'package:book_store/pages/category_details/category_details_page.dart';
 import 'package:book_store/pages/home/home_binding.dart';
@@ -40,9 +42,10 @@ class AppPages {
     GetPage(name: AppRoutesConstants.PROFILE, page: () => ProfilePage(), binding: ProfileBinding()),
     GetPage(
         name: AppRoutesConstants.SETTINGS, page: () => SettingsPage(), binding: SettingsBinding()),
+    GetPage(name: AppRoutesConstants.CATEGORY_DETAILS, page: () => CategoryDetailsPage()),
     GetPage(
-        name: AppRoutesConstants.CATEGORY_DETAILS,
-        page: () => CategoryDetailsPage(),
-        binding: CategoryDetailsBinding()),
+      name: AppRoutesConstants.BOOK_DETAILS,
+      page: () => BookDetailsPage(),
+    ),
   ];
 }

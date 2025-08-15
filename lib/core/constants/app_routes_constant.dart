@@ -10,4 +10,5 @@ abstract class AppRoutesConstants {
   static const PROFILE = '/profile';
   static const SETTINGS = '/settings';
   static const CATEGORY_DETAILS = '/category_details';
+  static const BOOK_DETAILS = '/book_details';
 }

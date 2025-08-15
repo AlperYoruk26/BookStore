@@ -7,24 +7,10 @@ import 'package:get/get.dart';
 
 class CategoryDetailsController extends GetxController {
   final _apiService = Get.find<ApiService>();
-  final isLoading = Get.find<LoadingController>().isLoading;
 
   final books = <Books>[].obs;
-  final language = Get.arguments['language'];
-  final categoryId = Get.arguments['category_id'];
-  final typeId = Get.arguments['type_id'];
 
-  @override
-  void onInit() {
-    super.onInit();
-    WidgetsBinding.instance.addPostFrameCallback((_) async {
-      isLoading.value = true;
-      await getBooks();
-      isLoading.value = false;
-    });
-  }
-
-  Future<void> getBooks() async {
+  Future<void> getBooks(int typeId, int categoryId, String language) async {
     try {
       final response = await _apiService.post('${ApiConstants.baseUrl}/rpc/get_books_by_category',
           data: {"lang": language, "filter_type_id": typeId, "filter_category_id": categoryId});

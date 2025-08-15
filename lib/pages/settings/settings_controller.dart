@@ -14,4 +14,8 @@ class SettingsController extends GetxController {
     Get.changeThemeMode(theme.value == ThemeConstants.dark ? ThemeMode.light : ThemeMode.dark);
     await _storageService.setValue(StorageConstants.appTheme, theme.value.toString());
   }
+
+  Future<void> changePrimaryColor(int primaryColor) async {
+    await _storageService.setValue(StorageConstants.primaryColor, primaryColor);
+  }
 }

@@ -2,7 +2,7 @@ import 'package:book_store/core/constants/api_constant.dart';
 import 'package:book_store/core/constants/storage_constant.dart';
 import 'package:book_store/models/book_model.dart';
 import 'package:book_store/models/categories_model.dart';
-import 'package:book_store/models/types_dart.dart';
+import 'package:book_store/models/types_model.dart';
 import 'package:book_store/pages/loading/loading_controller.dart';
 import 'package:book_store/services/api_service.dart';
 import 'package:book_store/services/storage_service.dart';

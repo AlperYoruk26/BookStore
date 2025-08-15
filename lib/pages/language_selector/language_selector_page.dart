@@ -14,6 +14,7 @@ class LanguageSelectorPage extends GetView<LanguageSelectorController> {
   Widget build(BuildContext context) {
     final fromSettings = Get.arguments ?? false;
     final local = AppLocalizations.of(context)!;
+    debugPrint('AKTİF: ${controller.selectedLang.value!.name}');
     return Scaffold(
       appBar: fromSettings ? AppBar() : null,
       body: Center(

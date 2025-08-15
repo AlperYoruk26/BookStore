@@ -1,8 +1,13 @@
 import 'package:book_store/core/constants/app_routes_constant.dart';
 import 'package:book_store/l10n/app_localizations.dart';
+import 'package:book_store/pages/book_details/book_details_controller.dart';
+import 'package:book_store/pages/book_details/book_details_page.dart';
+import 'package:book_store/pages/category_details/category_details_controller.dart';
+import 'package:book_store/pages/category_details/category_details_page.dart';
 import 'package:book_store/pages/home/home_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:persistent_bottom_nav_bar_v2/persistent_bottom_nav_bar_v2.dart';
 
 class BookCategories extends GetView<HomeController> {
   const BookCategories({super.key});
@@ -38,12 +43,20 @@ class BookCategories extends GetView<HomeController> {
                       leading:
                           Text(category.name, style: Theme.of(context).textTheme.headlineMedium),
                       trailing: GestureDetector(
-                        onTap: () => Get.toNamed(AppRoutesConstants.CATEGORY_DETAILS, arguments: {
-                          'language': Get.locale?.languageCode,
-                          'category_id': category.id,
-                          'type_id': controller.selectedTypeId.value,
-                          'category_name': category.name
-                        }),
+                        onTap: () {
+                          Get.lazyPut(() => CategoryDetailsController());
+                          pushScreen(context,
+                              screen: CategoryDetailsPage(),
+                              withNavBar: true,
+                              settings: RouteSettings(
+                                  name: AppRoutesConstants.CATEGORY_DETAILS,
+                                  arguments: {
+                                    'type_id': controller.selectedTypeId.value,
+                                    'category_id': category.id,
+                                    'category_name': category.name,
+                                    'language': Get.locale?.languageCode,
+                                  }));
+                        },
                         child: Row(
                           mainAxisSize: MainAxisSize.min,
                           children: [
@@ -68,17 +81,25 @@ class BookCategories extends GetView<HomeController> {
                                 .where((b) => b.categoryId == category.id)
                                 .take(4)
                                 .map((book) {
-                          return Card(
-                            color: Colors.transparent,
-                            child: Padding(
-                                padding: const EdgeInsets.symmetric(
-                                  horizontal: 8.0,
-                                ),
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    // Resim kısmı aynı
-                                    if (book.cover.split('.')[1] != 'jpg')
+                          return GestureDetector(
+                            onTap: () {
+                              Get.lazyPut(() => BookDetailsController());
+                              pushScreen(context,
+                                  screen: BookDetailsPage(),
+                                  withNavBar: true,
+                                  settings: RouteSettings(
+                                      name: AppRoutesConstants.BOOK_DETAILS,
+                                      arguments: {"book_id": book.id, "lang": book.language}));
+                            }, // todo: burası değişecek id ile istek atılacak
+                            child: Card(
+                              color: Colors.transparent,
+                              child: Padding(
+                                  padding: const EdgeInsets.symmetric(
+                                    horizontal: 8.0,
+                                  ),
+                                  child: Column(
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    children: [
                                       Container(
                                         width: MediaQuery.of(context).size.width * 0.44,
                                         height: MediaQuery.of(context).size.width * 0.66,
@@ -97,54 +118,38 @@ class BookCategories extends GetView<HomeController> {
                                           ),
                                         ),
                                       ),
-                                    if (book.cover.split('.')[1] == 'jpg')
                                       Container(
-                                        decoration: BoxDecoration(
-                                          border: BoxBorder.all(width: 1),
-                                          borderRadius: BorderRadius.circular(20),
-                                          boxShadow: [
-                                            BoxShadow(
-                                                color: Color(0x7006070D),
-                                                spreadRadius: 0,
-                                                blurRadius: 7,
-                                                offset: Offset(0, 7))
+                                        width: MediaQuery.of(context).size.width * 0.44,
+                                        child: Row(
+                                          crossAxisAlignment: CrossAxisAlignment.start,
+                                          children: [
+                                            Expanded(
+                                              child: Column(
+                                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                                  children: [
+                                                    Text(
+                                                      book.name,
+                                                      maxLines: 1,
+                                                      overflow: TextOverflow.ellipsis,
+                                                    ),
+                                                    Text(
+                                                      book.author,
+                                                      maxLines: 1,
+                                                      overflow: TextOverflow.ellipsis,
+                                                    )
+                                                  ]),
+                                            ),
+                                            SizedBox(width: 10),
+                                            Text(
+                                              '${book.price}\$',
+                                              style: TextStyle(fontSize: 20),
+                                            )
                                           ],
                                         ),
-                                        width: MediaQuery.of(context).size.width * 0.44,
-                                        height: MediaQuery.of(context).size.width * 0.66,
-                                      ),
-                                    SizedBox(height: 10),
-                                    Container(
-                                      width: MediaQuery.of(context).size.width * 0.44,
-                                      child: Row(
-                                        crossAxisAlignment: CrossAxisAlignment.start,
-                                        children: [
-                                          Expanded(
-                                            child: Column(
-                                                crossAxisAlignment: CrossAxisAlignment.start,
-                                                children: [
-                                                  Text(
-                                                    book.name,
-                                                    maxLines: 1,
-                                                    overflow: TextOverflow.ellipsis,
-                                                  ),
-                                                  Text(
-                                                    book.author,
-                                                    maxLines: 1,
-                                                    overflow: TextOverflow.ellipsis,
-                                                  )
-                                                ]),
-                                          ),
-                                          SizedBox(width: 10),
-                                          Text(
-                                            '${book.price}\$',
-                                            style: TextStyle(fontSize: 20),
-                                          )
-                                        ],
-                                      ),
-                                    )
-                                  ],
-                                )),
+                                      )
+                                    ],
+                                  )),
+                            ),
                           );
                         }).toList()),
                       ),

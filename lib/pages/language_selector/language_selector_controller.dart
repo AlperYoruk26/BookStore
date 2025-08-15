@@ -11,6 +11,15 @@ class LanguageSelectorController extends GetxController {
 
   var selectedLang = Rx<Language?>(languages[0]);
 
+  @override
+  void onInit() async {
+    super.onInit();
+    final language = await _storageService.getValue<String>(StorageConstants.appLanguage);
+    final foundLang =
+        languages.firstWhere((lang) => lang.code == language, orElse: () => languages[0]);
+    selectedLang.value = foundLang;
+  }
+
   Future<void> save() async {
     try {
       await _storageService.setValue(StorageConstants.appLanguage, selectedLang.value!.code);
