@@ -1,7 +1,5 @@
 import 'package:book_store/core/constants/app_routes_constant.dart';
-import 'package:book_store/pages/book_details/book_details_binding.dart';
 import 'package:book_store/pages/book_details/book_details_page.dart';
-import 'package:book_store/pages/category_details/category_details_binding.dart';
 import 'package:book_store/pages/category_details/category_details_page.dart';
 import 'package:book_store/pages/home/home_binding.dart';
 import 'package:book_store/pages/home/home_page.dart';
@@ -21,6 +19,8 @@ import 'package:book_store/pages/settings/settings_binding.dart';
 import 'package:book_store/pages/settings/settings_page.dart';
 import 'package:book_store/pages/splash/splash_binding.dart';
 import 'package:book_store/pages/splash/splash_page.dart';
+import 'package:book_store/pages/wishlist/wishlist_binding.dart';
+import 'package:book_store/pages/wishlist/wishlist_page.dart';
 import 'package:get/get_navigation/src/routes/get_route.dart';
 
 class AppPages {
@@ -47,5 +47,7 @@ class AppPages {
       name: AppRoutesConstants.BOOK_DETAILS,
       page: () => BookDetailsPage(),
     ),
+    GetPage(
+        name: AppRoutesConstants.WISHLIST, page: () => WishlistPage(), binding: WishlistBinding()),
   ];
 }

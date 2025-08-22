@@ -25,7 +25,7 @@ class BookTypes extends GetView<HomeController> {
                   labelStyle: TextStyle(color: Colors.white),
                   onSelected: (selected) async {
                     if (selected) {
-                      await controller.getBooks(lang, type.id);
+                      await controller.getBooks(type.id);
                       controller.selectedTypeId.value = type.id;
                     }
                   },

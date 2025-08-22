@@ -7,11 +7,13 @@ import 'package:get/get.dart';
 
 class CategoryDetailsController extends GetxController {
   final _apiService = Get.find<ApiService>();
+  final isLoading = Get.find<LoadingController>().isLoading;
 
   final books = <Books>[].obs;
 
   Future<void> getBooks(int typeId, int categoryId, String language) async {
     try {
+      isLoading.value = true;
       final response = await _apiService.post('${ApiConstants.baseUrl}/rpc/get_books_by_category',
           data: {"lang": language, "filter_type_id": typeId, "filter_category_id": categoryId});
       if (response.statusCode == 200) {
@@ -20,6 +22,8 @@ class CategoryDetailsController extends GetxController {
       }
     } catch (e) {
       debugPrint('Error get books: $e');
-    } finally {}
+    } finally {
+      isLoading.value = false;
+    }
   }
 }

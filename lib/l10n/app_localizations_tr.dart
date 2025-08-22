@@ -132,4 +132,28 @@ class AppLocalizationsTr extends AppLocalizations {
 
   @override
   String get theme => 'Tema';
+
+  @override
+  String get book_details_price => 'Fiyat';
+
+  @override
+  String get book_details_buy_button => 'Satın Al';
+
+  @override
+  String get book_details_cart_button => 'Sepete Ekle';
+
+  @override
+  String get wishlist_dialog_title => 'İstek Listesinden Kaldır';
+
+  @override
+  String get wishlist_dialog_content => 'Emin misiniz?';
+
+  @override
+  String get wishlist_dialog_cancel => 'İptal';
+
+  @override
+  String get wishlist_dialog_confirm => 'Sil';
+
+  @override
+  String get wishlist_cart_button => 'Sepete Ekle';
 }

@@ -1,6 +1,7 @@
 import 'package:book_store/pages/home/home_page.dart';
 import 'package:book_store/pages/profile/profile_page.dart';
 import 'package:book_store/pages/settings/settings_page.dart';
+import 'package:book_store/pages/wishlist/wishlist_page.dart';
 import 'package:flutter/material.dart';
 import 'package:persistent_bottom_nav_bar_v2/persistent_bottom_nav_bar_v2.dart';
 
@@ -11,6 +12,12 @@ class TabScreens {
           screen: HomePage(),
           item: ItemConfig(
               icon: Icon(Icons.home),
+              activeForegroundColor: Theme.of(context).bottomNavigationBarTheme.selectedItemColor!,
+              inactiveBackgroundColor: Colors.grey)),
+      PersistentTabConfig(
+          screen: WishlistPage(),
+          item: ItemConfig(
+              icon: Icon(Icons.favorite),
               activeForegroundColor: Theme.of(context).bottomNavigationBarTheme.selectedItemColor!,
               inactiveBackgroundColor: Colors.grey)),
       PersistentTabConfig(
@@ -27,4 +34,13 @@ class TabScreens {
               inactiveBackgroundColor: Colors.grey)),
     ];
   }
+}
+
+class AppIcons {
+  static List<IconData> icons = [
+    Icons.home,
+    Icons.favorite,
+    Icons.person,
+    Icons.settings,
+  ];
 }

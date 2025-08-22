@@ -132,4 +132,28 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get theme => 'Theme';
+
+  @override
+  String get book_details_price => 'Price';
+
+  @override
+  String get book_details_buy_button => 'Buy Now';
+
+  @override
+  String get book_details_cart_button => 'Add to Cart';
+
+  @override
+  String get wishlist_dialog_title => 'Remove from Wishlist';
+
+  @override
+  String get wishlist_dialog_content => 'Are you sure?';
+
+  @override
+  String get wishlist_dialog_cancel => 'Cancel';
+
+  @override
+  String get wishlist_dialog_confirm => 'Delete';
+
+  @override
+  String get wishlist_cart_button => 'Add to Cart';
 }

@@ -23,19 +23,32 @@ class HomeController extends GetxController {
   @override
   void onInit() async {
     super.onInit();
-    isLoading.value = true;
-    final language = await _storageService.getValue<String>(StorageConstants.appLanguage);
-    await getTypes();
-    await getCategories();
-    await getBooks(language!, selectedTypeId.value);
-    isLoading.value = false;
+    // isLoading.value = true;
+    // final language =
+    //     await _storageService.getValue<String>(StorageConstants.appLanguage);
+    await loadPageData();
+    // isLoading.value = false;
+  }
+
+  Future<void> loadPageData() async {
+    try {
+      isLoading.value = true;
+      await getTypes();
+      await getCategories();
+      await getBooks(selectedTypeId.value);
+    } catch (e) {
+      debugPrint('Load page data error: $e');
+    } finally {
+      isLoading.value = false;
+    }
   }
 
   Future<void> getTypes() async {
     try {
-      final lang = await _storageService.getValue<String>(StorageConstants.appLanguage);
-      final response =
-          await _apiService.post('${ApiConstants.baseUrl}/rpc/get_types', data: {"lang": lang});
+      final lang =
+          await _storageService.getValue<String>(StorageConstants.appLanguage);
+      final response = await _apiService
+          .post('${ApiConstants.baseUrl}/rpc/get_types', data: {"lang": lang});
       if (response.statusCode == 200) {
         final List data = response.data;
         types.value = data.map((e) => Types.fromJson(e)).toList();
@@ -47,7 +60,8 @@ class HomeController extends GetxController {
 
   Future<void> getCategories() async {
     try {
-      final lang = await _storageService.getValue<String>(StorageConstants.appLanguage);
+      final lang =
+          await _storageService.getValue<String>(StorageConstants.appLanguage);
       final response = await _apiService
           .post('${ApiConstants.baseUrl}/rpc/get_categories', data: {"lang": lang});
       if (response.statusCode == 200) {
@@ -59,9 +73,12 @@ class HomeController extends GetxController {
     }
   }
 
-  Future<void> getBooks(String language, int typeId) async {
+  Future<void> getBooks(int typeId) async {
     try {
-      final response = await _apiService.post('${ApiConstants.baseUrl}/rpc/get_books',
+      final language =
+          await _storageService.getValue<String>(StorageConstants.appLanguage);
+      final response = await _apiService.post(
+          '${ApiConstants.baseUrl}/rpc/get_books',
           data: {"lang": language, "filter_type_id": typeId});
       if (response.statusCode == 200) {
         final List data = response.data;

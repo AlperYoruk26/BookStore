@@ -340,6 +340,54 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Theme'**
   String get theme;
+
+  /// No description provided for @book_details_price.
+  ///
+  /// In en, this message translates to:
+  /// **'Price'**
+  String get book_details_price;
+
+  /// No description provided for @book_details_buy_button.
+  ///
+  /// In en, this message translates to:
+  /// **'Buy Now'**
+  String get book_details_buy_button;
+
+  /// No description provided for @book_details_cart_button.
+  ///
+  /// In en, this message translates to:
+  /// **'Add to Cart'**
+  String get book_details_cart_button;
+
+  /// No description provided for @wishlist_dialog_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Remove from Wishlist'**
+  String get wishlist_dialog_title;
+
+  /// No description provided for @wishlist_dialog_content.
+  ///
+  /// In en, this message translates to:
+  /// **'Are you sure?'**
+  String get wishlist_dialog_content;
+
+  /// No description provided for @wishlist_dialog_cancel.
+  ///
+  /// In en, this message translates to:
+  /// **'Cancel'**
+  String get wishlist_dialog_cancel;
+
+  /// No description provided for @wishlist_dialog_confirm.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete'**
+  String get wishlist_dialog_confirm;
+
+  /// No description provided for @wishlist_cart_button.
+  ///
+  /// In en, this message translates to:
+  /// **'Add to Cart'**
+  String get wishlist_cart_button;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

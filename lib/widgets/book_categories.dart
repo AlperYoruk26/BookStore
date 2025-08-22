@@ -1,6 +1,5 @@
 import 'package:book_store/core/constants/app_routes_constant.dart';
 import 'package:book_store/l10n/app_localizations.dart';
-import 'package:book_store/pages/book_details/book_details_controller.dart';
 import 'package:book_store/pages/book_details/book_details_page.dart';
 import 'package:book_store/pages/category_details/category_details_controller.dart';
 import 'package:book_store/pages/category_details/category_details_page.dart';
@@ -17,7 +16,8 @@ class BookCategories extends GetView<HomeController> {
     final local = AppLocalizations.of(context)!;
     return Obx(() {
       int totalMatches = controller.categories.fold(0, (sum, category) {
-        final count = controller.books.where((book) => book.categoryId == category.id).length;
+        final count =
+            controller.books.where((book) => book.categoryId == category.id).length;
         return sum + count;
       });
 
@@ -33,128 +33,150 @@ class BookCategories extends GetView<HomeController> {
 
       return Column(
         children: controller.categories.map((category) {
-          int matchCount = controller.books.where((book) => book.categoryId == category.id).length;
+          int matchCount = controller.books
+              .where((book) => book.categoryId == category.id)
+              .length;
 
           return matchCount != 0
               ? Padding(
                   padding: const EdgeInsets.all(8.0),
-                  child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-                    ListTile(
-                      leading:
-                          Text(category.name, style: Theme.of(context).textTheme.headlineMedium),
-                      trailing: GestureDetector(
-                        onTap: () {
-                          Get.lazyPut(() => CategoryDetailsController());
-                          pushScreen(context,
-                              screen: CategoryDetailsPage(),
-                              withNavBar: true,
-                              settings: RouteSettings(
-                                  name: AppRoutesConstants.CATEGORY_DETAILS,
-                                  arguments: {
-                                    'type_id': controller.selectedTypeId.value,
-                                    'category_id': category.id,
-                                    'category_name': category.name,
-                                    'language': Get.locale?.languageCode,
-                                  }));
-                        },
-                        child: Row(
-                          mainAxisSize: MainAxisSize.min,
-                          children: [
-                            Text(
-                              local.book_category_see_all,
-                              style: Theme.of(context).textTheme.bodyMedium,
-                            ),
-                            Icon(
-                              Icons.arrow_forward_ios_outlined,
-                              color: Theme.of(context).textTheme.bodyMedium!.color,
-                            )
-                          ],
-                        ),
-                      ),
-                    ),
-                    SizedBox(
-                      height: MediaQuery.of(context).size.width * 0.66 + 80,
-                      child: SingleChildScrollView(
-                        scrollDirection: Axis.horizontal,
-                        child: Row(
-                            children: controller.books
-                                .where((b) => b.categoryId == category.id)
-                                .take(4)
-                                .map((book) {
-                          return GestureDetector(
+                  child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        ListTile(
+                          leading: Text(category.name,
+                              style: Theme.of(context).textTheme.headlineMedium),
+                          trailing: GestureDetector(
                             onTap: () {
-                              Get.lazyPut(() => BookDetailsController());
+                              Get.lazyPut(() => CategoryDetailsController());
                               pushScreen(context,
-                                  screen: BookDetailsPage(),
+                                  screen: CategoryDetailsPage(),
                                   withNavBar: true,
                                   settings: RouteSettings(
-                                      name: AppRoutesConstants.BOOK_DETAILS,
-                                      arguments: {"book_id": book.id, "lang": book.language}));
-                            }, // todo: burası değişecek id ile istek atılacak
-                            child: Card(
-                              color: Colors.transparent,
-                              child: Padding(
-                                  padding: const EdgeInsets.symmetric(
-                                    horizontal: 8.0,
-                                  ),
-                                  child: Column(
-                                    crossAxisAlignment: CrossAxisAlignment.start,
-                                    children: [
-                                      Container(
-                                        width: MediaQuery.of(context).size.width * 0.44,
-                                        height: MediaQuery.of(context).size.width * 0.66,
-                                        decoration: BoxDecoration(boxShadow: [
-                                          BoxShadow(
-                                              color: Color(0x7006070D),
-                                              spreadRadius: 0,
-                                              blurRadius: 7,
-                                              offset: Offset(0, 7))
-                                        ], borderRadius: BorderRadius.circular(20)),
-                                        child: ClipRRect(
-                                          borderRadius: BorderRadius.all(Radius.circular(20)),
-                                          child: Image.network(
-                                            book.cover,
-                                            fit: BoxFit.fill,
-                                          ),
-                                        ),
-                                      ),
-                                      Container(
-                                        width: MediaQuery.of(context).size.width * 0.44,
-                                        child: Row(
-                                          crossAxisAlignment: CrossAxisAlignment.start,
-                                          children: [
-                                            Expanded(
-                                              child: Column(
-                                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                                  children: [
-                                                    Text(
-                                                      book.name,
-                                                      maxLines: 1,
-                                                      overflow: TextOverflow.ellipsis,
-                                                    ),
-                                                    Text(
-                                                      book.author,
-                                                      maxLines: 1,
-                                                      overflow: TextOverflow.ellipsis,
-                                                    )
-                                                  ]),
-                                            ),
-                                            SizedBox(width: 10),
-                                            Text(
-                                              '${book.price}\$',
-                                              style: TextStyle(fontSize: 20),
-                                            )
-                                          ],
-                                        ),
-                                      )
-                                    ],
-                                  )),
+                                      name: AppRoutesConstants.CATEGORY_DETAILS,
+                                      arguments: {
+                                        'type_id': controller.selectedTypeId.value,
+                                        'category_id': category.id,
+                                        'category_name': category.name,
+                                        'language': Get.locale?.languageCode,
+                                      }));
+                            },
+                            child: Row(
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                                Text(
+                                  local.book_category_see_all,
+                                  style: Theme.of(context).textTheme.bodyMedium,
+                                ),
+                                Icon(
+                                  Icons.arrow_forward_ios_outlined,
+                                  color:
+                                      Theme.of(context).textTheme.bodyMedium!.color,
+                                )
+                              ],
                             ),
-                          );
-                        }).toList()),
-                      ),
-                    )
-                  ]))
+                          ),
+                        ),
+                        SizedBox(
+                          height: MediaQuery.of(context).size.width * 0.66 + 80,
+                          child: SingleChildScrollView(
+                            scrollDirection: Axis.horizontal,
+                            child: Row(
+                                children: controller.books
+                                    .where((b) => b.categoryId == category.id)
+                                    .take(4)
+                                    .map((book) {
+                              return GestureDetector(
+                                onTap: () {
+                                  // Get.lazyPut(() => BookDetailsController());
+                                  pushScreen(context,
+                                      screen: BookDetailsPage(),
+                                      withNavBar: true,
+                                      settings: RouteSettings(
+                                          name: AppRoutesConstants.BOOK_DETAILS,
+                                          arguments: {
+                                            "book_id": book.id,
+                                            "lang": book.language
+                                          }));
+                                },
+                                child: Card(
+                                  color: Colors.transparent,
+                                  child: Padding(
+                                      padding: const EdgeInsets.symmetric(
+                                        horizontal: 8.0,
+                                      ),
+                                      child: Column(
+                                        crossAxisAlignment: CrossAxisAlignment.start,
+                                        children: [
+                                          Container(
+                                            width:
+                                                MediaQuery.of(context).size.width *
+                                                    0.44,
+                                            height:
+                                                MediaQuery.of(context).size.width *
+                                                    0.66,
+                                            decoration: BoxDecoration(
+                                                boxShadow: [
+                                                  BoxShadow(
+                                                      color: Color(0x7006070D),
+                                                      spreadRadius: 0,
+                                                      blurRadius: 7,
+                                                      offset: Offset(0, 7))
+                                                ],
+                                                borderRadius:
+                                                    BorderRadius.circular(20)),
+                                            child: ClipRRect(
+                                              borderRadius: BorderRadius.all(
+                                                  Radius.circular(20)),
+                                              child: Image.network(
+                                                book.cover,
+                                                fit: BoxFit.fill,
+                                              ),
+                                            ),
+                                          ),
+                                          SizedBox(
+                                            width:
+                                                MediaQuery.of(context).size.width *
+                                                    0.44,
+                                            child: Row(
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.start,
+                                              children: [
+                                                Expanded(
+                                                  child: Column(
+                                                      crossAxisAlignment:
+                                                          CrossAxisAlignment.start,
+                                                      children: [
+                                                        Text(
+                                                          book.name,
+                                                          maxLines: 1,
+                                                          overflow:
+                                                              TextOverflow.ellipsis,
+                                                        ),
+                                                        Text(
+                                                          book.author,
+                                                          maxLines: 1,
+                                                          overflow:
+                                                              TextOverflow.ellipsis,
+                                                        )
+                                                      ]),
+                                                ),
+                                                SizedBox(width: 10),
+                                                Text(
+                                                  '${book.price}\$',
+                                                  style: TextStyle(fontSize: 20),
+                                                )
+                                              ],
+                                            ),
+                                          )
+                                        ],
+                                      )),
+                                ),
+                              );
+                            }).toList()),
+                          ),
+                        )
+                      ]))
               : SizedBox.shrink();
         }).toList(),
       );

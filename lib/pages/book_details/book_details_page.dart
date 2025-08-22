@@ -1,7 +1,6 @@
-import 'package:book_store/core/constants/screen_contants.dart';
+import 'package:book_store/l10n/app_localizations.dart';
 import 'package:book_store/pages/book_details/book_details_controller.dart';
 import 'package:book_store/pages/loading/loading_page.dart';
-import 'package:book_store/pages/main/main_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -10,6 +9,7 @@ class BookDetailsPage extends GetView<BookDetailsController> {
 
   @override
   Widget build(BuildContext context) {
+    final local = AppLocalizations.of(context)!;
     final args = ModalRoute.of(context)!.settings.arguments as Map;
 
     final bookId = args['book_id'];
@@ -17,38 +17,51 @@ class BookDetailsPage extends GetView<BookDetailsController> {
 
     debugPrint('bookid: $bookId, language: $language');
 
-    controller.loadBook(bookId, language);
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      controller.loadBook(bookId, language);
+      controller.postIsInWishlst(bookId);
+    });
+
     return Scaffold(
       appBar: AppBar(
-        leading: GestureDetector(
-          onTap: () {
-            controller.book.value = null;
-            Navigator.pop(context);
-          },
-          child: Icon(Icons.arrow_back),
-        ),
         actions: [
           Padding(
             padding: const EdgeInsets.all(8.0),
-            child: Obx(() => GestureDetector(
-                  onTap: () => controller.isTouched.value = !controller.isTouched.value,
-                  child: Icon(
-                    controller.isTouched.value ? Icons.bookmark : Icons.bookmark_outline,
-                    size: 34,
-                    color: Theme.of(context).colorScheme.primary,
-                  ),
-                )),
+            // child: Obx(() => ),
           )
         ],
       ),
       body: Obx(() {
-        if (controller.book.value == null) {
+        if (controller.isLoading.value) {
           return LoadingPage();
         } else {
           return SingleChildScrollView(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.end,
               children: [
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: GestureDetector(
+                    onTap: () => controller.isInWishlist.value
+                        ? controller.deleteRemoveFromWishlist(bookId)
+                        : controller.postAddToWishlist(bookId),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        Icon(
+                          controller.isInWishlist.value
+                              ? Icons.favorite
+                              : Icons.favorite_outline,
+                          size: 34,
+                          color: Theme.of(context).colorScheme.primary,
+                        ),
+                        Text('Wishlist',
+                            style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                                color: Theme.of(context).colorScheme.primary))
+                      ],
+                    ),
+                  ),
+                ),
                 Center(
                   child: Container(
                     width: MediaQuery.of(context).size.width * 0.7,
@@ -63,7 +76,7 @@ class BookDetailsPage extends GetView<BookDetailsController> {
                     child: ClipRRect(
                       borderRadius: BorderRadiusGeometry.circular(20),
                       child: Image.network(
-                        controller.book.value!.cover,
+                        controller.book.value?.cover ?? '',
                         fit: BoxFit.fill,
                       ),
                     ),
@@ -74,30 +87,39 @@ class BookDetailsPage extends GetView<BookDetailsController> {
                     children: [
                       SizedBox(height: MediaQuery.of(context).size.height * 0.05),
                       Text(
-                        controller.book.value!.name,
-                        style: Theme.of(context).textTheme.headlineMedium?.copyWith(fontSize: 30),
+                        controller.book.value?.name ?? '',
+                        style: Theme.of(context)
+                            .textTheme
+                            .headlineMedium
+                            ?.copyWith(fontSize: 30),
                       ),
                       SizedBox(height: MediaQuery.of(context).size.height * 0.005),
                       Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: Text(
-                          controller.book.value!.author,
-                          style: Theme.of(context).textTheme.bodyMedium?.copyWith(fontSize: 20),
+                          controller.book.value?.author ?? '',
+                          style: Theme.of(context)
+                              .textTheme
+                              .bodyMedium
+                              ?.copyWith(fontSize: 20),
                         ),
                       ),
                       SizedBox(height: MediaQuery.of(context).size.height * 0.005),
                       Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: Text(
-                          'Price: ${controller.book.value!.price}\$',
-                          style: Theme.of(context).textTheme.bodyMedium?.copyWith(fontSize: 20),
+                          '${local.book_details_price}: ${controller.book.value?.price ?? ''}\$',
+                          style: Theme.of(context)
+                              .textTheme
+                              .bodyMedium
+                              ?.copyWith(fontSize: 20),
                         ),
                       ),
                       SizedBox(height: MediaQuery.of(context).size.height * 0.05),
                       Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 16.0),
                         child: Text(
-                          controller.book.value!.description,
+                          controller.book.value?.description ?? '',
                           style: Theme.of(context).textTheme.bodyMedium,
                         ),
                       ),
@@ -116,14 +138,14 @@ class BookDetailsPage extends GetView<BookDetailsController> {
                         backgroundColor: Theme.of(context).colorScheme.primary,
                         foregroundColor: Theme.of(context).colorScheme.onPrimary,
                       ),
-                      child: Text('Buy Now'),
+                      child: Text(local.book_details_buy_button),
                     ),
                     ElevatedButton(
                       onPressed: () => debugPrint('Add to Cart'),
                       style: ElevatedButton.styleFrom(
                           backgroundColor: Theme.of(context).colorScheme.secondary,
                           foregroundColor: Theme.of(context).colorScheme.onPrimary),
-                      child: Text('Add to Cart'),
+                      child: Text(local.book_details_cart_button),
                     ),
                   ],
                 ),

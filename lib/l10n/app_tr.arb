@@ -41,5 +41,13 @@
   "logout": "Çıkış",
   "app_settings": "Uygulama Ayarları",
   "language": "Dil",
-  "theme": "Tema"
+  "theme": "Tema",
+  "book_details_price": "Fiyat",
+  "book_details_buy_button": "Satın Al",
+  "book_details_cart_button": "Sepete Ekle",
+  "wishlist_dialog_title": "İstek Listesinden Kaldır",
+  "wishlist_dialog_content": "Emin misiniz?",
+  "wishlist_dialog_cancel": "İptal",
+  "wishlist_dialog_confirm": "Sil",
+  "wishlist_cart_button": "Sepete Ekle"
 }

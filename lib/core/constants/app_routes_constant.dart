@@ -11,4 +11,5 @@ abstract class AppRoutesConstants {
   static const SETTINGS = '/settings';
   static const CATEGORY_DETAILS = '/category_details';
   static const BOOK_DETAILS = '/book_details';
+  static const WISHLIST = '/wishlist';
 }
