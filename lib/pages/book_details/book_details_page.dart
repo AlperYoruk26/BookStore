@@ -19,7 +19,8 @@ class BookDetailsPage extends GetView<BookDetailsController> {
 
     WidgetsBinding.instance.addPostFrameCallback((_) {
       controller.loadBook(bookId, language);
-      controller.postIsInWishlst(bookId);
+      controller.postIsInWishlist(bookId);
+      controller.postIsInCart(bookId);
     });
 
     return Scaffold(
@@ -55,7 +56,7 @@ class BookDetailsPage extends GetView<BookDetailsController> {
                           size: 34,
                           color: Theme.of(context).colorScheme.primary,
                         ),
-                        Text('Wishlist',
+                        Text(local.wishlist_title,
                             style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                                 color: Theme.of(context).colorScheme.primary))
                       ],
@@ -141,11 +142,16 @@ class BookDetailsPage extends GetView<BookDetailsController> {
                       child: Text(local.book_details_buy_button),
                     ),
                     ElevatedButton(
-                      onPressed: () => debugPrint('Add to Cart'),
+                      onPressed: () {
+                        debugPrint('Add to Cart');
+                        controller.postAddToCart(bookId);
+                      },
                       style: ElevatedButton.styleFrom(
                           backgroundColor: Theme.of(context).colorScheme.secondary,
                           foregroundColor: Theme.of(context).colorScheme.onPrimary),
-                      child: Text(local.book_details_cart_button),
+                      child: Text(controller.isInCart.value
+                          ? "Sepette"
+                          : local.book_details_cart_button),
                     ),
                   ],
                 ),

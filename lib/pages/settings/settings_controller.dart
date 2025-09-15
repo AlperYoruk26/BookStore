@@ -5,17 +5,18 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class SettingsController extends GetxController {
-  final _storageService = Get.find<StorageService>();
+  final storageService = Get.find<StorageService>();
 
   final theme = ThemeConstants.light.obs;
 
   Future<void> toggleTheme() async {
     theme.value = Get.isDarkMode ? ThemeConstants.dark : ThemeConstants.light;
-    Get.changeThemeMode(theme.value == ThemeConstants.dark ? ThemeMode.light : ThemeMode.dark);
-    await _storageService.setValue(StorageConstants.appTheme, theme.value.toString());
+    Get.changeThemeMode(
+        theme.value == ThemeConstants.dark ? ThemeMode.light : ThemeMode.dark);
+    await storageService.setValue(StorageConstants.appTheme, theme.value.toString());
   }
 
   Future<void> changePrimaryColor(int primaryColor) async {
-    await _storageService.setValue(StorageConstants.primaryColor, primaryColor);
+    await storageService.setValue(StorageConstants.primaryColor, primaryColor);
   }
 }

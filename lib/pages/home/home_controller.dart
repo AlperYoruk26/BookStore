@@ -10,8 +10,8 @@ import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 
 class HomeController extends GetxController {
-  final _apiService = Get.find<ApiService>();
-  final _storageService = Get.find<StorageService>();
+  final apiService = Get.find<ApiService>();
+  final storageService = Get.find<StorageService>();
   final isLoading = Get.find<LoadingController>().isLoading;
 
   var types = <Types>[].obs;
@@ -25,7 +25,7 @@ class HomeController extends GetxController {
     super.onInit();
     // isLoading.value = true;
     // final language =
-    //     await _storageService.getValue<String>(StorageConstants.appLanguage);
+    //     await storageService.getValue<String>(StorageConstants.appLanguage);
     await loadPageData();
     // isLoading.value = false;
   }
@@ -46,8 +46,8 @@ class HomeController extends GetxController {
   Future<void> getTypes() async {
     try {
       final lang =
-          await _storageService.getValue<String>(StorageConstants.appLanguage);
-      final response = await _apiService
+          await storageService.getValue<String>(StorageConstants.appLanguage);
+      final response = await apiService
           .post('${ApiConstants.baseUrl}/rpc/get_types', data: {"lang": lang});
       if (response.statusCode == 200) {
         final List data = response.data;
@@ -61,8 +61,8 @@ class HomeController extends GetxController {
   Future<void> getCategories() async {
     try {
       final lang =
-          await _storageService.getValue<String>(StorageConstants.appLanguage);
-      final response = await _apiService
+          await storageService.getValue<String>(StorageConstants.appLanguage);
+      final response = await apiService
           .post('${ApiConstants.baseUrl}/rpc/get_categories', data: {"lang": lang});
       if (response.statusCode == 200) {
         final List data = response.data;
@@ -76,9 +76,8 @@ class HomeController extends GetxController {
   Future<void> getBooks(int typeId) async {
     try {
       final language =
-          await _storageService.getValue<String>(StorageConstants.appLanguage);
-      final response = await _apiService.post(
-          '${ApiConstants.baseUrl}/rpc/get_books',
+          await storageService.getValue<String>(StorageConstants.appLanguage);
+      final response = await apiService.post('${ApiConstants.baseUrl}/rpc/get_books',
           data: {"lang": language, "filter_type_id": typeId});
       if (response.statusCode == 200) {
         final List data = response.data;

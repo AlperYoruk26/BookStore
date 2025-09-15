@@ -143,6 +143,9 @@ class AppLocalizationsTr extends AppLocalizations {
   String get book_details_cart_button => 'Sepete Ekle';
 
   @override
+  String get wishlist_title => 'İstek Listesi';
+
+  @override
   String get wishlist_dialog_title => 'İstek Listesinden Kaldır';
 
   @override
@@ -156,4 +159,16 @@ class AppLocalizationsTr extends AppLocalizations {
 
   @override
   String get wishlist_cart_button => 'Sepete Ekle';
+
+  @override
+  String get cart_title => 'Sepet';
+
+  @override
+  String get cart_total => 'Sepet Toplamı';
+
+  @override
+  String get cart_button => 'Alışverişi Tamamlayın';
+
+  @override
+  String get checkout_title => 'Sipariş Bilgileri';
 }

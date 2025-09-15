@@ -7,11 +7,11 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart' hide Response;
 
 class ApiService extends GetxService {
-  late StorageService _storageService;
+  late StorageService storageService;
   late Dio _dio;
 
   Future<ApiService> init() async {
-    _storageService = Get.find<StorageService>();
+    storageService = Get.find<StorageService>();
     _dio = Dio(
       BaseOptions(
         baseUrl: ApiConstants.baseUrl,
@@ -25,7 +25,7 @@ class ApiService extends GetxService {
     _dio.interceptors.add(
       InterceptorsWrapper(
         onRequest: (options, handler) async {
-          final token = _storageService.getValue<String>(StorageConstants.userToken);
+          final token = storageService.getValue<String>(StorageConstants.userToken);
           if (token != null) {
             options.headers['Authorization'] = 'Bearer $token';
           }
@@ -33,7 +33,7 @@ class ApiService extends GetxService {
         },
         onError: (error, handler) async {
           if (error.response?.statusCode == 401) {
-            await _storageService.remove(StorageConstants.userToken);
+            await storageService.remove(StorageConstants.userToken);
             Get.offAllNamed(AppRoutesConstants.LOGIN);
           }
           return handler.next(error);
@@ -50,7 +50,8 @@ class ApiService extends GetxService {
     Options? options,
   }) async {
     try {
-      return await _dio.get(path, queryParameters: queryParameters, options: options);
+      return await _dio.get(path,
+          queryParameters: queryParameters, options: options);
     } catch (e) {
       debugPrint('Dio get Error: $e');
       rethrow;
@@ -64,7 +65,8 @@ class ApiService extends GetxService {
     Options? options,
   }) async {
     try {
-      return await _dio.post(path, data: data, queryParameters: queryParameters, options: options);
+      return await _dio.post(path,
+          data: data, queryParameters: queryParameters, options: options);
     } catch (e) {
       debugPrint('Dio post Error: $e');
       rethrow;
@@ -78,7 +80,8 @@ class ApiService extends GetxService {
     Options? options,
   }) async {
     try {
-      return await _dio.put(path, data: data, queryParameters: queryParameters, options: options);
+      return await _dio.put(path,
+          data: data, queryParameters: queryParameters, options: options);
     } catch (e) {
       debugPrint('Dio put Error: $e');
       rethrow;
@@ -92,7 +95,8 @@ class ApiService extends GetxService {
     Options? options,
   }) async {
     try {
-      return await _dio.patch(path, data: data, queryParameters: queryParameters, options: options);
+      return await _dio.patch(path,
+          data: data, queryParameters: queryParameters, options: options);
     } catch (e) {
       debugPrint('Dio patch Error: $e');
       rethrow;

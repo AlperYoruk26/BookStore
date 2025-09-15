@@ -47,20 +47,17 @@ class BookCategories extends GetView<HomeController> {
                           leading: Text(category.name,
                               style: Theme.of(context).textTheme.headlineMedium),
                           trailing: GestureDetector(
-                            onTap: () {
-                              Get.lazyPut(() => CategoryDetailsController());
-                              pushScreen(context,
-                                  screen: CategoryDetailsPage(),
-                                  withNavBar: true,
-                                  settings: RouteSettings(
-                                      name: AppRoutesConstants.CATEGORY_DETAILS,
-                                      arguments: {
-                                        'type_id': controller.selectedTypeId.value,
-                                        'category_id': category.id,
-                                        'category_name': category.name,
-                                        'language': Get.locale?.languageCode,
-                                      }));
-                            },
+                            onTap: () => pushScreen(context,
+                                screen: CategoryDetailsPage(),
+                                withNavBar: true,
+                                settings: RouteSettings(
+                                    name: AppRoutesConstants.CATEGORY_DETAILS,
+                                    arguments: {
+                                      'type_id': controller.selectedTypeId.value,
+                                      'category_id': category.id,
+                                      'category_name': category.name,
+                                      'language': Get.locale?.languageCode,
+                                    })),
                             child: Row(
                               mainAxisSize: MainAxisSize.min,
                               children: [
@@ -87,18 +84,15 @@ class BookCategories extends GetView<HomeController> {
                                     .take(4)
                                     .map((book) {
                               return GestureDetector(
-                                onTap: () {
-                                  // Get.lazyPut(() => BookDetailsController());
-                                  pushScreen(context,
-                                      screen: BookDetailsPage(),
-                                      withNavBar: true,
-                                      settings: RouteSettings(
-                                          name: AppRoutesConstants.BOOK_DETAILS,
-                                          arguments: {
-                                            "book_id": book.id,
-                                            "lang": book.language
-                                          }));
-                                },
+                                onTap: () => pushScreen(context,
+                                    screen: BookDetailsPage(),
+                                    withNavBar: true,
+                                    settings: RouteSettings(
+                                        name: AppRoutesConstants.BOOK_DETAILS,
+                                        arguments: {
+                                          "book_id": book.id,
+                                          "lang": book.language
+                                        })),
                                 child: Card(
                                   color: Colors.transparent,
                                   child: Padding(

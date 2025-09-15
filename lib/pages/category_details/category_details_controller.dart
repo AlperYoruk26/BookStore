@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class CategoryDetailsController extends GetxController {
-  final _apiService = Get.find<ApiService>();
+  final apiService = Get.find<ApiService>();
   final isLoading = Get.find<LoadingController>().isLoading;
 
   final books = <Books>[].obs;
@@ -14,8 +14,12 @@ class CategoryDetailsController extends GetxController {
   Future<void> getBooks(int typeId, int categoryId, String language) async {
     try {
       isLoading.value = true;
-      final response = await _apiService.post('${ApiConstants.baseUrl}/rpc/get_books_by_category',
-          data: {"lang": language, "filter_type_id": typeId, "filter_category_id": categoryId});
+      final response = await apiService
+          .post('${ApiConstants.baseUrl}/rpc/get_books_by_category', data: {
+        "lang": language,
+        "filter_type_id": typeId,
+        "filter_category_id": categoryId
+      });
       if (response.statusCode == 200) {
         final List data = response.data;
         books.value = data.map((e) => Books.fromJson(e)).toList();

@@ -45,9 +45,14 @@
   "book_details_price": "Price",
   "book_details_buy_button": "Buy Now",
   "book_details_cart_button": "Add to Cart",
+  "wishlist_title":"Wishlist",
   "wishlist_dialog_title": "Remove from Wishlist",
   "wishlist_dialog_content": "Are you sure?",
   "wishlist_dialog_cancel": "Cancel",
   "wishlist_dialog_confirm": "Delete",
-  "wishlist_cart_button": "Add to Cart"
+  "wishlist_cart_button": "Add to Cart",
+  "cart_title": "Cart",
+  "cart_total": "Cart Total",
+  "cart_button": "Complete Shopping",
+  "checkout_title": "Order Details"
 }

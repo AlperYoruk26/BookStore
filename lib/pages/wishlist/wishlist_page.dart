@@ -29,7 +29,7 @@ class WishlistPage extends GetView<WishlistController> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    'Wishlist',
+                    local.wishlist_title,
                     style: Theme.of(context)
                         .textTheme
                         .headlineMedium
@@ -95,7 +95,7 @@ class WishlistPage extends GetView<WishlistController> {
                                         confirmText: local.wishlist_dialog_confirm,
                                         onConfirm: () {
                                           controller
-                                              .deleteRemoveFromWishlist(book.bookId);
+                                              .deleteRemoveFromWishlist(book.id);
                                           controller.getWishlist();
                                           Navigator.of(context).pop();
                                         }),
@@ -133,7 +133,8 @@ class WishlistPage extends GetView<WishlistController> {
                                             child: ClipRRect(
                                               borderRadius: BorderRadius.all(
                                                   Radius.circular(20)),
-                                              child: Image.network(book.cover),
+                                              child: Image.network(book.cover,
+                                                  fit: BoxFit.fill),
                                             ),
                                           ),
                                         ),

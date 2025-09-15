@@ -1,3 +1,4 @@
+import 'package:book_store/pages/cart/cart_page.dart';
 import 'package:book_store/pages/home/home_page.dart';
 import 'package:book_store/pages/profile/profile_page.dart';
 import 'package:book_store/pages/settings/settings_page.dart';
@@ -12,25 +13,36 @@ class TabScreens {
           screen: HomePage(),
           item: ItemConfig(
               icon: Icon(Icons.home),
-              activeForegroundColor: Theme.of(context).bottomNavigationBarTheme.selectedItemColor!,
+              activeForegroundColor:
+                  Theme.of(context).bottomNavigationBarTheme.selectedItemColor!,
               inactiveBackgroundColor: Colors.grey)),
       PersistentTabConfig(
           screen: WishlistPage(),
           item: ItemConfig(
               icon: Icon(Icons.favorite),
-              activeForegroundColor: Theme.of(context).bottomNavigationBarTheme.selectedItemColor!,
+              activeForegroundColor:
+                  Theme.of(context).bottomNavigationBarTheme.selectedItemColor!,
               inactiveBackgroundColor: Colors.grey)),
       PersistentTabConfig(
           screen: ProfilePage(),
           item: ItemConfig(
               icon: Icon(Icons.person),
-              activeForegroundColor: Theme.of(context).bottomNavigationBarTheme.selectedItemColor!,
+              activeForegroundColor:
+                  Theme.of(context).bottomNavigationBarTheme.selectedItemColor!,
+              inactiveBackgroundColor: Colors.grey)),
+      PersistentTabConfig(
+          screen: CartPage(),
+          item: ItemConfig(
+              icon: Icon(Icons.shopping_cart),
+              activeForegroundColor:
+                  Theme.of(context).bottomNavigationBarTheme.selectedItemColor!,
               inactiveBackgroundColor: Colors.grey)),
       PersistentTabConfig(
           screen: SettingsPage(),
           item: ItemConfig(
               icon: Icon(Icons.settings),
-              activeForegroundColor: Theme.of(context).bottomNavigationBarTheme.selectedItemColor!,
+              activeForegroundColor:
+                  Theme.of(context).bottomNavigationBarTheme.selectedItemColor!,
               inactiveBackgroundColor: Colors.grey)),
     ];
   }
@@ -41,6 +53,7 @@ class AppIcons {
     Icons.home,
     Icons.favorite,
     Icons.person,
+    Icons.shopping_cart,
     Icons.settings,
   ];
 }

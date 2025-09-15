@@ -13,13 +13,13 @@ abstract class AuthConstants {
 }
 
 class AuthService extends GetxService {
-  late final StorageService _storageService;
-  late final ApiService _apiService;
+  late final StorageService storageService;
+  late final ApiService apiService;
   late final SupabaseClient _supabase;
 
   Future<AuthService> init() async {
-    _storageService = Get.find<StorageService>();
-    _apiService = Get.find<ApiService>();
+    storageService = Get.find<StorageService>();
+    apiService = Get.find<ApiService>();
     final supabase = await Supabase.initialize(
       url: AuthConstants.supabaseUrl,
       anonKey: AuthConstants.supabaseAnonKey,
@@ -31,9 +31,11 @@ class AuthService extends GetxService {
 
   Future<User> login(String email, String password) async {
     try {
-      final response = await _supabase.auth.signInWithPassword(email: email, password: password);
-      await _storageService.setValue(StorageConstants.userToken, response.session?.accessToken);
-      // debugPrint('Access Token: ${await _storageService.getValue(StorageConstants.userToken)}');
+      final response =
+          await _supabase.auth.signInWithPassword(email: email, password: password);
+      await storageService.setValue(
+          StorageConstants.userToken, response.session?.accessToken);
+      // debugPrint('Access Token: ${await storageService.getValue(StorageConstants.userToken)}');
       if (response.user == null) {
         throw Exception('Login failed: user not found.');
       }
@@ -48,7 +50,9 @@ class AuthService extends GetxService {
       String email, String password, String firstName, String lastName) async {
     try {
       final response = await _supabase.auth.signUp(
-          email: email, password: password, data: {'first_name': firstName, 'last_name': lastName});
+          email: email,
+          password: password,
+          data: {'first_name': firstName, 'last_name': lastName});
       if (response.user == null) {
         throw Exception('Account creation failed: user not found.');
       }
@@ -66,7 +70,7 @@ class AuthService extends GetxService {
       debugPrint('Supabase logout error: $e');
       rethrow;
     } finally {
-      await _storageService.remove(StorageConstants.userToken);
+      await storageService.remove(StorageConstants.userToken);
     }
   }
 }

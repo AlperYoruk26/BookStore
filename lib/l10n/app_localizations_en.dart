@@ -143,6 +143,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get book_details_cart_button => 'Add to Cart';
 
   @override
+  String get wishlist_title => 'Wishlist';
+
+  @override
   String get wishlist_dialog_title => 'Remove from Wishlist';
 
   @override
@@ -156,4 +159,16 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get wishlist_cart_button => 'Add to Cart';
+
+  @override
+  String get cart_title => 'Cart';
+
+  @override
+  String get cart_total => 'Cart Total';
+
+  @override
+  String get cart_button => 'Complete Shopping';
+
+  @override
+  String get checkout_title => 'Order Details';
 }

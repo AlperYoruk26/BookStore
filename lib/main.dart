@@ -21,20 +21,27 @@ Future<void> main() async {
   await AppBindings().dependencies();
 
   // StorageService'i bul ve dil kodunu al
-  final _storageService = Get.find<StorageService>();
-  final savedLang = await _storageService.getValue<String>(StorageConstants.appLanguage) ?? 'en';
+  final storageService = Get.find<StorageService>();
+  final savedLang =
+      await storageService.getValue<String>(StorageConstants.appLanguage) ?? 'en';
   final savedTheme =
-      await _storageService.getValue<String>(StorageConstants.appTheme) ?? ThemeConstants.light;
+      await storageService.getValue<String>(StorageConstants.appTheme) ??
+          ThemeConstants.light;
   final primaryColor =
-      await _storageService.getValue<int>(StorageConstants.primaryColor) ?? Color(0xFFD45555).value;
-  runApp(MyApp(initialLang: savedLang, initialTheme: savedTheme, initialColor: primaryColor));
+      await storageService.getValue<int>(StorageConstants.primaryColor) ??
+          Color(0xFFD45555).value;
+  runApp(MyApp(
+      initialLang: savedLang, initialTheme: savedTheme, initialColor: primaryColor));
 }
 
 class MyApp extends StatelessWidget {
   final String initialLang;
   final String initialTheme;
   final int initialColor;
-  const MyApp({required this.initialLang, required this.initialTheme, required this.initialColor})
+  const MyApp(
+      {required this.initialLang,
+      required this.initialTheme,
+      required this.initialColor})
       : super();
 
   @override
@@ -46,7 +53,8 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: AppTheme.lightTheme(Color(initialColor)),
       darkTheme: AppTheme.darkTheme(Color(initialColor)),
-      themeMode: initialTheme == ThemeConstants.light ? ThemeMode.dark : ThemeMode.light,
+      themeMode:
+          initialTheme == ThemeConstants.light ? ThemeMode.dark : ThemeMode.light,
       supportedLocales: const [
         Locale('en'),
         Locale('tr'),

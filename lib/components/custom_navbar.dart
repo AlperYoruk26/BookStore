@@ -1,4 +1,5 @@
 import 'package:book_store/core/constants/screen_contants.dart';
+import 'package:book_store/pages/cart/cart_controller.dart';
 import 'package:book_store/pages/wishlist/wishlist_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -10,6 +11,7 @@ class CustomNavBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final wishlistController = Get.find<WishlistController>();
+    final cartController = Get.find<CartController>();
     return Container(
       padding: EdgeInsets.symmetric(horizontal: 8, vertical: 12),
       decoration: BoxDecoration(
@@ -25,12 +27,11 @@ class CustomNavBar extends StatelessWidget {
               child: InkWell(
                 onTap: () {
                   navBarConfig.onItemSelected(index); // Tab değişimini tetikle
-                  // Wishlist tab'ı için refresh
-                  if (index == 1) {
-                    // örnek: 1. index wishlist
-                    // wishlistController.isLoading.value = true;
-                    wishlistController.getWishlist();
-                    // wishlistController.isLoading.value = false;
+                  switch (index) {
+                    case 1:
+                      wishlistController.getWishlist();
+                    case 3:
+                      cartController.getCart();
                   }
                 },
                 child: SizedBox(
@@ -47,13 +48,6 @@ class CustomNavBar extends StatelessWidget {
                             : Colors.grey,
                         size: navBarConfig.selectedIndex == index ? 28 : 24,
                       ),
-                      // if (navBarConfig.items[index].title != null)
-                      //   Text(
-                      //     navBarConfig.items[index].title!,
-                      //     style: TextStyle(
-                      //       color: navBarConfig.selectedIndex == index ? Colors.blue : Colors.grey,
-                      //     ),
-                      //   ),
                     ],
                   ),
                 ),

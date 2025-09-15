@@ -7,16 +7,18 @@ import 'package:get/get.dart';
 import 'package:supabase_auth_ui/supabase_auth_ui.dart';
 
 class BookDetailsController extends GetxController {
-  final _apiService = Get.find<ApiService>();
+  final apiService = Get.find<ApiService>();
   final isLoading = Get.find<LoadingController>().isLoading;
 
   final book = Rx<Books?>(null);
   final isInWishlist = false.obs;
+  final isInCart = false.obs;
 
   Future<void> loadBook(int bookId, String lang) async {
     try {
       isLoading.value = true;
-      final response = await _apiService.post('${ApiConstants.baseUrl}/rpc/get_book_by_id',
+      final response = await apiService.post(
+          '${ApiConstants.baseUrl}/rpc/get_book_by_id',
           data: {"book_id": bookId, "lang": lang});
       if (response.statusCode == 200) {
         book.value = Books.fromJson(response.data);
@@ -29,10 +31,11 @@ class BookDetailsController extends GetxController {
     }
   }
 
-  Future<void> postIsInWishlst(int bookId) async {
+  Future<void> postIsInWishlist(int bookId) async {
     try {
       final userId = await Supabase.instance.client.auth.currentUser?.id;
-      final response = await _apiService.post('${ApiConstants.baseUrl}/rpc/is_in_wishlist',
+      final response = await apiService.post(
+          '${ApiConstants.baseUrl}/rpc/is_in_wishlist',
           data: {"userid": userId, "bookid": bookId});
       if (response.statusCode == 200) {
         isInWishlist.value = response.data ?? false;
@@ -43,10 +46,26 @@ class BookDetailsController extends GetxController {
     }
   }
 
+  Future<void> postIsInCart(int bookId) async {
+    try {
+      final userId = await Supabase.instance.client.auth.currentUser?.id;
+      final response = await apiService.post(
+          '${ApiConstants.baseUrl}/rpc/is_in_cart',
+          data: {"userid": userId, "bookid": bookId});
+      if (response.statusCode == 200) {
+        isInCart.value = response.data ?? false;
+        debugPrint('Is in Cart: ${isInCart.value.toString()}');
+      }
+    } catch (e) {
+      debugPrint('Error checking wishlist: $e');
+    }
+  }
+
   Future<void> postAddToWishlist(int bookId) async {
     try {
       final userId = await Supabase.instance.client.auth.currentUser?.id;
-      final response = await _apiService.post('${ApiConstants.baseUrl}/rpc/add_to_wishlist',
+      final response = await apiService.post(
+          '${ApiConstants.baseUrl}/rpc/add_to_wishlist',
           data: {"userid": userId, "bookid": book.value?.id});
       if (response.statusCode == 200) {
         // debugPrint('Added to wishlist: ${response.data}');
@@ -60,13 +79,28 @@ class BookDetailsController extends GetxController {
   Future<void> deleteRemoveFromWishlist(int bookId) async {
     try {
       final userId = await Supabase.instance.client.auth.currentUser?.id;
-      final response = await _apiService
-          .delete('${ApiConstants.baseUrl}/wishlist?user_id=eq.$userId&book_id=eq.$bookId');
+      final response = await apiService.delete(
+          '${ApiConstants.baseUrl}/wishlist?user_id=eq.$userId&book_id=eq.$bookId');
       if (response.statusCode == 204) {
         isInWishlist.value = false;
       }
     } catch (e) {
       debugPrint('Error removing from wishlist: $e');
+    }
+  }
+
+  Future<void> postAddToCart(int bookId) async {
+    try {
+      final userId = await Supabase.instance.client.auth.currentUser?.id;
+      final response = await apiService.post(
+          '${ApiConstants.baseUrl}/rpc/add_to_cart',
+          data: {"userid": userId, "bookid": book.value?.id});
+      if (response.statusCode == 200) {
+        // debugPrint('Added to cart: ${response.data}');
+        isInWishlist.value = true;
+      }
+    } catch (e) {
+      debugPrint('Error adding to cart: $e');
     }
   }
 }

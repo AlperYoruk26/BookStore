@@ -1,7 +1,6 @@
 import 'package:book_store/core/constants/app_routes_constant.dart';
 import 'package:book_store/l10n/app_localizations.dart';
 import 'package:book_store/pages/login/login_controller.dart';
-import 'package:country_flags/country_flags.dart';
 import 'package:flutter/material.dart';
 import 'package:form_field_validator/form_field_validator.dart';
 import 'package:get/get.dart';
@@ -58,7 +57,8 @@ class LoginPage extends GetView<LoginController> {
                 children: [
                   TextFormField(
                       decoration: InputDecoration(labelText: local.login_email),
-                      style: TextStyle(color: Theme.of(context).colorScheme.onSecondary),
+                      style: TextStyle(
+                          color: Theme.of(context).colorScheme.onSecondary),
                       controller: controller.emailController,
                       textInputAction: TextInputAction.next,
                       autovalidateMode: AutovalidateMode.onUserInteraction,
@@ -72,7 +72,8 @@ class LoginPage extends GetView<LoginController> {
                       labelText: local.login_password,
                       suffixIcon: IconButton(
                         onPressed: () {
-                          controller.visiblePassword.value = !controller.visiblePassword.value;
+                          controller.visiblePassword.value =
+                              !controller.visiblePassword.value;
                         },
                         icon: Icon(
                           controller.visiblePassword.value
@@ -81,14 +82,15 @@ class LoginPage extends GetView<LoginController> {
                         ),
                       ),
                     ),
-                    style: TextStyle(color: Theme.of(context).colorScheme.onSecondary),
+                    style:
+                        TextStyle(color: Theme.of(context).colorScheme.onSecondary),
                     obscureText: !controller.visiblePassword.value,
                     controller: controller.passwordController,
                     onFieldSubmitted: (value) {
                       controller.submitForm(
                           successTitle: local.login_success_title,
-                          successMessage:
-                              local.login_success_message(controller.emailController.text),
+                          successMessage: local.login_success_message(
+                              controller.emailController.text),
                           errorTitle: local.login_error_title,
                           errorMessage: local.login_error_message);
                     },
@@ -103,8 +105,8 @@ class LoginPage extends GetView<LoginController> {
                       if (_formKey.currentState!.validate()) {
                         controller.submitForm(
                             successTitle: local.login_success_title,
-                            successMessage:
-                                local.login_success_message(controller.emailController.text),
+                            successMessage: local.login_success_message(
+                                controller.emailController.text),
                             errorTitle: local.login_error_title,
                             errorMessage: local.login_error_message);
                       }

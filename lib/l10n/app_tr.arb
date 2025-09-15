@@ -45,9 +45,14 @@
   "book_details_price": "Fiyat",
   "book_details_buy_button": "Satın Al",
   "book_details_cart_button": "Sepete Ekle",
+  "wishlist_title":"İstek Listesi",
   "wishlist_dialog_title": "İstek Listesinden Kaldır",
   "wishlist_dialog_content": "Emin misiniz?",
   "wishlist_dialog_cancel": "İptal",
   "wishlist_dialog_confirm": "Sil",
-  "wishlist_cart_button": "Sepete Ekle"
+  "wishlist_cart_button": "Sepete Ekle",
+  "cart_title": "Sepet",
+  "cart_total": "Sepet Toplamı",
+  "cart_button": "Alışverişi Tamamlayın",
+  "checkout_title": "Sipariş Bilgileri"
 }

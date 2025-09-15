@@ -14,7 +14,6 @@ class LanguageSelectorPage extends GetView<LanguageSelectorController> {
   Widget build(BuildContext context) {
     final fromSettings = Get.arguments ?? false;
     final local = AppLocalizations.of(context)!;
-    debugPrint('AKTİF: ${controller.selectedLang.value!.name}');
     return Scaffold(
       appBar: fromSettings ? AppBar() : null,
       body: Center(
@@ -35,28 +34,36 @@ class LanguageSelectorPage extends GetView<LanguageSelectorController> {
                       Container(
                         padding: EdgeInsets.symmetric(horizontal: 12, vertical: 6),
                         decoration: BoxDecoration(
-                            color: Get.isDarkMode ? Color(0xFF111111) : Color(0xFFEEEEEE),
+                            color: Get.isDarkMode
+                                ? Color(0xFF111111)
+                                : Color(0xFFEEEEEE),
                             borderRadius: BorderRadius.all(Radius.circular(10))),
                         child: DropdownButton2<Language>(
                           value: controller.selectedLang.value,
                           onChanged: (Language? value) {
                             controller.selectedLang.value = value!;
-                            Get.updateLocale(Locale(controller.selectedLang.value!.code));
+                            Get.updateLocale(
+                                Locale(controller.selectedLang.value!.code));
                           },
                           barrierColor: const Color.fromARGB(100, 0, 0, 0),
-                          iconStyleData: IconStyleData(openMenuIcon: Icon(Icons.arrow_drop_up)),
+                          iconStyleData:
+                              IconStyleData(openMenuIcon: Icon(Icons.arrow_drop_up)),
                           dropdownStyleData: DropdownStyleData(
                               offset: Offset(0, -10),
                               maxHeight: 200,
                               decoration: BoxDecoration(
-                                  color: Get.isDarkMode ? Color(0xFF111111) : Color(0xFFEEEEEE),
-                                  borderRadius: BorderRadius.all(Radius.circular(10)))),
+                                  color: Get.isDarkMode
+                                      ? Color(0xFF111111)
+                                      : Color(0xFFEEEEEE),
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(10)))),
                           underline: SizedBox(),
                           items: languages.map((lang) {
                             return DropdownMenuItem<Language>(
                               value: lang,
                               child: Padding(
-                                padding: const EdgeInsets.symmetric(vertical: 4.0, horizontal: 0),
+                                padding: const EdgeInsets.symmetric(
+                                    vertical: 4.0, horizontal: 0),
                                 child: Row(
                                   children: [
                                     CountryFlag.fromLanguageCode(
@@ -69,7 +76,9 @@ class LanguageSelectorPage extends GetView<LanguageSelectorController> {
                                     Text(
                                       lang.name,
                                       style: TextStyle(
-                                          color: Theme.of(context).colorScheme.onSecondary),
+                                          color: Theme.of(context)
+                                              .colorScheme
+                                              .onSecondary),
                                     )
                                   ],
                                 ),
@@ -82,10 +91,12 @@ class LanguageSelectorPage extends GetView<LanguageSelectorController> {
                         height: MediaQuery.of(context).size.height * 0.3,
                       ),
                       ElevatedButton(
-                          onPressed: () => fromSettings ? controller.change() : controller.save(),
+                          onPressed: () =>
+                              fromSettings ? controller.change() : controller.save(),
                           style: ElevatedButton.styleFrom(
                               backgroundColor: Theme.of(context).colorScheme.primary,
-                              foregroundColor: Theme.of(context).colorScheme.onPrimary),
+                              foregroundColor:
+                                  Theme.of(context).colorScheme.onPrimary),
                           child: Text(fromSettings ? local.change : local.save)),
                     ],
                   ),

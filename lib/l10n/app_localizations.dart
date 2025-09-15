@@ -359,6 +359,12 @@ abstract class AppLocalizations {
   /// **'Add to Cart'**
   String get book_details_cart_button;
 
+  /// No description provided for @wishlist_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Wishlist'**
+  String get wishlist_title;
+
   /// No description provided for @wishlist_dialog_title.
   ///
   /// In en, this message translates to:
@@ -388,6 +394,30 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Add to Cart'**
   String get wishlist_cart_button;
+
+  /// No description provided for @cart_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Cart'**
+  String get cart_title;
+
+  /// No description provided for @cart_total.
+  ///
+  /// In en, this message translates to:
+  /// **'Cart Total'**
+  String get cart_total;
+
+  /// No description provided for @cart_button.
+  ///
+  /// In en, this message translates to:
+  /// **'Complete Shopping'**
+  String get cart_button;
+
+  /// No description provided for @checkout_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Order Details'**
+  String get checkout_title;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {
