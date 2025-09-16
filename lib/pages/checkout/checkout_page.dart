@@ -52,7 +52,7 @@ class CheckoutPage extends GetView<CheckoutController> {
                   initiallyExpanded: true,
                   controller: adressController,
                   title: Text(
-                    'Adres Bilgileri',
+                    local.address_info,
                     style: Theme.of(context).textTheme.headlineMedium,
                   ),
                   children: [
@@ -73,9 +73,15 @@ class CheckoutPage extends GetView<CheckoutController> {
                         style: TextStyle(
                             color: Theme.of(context).colorScheme.onSecondary),
                         textInputAction: TextInputAction.next,
+                        autovalidateMode: AutovalidateMode.onUserInteraction,
+                        validator: (value) {
+                          if (value == null || value.isEmpty) {
+                            return local.full_name_hint;
+                          }
+                        },
                         decoration: InputDecoration(
                             hint: Text(
-                          'Tam ad',
+                          local.full_name,
                           style: TextStyle(
                               color: Theme.of(context)
                                   .colorScheme
@@ -89,11 +95,17 @@ class CheckoutPage extends GetView<CheckoutController> {
                           color: Theme.of(context).colorScheme.onSecondary),
                       keyboardType: TextInputType.phone,
                       textInputAction: TextInputAction.next,
+                      autovalidateMode: AutovalidateMode.onUserInteraction,
+                      validator: (value) {
+                        if (value == null || value.isEmpty) {
+                          return local.phone_hint;
+                        }
+                      },
                       inputFormatters: [
                         MaskTextInputFormatter(mask: '### ### ## ##')
                       ],
                       decoration: InputDecoration(
-                          hint: Text('Telefon',
+                          hint: Text(local.phone,
                               style: TextStyle(
                                   color: Theme.of(context)
                                       .colorScheme
@@ -106,8 +118,14 @@ class CheckoutPage extends GetView<CheckoutController> {
                       style: TextStyle(
                           color: Theme.of(context).colorScheme.onSecondary),
                       textInputAction: TextInputAction.next,
+                      autovalidateMode: AutovalidateMode.onUserInteraction,
+                      validator: (value) {
+                        if (value == null || value.isEmpty) {
+                          return local.country_hint;
+                        }
+                      },
                       decoration: InputDecoration(
-                          hint: Text('Ülke',
+                          hint: Text(local.country,
                               style: TextStyle(
                                   color: Theme.of(context)
                                       .colorScheme
@@ -120,8 +138,14 @@ class CheckoutPage extends GetView<CheckoutController> {
                         style: TextStyle(
                             color: Theme.of(context).colorScheme.onSecondary),
                         textInputAction: TextInputAction.next,
+                        autovalidateMode: AutovalidateMode.onUserInteraction,
+                        validator: (value) {
+                          if (value == null || value.isEmpty) {
+                            return local.city;
+                          }
+                        },
                         decoration: InputDecoration(
-                            hint: Text('Şehir',
+                            hint: Text(local.city,
                                 style: TextStyle(
                                     color: Theme.of(context)
                                         .colorScheme
@@ -129,12 +153,18 @@ class CheckoutPage extends GetView<CheckoutController> {
                                         .withAlpha(80))))),
                     SizedBox(height: MediaQuery.of(context).size.height * 0.01),
                     TextFormField(
-                        controller: controller.town,
+                        controller: controller.district,
                         style: TextStyle(
                             color: Theme.of(context).colorScheme.onSecondary),
                         textInputAction: TextInputAction.next,
+                        autovalidateMode: AutovalidateMode.onUserInteraction,
+                        validator: (value) {
+                          if (value == null || value.isEmpty) {
+                            return local.disctrict_hint;
+                          }
+                        },
                         decoration: InputDecoration(
-                            hint: Text('İlçe',
+                            hint: Text(local.disctrict,
                                 style: TextStyle(
                                     color: Theme.of(context)
                                         .colorScheme
@@ -148,8 +178,14 @@ class CheckoutPage extends GetView<CheckoutController> {
                       style: TextStyle(
                           color: Theme.of(context).colorScheme.onSecondary),
                       textInputAction: TextInputAction.next,
+                      autovalidateMode: AutovalidateMode.onUserInteraction,
+                      validator: (value) {
+                        if (value == null || value.isEmpty) {
+                          return local.postal_code_hint;
+                        }
+                      },
                       decoration: InputDecoration(
-                          hint: Text('Posta kodu',
+                          hint: Text(local.postal_code,
                               style: TextStyle(
                                   color: Theme.of(context)
                                       .colorScheme
@@ -177,7 +213,7 @@ class CheckoutPage extends GetView<CheckoutController> {
                   collapsedIconColor: Theme.of(context).colorScheme.primary,
                   controller: paymentController,
                   title: Text(
-                    'Ödeme Bilgileri',
+                    local.payment_info,
                     style: Theme.of(context).textTheme.headlineMedium,
                   ),
                   children: [
@@ -190,11 +226,11 @@ class CheckoutPage extends GetView<CheckoutController> {
                       autovalidateMode: AutovalidateMode.onUserInteraction,
                       validator: (value) {
                         if (value == null || value.isEmpty) {
-                          return 'Kartın üzerindeki adı giriniz';
+                          return local.card_holder_name_hint;
                         }
                       },
                       decoration: InputDecoration(
-                          hint: Text('Kart üzerindeki ad',
+                          hint: Text(local.card_holder_name,
                               style: TextStyle(
                                   color: Theme.of(context)
                                       .colorScheme
@@ -214,11 +250,11 @@ class CheckoutPage extends GetView<CheckoutController> {
                       autovalidateMode: AutovalidateMode.onUserInteraction,
                       validator: (value) {
                         if (value == null || value.isEmpty || value.length != 19) {
-                          return 'Kart numaranızı giriniz';
+                          return local.card_number_hint;
                         }
                       },
                       decoration: InputDecoration(
-                          hint: Text('Kart numarası',
+                          hint: Text(local.card_number,
                               style: TextStyle(
                                   color: Theme.of(context)
                                       .colorScheme
@@ -248,11 +284,11 @@ class CheckoutPage extends GetView<CheckoutController> {
                               autovalidateMode: AutovalidateMode.onUserInteraction,
                               validator: (value) {
                                 if (value == null || value.isEmpty) {
-                                  return 'Son kullanma tarihini giriniz';
+                                  return local.card_expired_date_hint;
                                 }
                               },
                               decoration: InputDecoration(
-                                  hint: Text('Son kullanma tarihi',
+                                  hint: Text(local.card_expired_date,
                                       style: TextStyle(
                                           color: Theme.of(context)
                                               .colorScheme
@@ -274,15 +310,15 @@ class CheckoutPage extends GetView<CheckoutController> {
                               style: TextStyle(
                                   color: Theme.of(context).colorScheme.onSecondary),
                               keyboardType: TextInputType.number,
-                              textInputAction: TextInputAction.next,
+                              textInputAction: TextInputAction.done,
                               autovalidateMode: AutovalidateMode.onUserInteraction,
                               validator: (value) {
                                 if (value == null || value.isEmpty) {
-                                  return 'CVV numarasını giriniz';
+                                  return local.card_cvv_hint;
                                 }
                               },
                               decoration: InputDecoration(
-                                  hint: Text('CVV',
+                                  hint: Text(local.card_cvv,
                                       style: TextStyle(
                                           color: Theme.of(context)
                                               .colorScheme
@@ -297,7 +333,7 @@ class CheckoutPage extends GetView<CheckoutController> {
                   ],
                 ),
                 SizedBox(height: MediaQuery.of(context).size.height * 0.01),
-                Text('Sipariş Özeti',
+                Text(local.order_summary,
                     style: Theme.of(context).textTheme.headlineMedium),
                 Container(
                   height: MediaQuery.of(context).size.height * 0.01,
@@ -382,7 +418,7 @@ class CheckoutPage extends GetView<CheckoutController> {
                         debugPrint('Telefon: ${controller.phone.text}');
                         debugPrint('Ülke: ${controller.country.text}');
                         debugPrint('Şehir: ${controller.city.text}');
-                        debugPrint('İlçe: ${controller.town.text}');
+                        debugPrint('İlçe: ${controller.district.text}');
                         debugPrint('Posta Kodu: ${controller.postalCode.text}');
 
                         debugPrint('\n--- Ödeme Bilgileri ---');
@@ -394,6 +430,9 @@ class CheckoutPage extends GetView<CheckoutController> {
                         debugPrint('CVV: ${controller.cardCvc.text}');
 
                         debugPrint('═══════════════════════════════════════');
+                      } else {
+                        adressController.expand();
+                        paymentController.expand();
                       }
                     })
               ],

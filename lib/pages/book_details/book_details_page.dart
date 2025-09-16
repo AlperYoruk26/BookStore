@@ -1,8 +1,11 @@
+import 'package:book_store/core/constants/app_routes_constant.dart';
 import 'package:book_store/l10n/app_localizations.dart';
 import 'package:book_store/pages/book_details/book_details_controller.dart';
 import 'package:book_store/pages/loading/loading_page.dart';
+import 'package:book_store/pages/search/search_page.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:persistent_bottom_nav_bar_v2/persistent_bottom_nav_bar_v2.dart';
 
 class BookDetailsPage extends GetView<BookDetailsController> {
   const BookDetailsPage({super.key});
@@ -97,12 +100,26 @@ class BookDetailsPage extends GetView<BookDetailsController> {
                       SizedBox(height: MediaQuery.of(context).size.height * 0.005),
                       Padding(
                         padding: const EdgeInsets.all(8.0),
-                        child: Text(
-                          controller.book.value?.author ?? '',
-                          style: Theme.of(context)
-                              .textTheme
-                              .bodyMedium
-                              ?.copyWith(fontSize: 20),
+                        child: GestureDetector(
+                          onTap: () => pushScreen(
+                            context,
+                            screen: SearchPage(),
+                            withNavBar: true,
+                            settings: RouteSettings(
+                                name: AppRoutesConstants.SEARCH,
+                                arguments: {
+                                  'author': controller.book.value?.author,
+                                  'lang': Get.locale?.languageCode,
+                                  'page': AppRoutesConstants.BOOK_DETAILS
+                                }),
+                          ),
+                          child: Text(
+                            controller.book.value?.author ?? '',
+                            style: Theme.of(context)
+                                .textTheme
+                                .bodyMedium
+                                ?.copyWith(fontSize: 20),
+                          ),
                         ),
                       ),
                       SizedBox(height: MediaQuery.of(context).size.height * 0.005),

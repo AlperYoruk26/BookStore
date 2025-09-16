@@ -7,7 +7,7 @@ class CheckoutController extends GetxController {
   final phone = TextEditingController();
   final country = TextEditingController();
   final city = TextEditingController();
-  final town = TextEditingController();
+  final district = TextEditingController();
   final postalCode = TextEditingController();
 
   // Kart Bilgileri
@@ -17,6 +17,9 @@ class CheckoutController extends GetxController {
   final cardCvc = TextEditingController();
 
   var cardNumberText = ''.obs;
+
+  final personalExpanded = false.obs;
+  final jobExpanded = false.obs;
 
   @override
   void onInit() {

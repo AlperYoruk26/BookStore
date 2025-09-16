@@ -18,6 +18,7 @@ import 'package:book_store/pages/profile/profile_binding.dart';
 import 'package:book_store/pages/profile/profile_page.dart';
 import 'package:book_store/pages/register/register_binding.dart';
 import 'package:book_store/pages/register/register_page.dart';
+import 'package:book_store/pages/search/search_page.dart';
 import 'package:book_store/pages/settings/settings_binding.dart';
 import 'package:book_store/pages/settings/settings_page.dart';
 import 'package:book_store/pages/splash/splash_binding.dart';
@@ -80,6 +81,7 @@ class AppPages {
         name: AppRoutesConstants.CART,
         page: () => CartPage(),
         binding: CartBinding()),
-    GetPage(name: AppRoutesConstants.CHECKOUT, page: () => CheckoutPage())
+    GetPage(name: AppRoutesConstants.CHECKOUT, page: () => CheckoutPage()),
+    GetPage(name: AppRoutesConstants.SEARCH, page: () => SearchPage()),
   ];
 }

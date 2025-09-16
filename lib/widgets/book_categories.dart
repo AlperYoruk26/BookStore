@@ -1,7 +1,6 @@
 import 'package:book_store/core/constants/app_routes_constant.dart';
 import 'package:book_store/l10n/app_localizations.dart';
 import 'package:book_store/pages/book_details/book_details_page.dart';
-import 'package:book_store/pages/category_details/category_details_controller.dart';
 import 'package:book_store/pages/category_details/category_details_page.dart';
 import 'package:book_store/pages/home/home_controller.dart';
 import 'package:flutter/material.dart';

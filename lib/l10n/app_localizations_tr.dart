@@ -171,4 +171,76 @@ class AppLocalizationsTr extends AppLocalizations {
 
   @override
   String get checkout_title => 'Sipariş Bilgileri';
+
+  @override
+  String get address_info => 'Adres Bilgileri';
+
+  @override
+  String get full_name => 'Tam ad';
+
+  @override
+  String get phone => 'Telefon';
+
+  @override
+  String get country => 'Ülke';
+
+  @override
+  String get city => 'Şehir';
+
+  @override
+  String get disctrict => 'İlçe';
+
+  @override
+  String get postal_code => 'Posta Kodu';
+
+  @override
+  String get payment_info => 'Ödeme Bilgileri';
+
+  @override
+  String get card_holder_name => 'Kart üzerindeki ad';
+
+  @override
+  String get card_number => 'Kart numarası';
+
+  @override
+  String get card_expired_date => 'Son kullanma tarihi';
+
+  @override
+  String get card_cvv => 'CVV';
+
+  @override
+  String get order_summary => 'Sipariş Özeti';
+
+  @override
+  String get confirm_payment => 'Ödemeyi Onaylayın';
+
+  @override
+  String get full_name_hint => 'Adınızı giriniz';
+
+  @override
+  String get phone_hint => 'Telefon numaranızı giriniz';
+
+  @override
+  String get country_hint => 'Ülke adını giriniz';
+
+  @override
+  String get city_hint => 'Şehir adını giriniz';
+
+  @override
+  String get disctrict_hint => 'İlçe adını giriniz';
+
+  @override
+  String get postal_code_hint => 'Posta kodunu giriniz';
+
+  @override
+  String get card_holder_name_hint => 'Kartın üzerindeki adı giriniz';
+
+  @override
+  String get card_number_hint => 'Kart numaranızı giriniz';
+
+  @override
+  String get card_expired_date_hint => 'Son kullanma tarihini giriniz';
+
+  @override
+  String get card_cvv_hint => 'CVV numarasını giriniz';
 }

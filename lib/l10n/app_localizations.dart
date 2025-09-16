@@ -418,6 +418,150 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Order Details'**
   String get checkout_title;
+
+  /// No description provided for @address_info.
+  ///
+  /// In en, this message translates to:
+  /// **'Address Information'**
+  String get address_info;
+
+  /// No description provided for @full_name.
+  ///
+  /// In en, this message translates to:
+  /// **'Full Name'**
+  String get full_name;
+
+  /// No description provided for @phone.
+  ///
+  /// In en, this message translates to:
+  /// **'Phone'**
+  String get phone;
+
+  /// No description provided for @country.
+  ///
+  /// In en, this message translates to:
+  /// **'Country'**
+  String get country;
+
+  /// No description provided for @city.
+  ///
+  /// In en, this message translates to:
+  /// **'City'**
+  String get city;
+
+  /// No description provided for @disctrict.
+  ///
+  /// In en, this message translates to:
+  /// **'District'**
+  String get disctrict;
+
+  /// No description provided for @postal_code.
+  ///
+  /// In en, this message translates to:
+  /// **'Postal Code'**
+  String get postal_code;
+
+  /// No description provided for @payment_info.
+  ///
+  /// In en, this message translates to:
+  /// **'Payment Information'**
+  String get payment_info;
+
+  /// No description provided for @card_holder_name.
+  ///
+  /// In en, this message translates to:
+  /// **'Cardholder Name'**
+  String get card_holder_name;
+
+  /// No description provided for @card_number.
+  ///
+  /// In en, this message translates to:
+  /// **'Card Number'**
+  String get card_number;
+
+  /// No description provided for @card_expired_date.
+  ///
+  /// In en, this message translates to:
+  /// **'Expiration Date'**
+  String get card_expired_date;
+
+  /// No description provided for @card_cvv.
+  ///
+  /// In en, this message translates to:
+  /// **'CVV'**
+  String get card_cvv;
+
+  /// No description provided for @order_summary.
+  ///
+  /// In en, this message translates to:
+  /// **'Order Summary'**
+  String get order_summary;
+
+  /// No description provided for @confirm_payment.
+  ///
+  /// In en, this message translates to:
+  /// **'Confirm Payment'**
+  String get confirm_payment;
+
+  /// No description provided for @full_name_hint.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter your full name'**
+  String get full_name_hint;
+
+  /// No description provided for @phone_hint.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter your phone number'**
+  String get phone_hint;
+
+  /// No description provided for @country_hint.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter your country'**
+  String get country_hint;
+
+  /// No description provided for @city_hint.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter your city'**
+  String get city_hint;
+
+  /// No description provided for @disctrict_hint.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter your district'**
+  String get disctrict_hint;
+
+  /// No description provided for @postal_code_hint.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter your postal code'**
+  String get postal_code_hint;
+
+  /// No description provided for @card_holder_name_hint.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter the name on the card'**
+  String get card_holder_name_hint;
+
+  /// No description provided for @card_number_hint.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter your card number'**
+  String get card_number_hint;
+
+  /// No description provided for @card_expired_date_hint.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter the expiration date'**
+  String get card_expired_date_hint;
+
+  /// No description provided for @card_cvv_hint.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter your CVV number'**
+  String get card_cvv_hint;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

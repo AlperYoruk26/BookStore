@@ -14,4 +14,5 @@ abstract class AppRoutesConstants {
   static const WISHLIST = '/wishlist';
   static const CART = '/cart';
   static const CHECKOUT = '/checkout';
+  static const SEARCH = '/search';
 }

@@ -20,6 +20,8 @@ class HomeController extends GetxController {
   var selectedTypeIndex = 1.obs;
   var selectedTypeId = 1.obs;
 
+  final search = TextEditingController();
+
   @override
   void onInit() async {
     super.onInit();

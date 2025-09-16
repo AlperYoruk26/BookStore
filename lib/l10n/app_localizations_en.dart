@@ -171,4 +171,76 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get checkout_title => 'Order Details';
+
+  @override
+  String get address_info => 'Address Information';
+
+  @override
+  String get full_name => 'Full Name';
+
+  @override
+  String get phone => 'Phone';
+
+  @override
+  String get country => 'Country';
+
+  @override
+  String get city => 'City';
+
+  @override
+  String get disctrict => 'District';
+
+  @override
+  String get postal_code => 'Postal Code';
+
+  @override
+  String get payment_info => 'Payment Information';
+
+  @override
+  String get card_holder_name => 'Cardholder Name';
+
+  @override
+  String get card_number => 'Card Number';
+
+  @override
+  String get card_expired_date => 'Expiration Date';
+
+  @override
+  String get card_cvv => 'CVV';
+
+  @override
+  String get order_summary => 'Order Summary';
+
+  @override
+  String get confirm_payment => 'Confirm Payment';
+
+  @override
+  String get full_name_hint => 'Enter your full name';
+
+  @override
+  String get phone_hint => 'Enter your phone number';
+
+  @override
+  String get country_hint => 'Enter your country';
+
+  @override
+  String get city_hint => 'Enter your city';
+
+  @override
+  String get disctrict_hint => 'Enter your district';
+
+  @override
+  String get postal_code_hint => 'Enter your postal code';
+
+  @override
+  String get card_holder_name_hint => 'Enter the name on the card';
+
+  @override
+  String get card_number_hint => 'Enter your card number';
+
+  @override
+  String get card_expired_date_hint => 'Enter the expiration date';
+
+  @override
+  String get card_cvv_hint => 'Enter your CVV number';
 }
