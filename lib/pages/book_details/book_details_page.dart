@@ -1,6 +1,8 @@
+import 'package:book_store/components/custom_button.dart';
 import 'package:book_store/core/constants/app_routes_constant.dart';
 import 'package:book_store/l10n/app_localizations.dart';
 import 'package:book_store/pages/book_details/book_details_controller.dart';
+import 'package:book_store/pages/cart/cart_controller.dart';
 import 'package:book_store/pages/loading/loading_page.dart';
 import 'package:book_store/pages/search/search_page.dart';
 import 'package:flutter/material.dart';
@@ -14,6 +16,7 @@ class BookDetailsPage extends GetView<BookDetailsController> {
   Widget build(BuildContext context) {
     final local = AppLocalizations.of(context)!;
     final args = ModalRoute.of(context)!.settings.arguments as Map;
+    final cartController = Get.find<CartController>();
 
     final bookId = args['book_id'];
     final language = args['lang'];
@@ -66,6 +69,7 @@ class BookDetailsPage extends GetView<BookDetailsController> {
                     ),
                   ),
                 ),
+                SizedBox(height: MediaQuery.of(context).size.height * 0.01),
                 Center(
                   child: Container(
                     width: MediaQuery.of(context).size.width * 0.7,
@@ -89,7 +93,7 @@ class BookDetailsPage extends GetView<BookDetailsController> {
                 Center(
                   child: Column(
                     children: [
-                      SizedBox(height: MediaQuery.of(context).size.height * 0.05),
+                      SizedBox(height: MediaQuery.of(context).size.height * 0.01),
                       Text(
                         controller.book.value?.name ?? '',
                         style: Theme.of(context)
@@ -97,7 +101,7 @@ class BookDetailsPage extends GetView<BookDetailsController> {
                             .headlineMedium
                             ?.copyWith(fontSize: 30),
                       ),
-                      SizedBox(height: MediaQuery.of(context).size.height * 0.005),
+                      SizedBox(height: MediaQuery.of(context).size.height * 0.01),
                       Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: GestureDetector(
@@ -122,7 +126,7 @@ class BookDetailsPage extends GetView<BookDetailsController> {
                           ),
                         ),
                       ),
-                      SizedBox(height: MediaQuery.of(context).size.height * 0.005),
+                      SizedBox(height: MediaQuery.of(context).size.height * 0.01),
                       Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: Text(
@@ -150,28 +154,44 @@ class BookDetailsPage extends GetView<BookDetailsController> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
-                    ElevatedButton(
-                      onPressed: () => debugPrint('Buy Now'),
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: Theme.of(context).colorScheme.primary,
-                        foregroundColor: Theme.of(context).colorScheme.onPrimary,
-                      ),
-                      child: Text(local.book_details_buy_button),
-                    ),
-                    ElevatedButton(
-                      onPressed: () {
-                        debugPrint('Add to Cart');
-                        controller.postAddToCart(bookId);
-                      },
-                      style: ElevatedButton.styleFrom(
-                          backgroundColor: Theme.of(context).colorScheme.secondary,
-                          foregroundColor: Theme.of(context).colorScheme.onPrimary),
-                      child: Text(controller.isInCart.value
-                          ? "Sepette"
-                          : local.book_details_cart_button),
-                    ),
+                    CustomButton(
+                        color: Theme.of(context).colorScheme.primary,
+                        onColor: Theme.of(context).colorScheme.onPrimary,
+                        width: MediaQuery.of(context).size.width * 0.45,
+                        child: Text(local.book_details_buy_button),
+                        onTap: () {
+                          debugPrint('Buy Now');
+                        }),
+                    CustomButton(
+                        color: controller.isTempTitle.value
+                            ? Colors.green
+                            : Theme.of(context).colorScheme.secondary,
+                        onColor: Theme.of(context).colorScheme.onPrimary,
+                        width: MediaQuery.of(context).size.width * 0.45,
+                        child: Text(
+                          controller.isTempTitle.value
+                              ? local.book_details_in_cart_button
+                              : local.book_details_cart_button,
+                        ),
+                        onTap: () async {
+                          if (!controller.isTempTitle.value) {
+                            debugPrint('Add to Cart');
+                            controller.changeText();
+                            controller.isInCart.value
+                                ? cartController.increments(bookId)
+                                : {
+                                    await controller.postAddToCart(bookId),
+                                    controller.isInCart.value = true
+                                  };
+                          } else {
+                            null;
+                          }
+                        }),
                   ],
                 ),
+                SizedBox(
+                  height: MediaQuery.of(context).size.height * 0.01,
+                )
               ],
             ),
           );

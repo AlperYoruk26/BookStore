@@ -8,7 +8,6 @@ class BookTypes extends GetView<HomeController> {
 
   @override
   Widget build(BuildContext context) {
-    final lang = AppLocalizations.of(context)!.localeName;
     return Obx(
       () => Padding(
         padding: const EdgeInsets.symmetric(horizontal: 16.0),

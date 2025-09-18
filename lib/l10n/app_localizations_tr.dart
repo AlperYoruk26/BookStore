@@ -143,6 +143,9 @@ class AppLocalizationsTr extends AppLocalizations {
   String get book_details_cart_button => 'Sepete Ekle';
 
   @override
+  String get book_details_in_cart_button => 'Kartta';
+
+  @override
   String get wishlist_title => 'İstek Listesi';
 
   @override

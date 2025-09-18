@@ -14,6 +14,8 @@ class BookDetailsController extends GetxController {
   final isInWishlist = false.obs;
   final isInCart = false.obs;
 
+  var isTempTitle = false.obs;
+
   Future<void> loadBook(int bookId, String lang) async {
     try {
       isLoading.value = true;
@@ -102,5 +104,11 @@ class BookDetailsController extends GetxController {
     } catch (e) {
       debugPrint('Error adding to cart: $e');
     }
+  }
+
+  void changeText() async {
+    isTempTitle.value = true;
+    await Future.delayed(const Duration(seconds: 2));
+    isTempTitle.value = false;
   }
 }

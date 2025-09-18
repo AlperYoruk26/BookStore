@@ -143,6 +143,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get book_details_cart_button => 'Add to Cart';
 
   @override
+  String get book_details_in_cart_button => 'In Cart';
+
+  @override
   String get wishlist_title => 'Wishlist';
 
   @override

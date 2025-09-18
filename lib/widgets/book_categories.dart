@@ -128,6 +128,11 @@ class BookCategories extends GetView<HomeController> {
                                             ),
                                           ),
                                           SizedBox(
+                                              height: MediaQuery.of(context)
+                                                      .size
+                                                      .height *
+                                                  0.01),
+                                          SizedBox(
                                             width:
                                                 MediaQuery.of(context).size.width *
                                                     0.44,

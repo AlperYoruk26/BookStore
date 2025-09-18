@@ -233,7 +233,6 @@ class CartPage extends GetView<CartController> {
                     ),
                   ),
                 ),
-                // Spacer() widget'ını kaldırıyoruz
 
                 // Alt kısım (fiyat toplamı ve buton)
                 Column(
@@ -278,7 +277,7 @@ class CartPage extends GetView<CartController> {
                     ),
                     CustomButton(
                       width: MediaQuery.of(context).size.width * 0.9,
-                      title: local.cart_button,
+                      child: Text(local.cart_button),
                       onTap: () => pushScreen(context,
                           screen: const CheckoutPage(),
                           withNavBar: true), // const ekle

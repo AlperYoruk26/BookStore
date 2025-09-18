@@ -45,6 +45,7 @@
   "book_details_price": "Fiyat",
   "book_details_buy_button": "Satın Al",
   "book_details_cart_button": "Sepete Ekle",
+  "book_details_in_cart_button": "Kartta",
   "wishlist_title":"İstek Listesi",
   "wishlist_dialog_title": "İstek Listesinden Kaldır",
   "wishlist_dialog_content": "Emin misiniz?",

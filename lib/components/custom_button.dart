@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 
 class CustomButton extends StatelessWidget {
-  final String title;
+  final Widget child;
   final Color? color;
   final Color? onColor;
   final double? width;
   final VoidCallback onTap;
   const CustomButton(
-      {required this.title,
+      {required this.child,
       this.color,
       this.onColor,
       this.width,
@@ -25,13 +25,17 @@ class CustomButton extends StatelessWidget {
         alignment: Alignment.center,
         decoration: BoxDecoration(
           color: color ?? Theme.of(context).colorScheme.primary,
-          borderRadius: BorderRadius.circular(4),
+          borderRadius: BorderRadius.circular(8),
         ),
-        child: Text(
-          title,
-          style:
-              TextStyle(color: onColor ?? Theme.of(context).colorScheme.onPrimary),
-        ),
+        // child: Text(
+        //   title,
+        //   style:
+        //       TextStyle(color: onColor ?? Theme.of(context).colorScheme.onPrimary),
+        // ),
+        child: DefaultTextStyle.merge(
+            style:
+                TextStyle(color: onColor ?? Theme.of(context).colorScheme.onPrimary),
+            child: child),
       ),
     );
   }

@@ -24,7 +24,7 @@ class BookBestSellers extends GetView<HomeController> {
                   scrollDirection: Axis.horizontal,
                   child: Row(
                     children: (controller.books
-                            .toList() //TODO: yanlış liste üstünden işlem yapışıyor yenisi oluşturulacak
+                            .toList() //TODO: yanlış liste üstünden işlem yapılıyor yenisi oluşturulacak
                           ..sort((a, b) => b.sales.compareTo(a.sales)))
                         .take(4)
                         .map((book) {
@@ -36,50 +36,36 @@ class BookBestSellers extends GetView<HomeController> {
                           ), //TODO: daha iyi bir yöntem bul
                           child: Column(
                             children: [
-                              if (book.cover.split('.')[1] != 'jpg')
-                                Container(
-                                  width: MediaQuery.of(context).size.width * 0.44,
-                                  height: MediaQuery.of(context).size.width * 0.66,
-                                  decoration: BoxDecoration(boxShadow: [
-                                    BoxShadow(
-                                        color: Color(0x7006070D),
-                                        spreadRadius: 0,
-                                        blurRadius: 7,
-                                        offset: Offset(0, 7))
-                                  ], borderRadius: BorderRadius.circular(20)),
-                                  child: ClipRRect(
-                                    borderRadius: BorderRadius.all(Radius.circular(20)),
-                                    child: Image.network(
-                                      book.cover,
-                                      fit: BoxFit.cover,
-                                    ),
-                                  ),
-                                ),
-                              if (book.cover.split('.')[1] == 'jpg')
-                                Container(
-                                  decoration: BoxDecoration(
-                                    border: BoxBorder.all(width: 1),
-                                    borderRadius: BorderRadius.circular(20),
-                                    boxShadow: [
-                                      BoxShadow(
-                                          color: Color(0x7006070D),
-                                          spreadRadius: 0,
-                                          blurRadius: 7,
-                                          offset: Offset(0, 7))
-                                    ],
-                                  ),
-                                  width: MediaQuery.of(context).size.width * 0.44,
-                                  height: MediaQuery.of(context).size.width * 0.66,
-                                ),
-                              SizedBox(height: 10),
                               Container(
+                                width: MediaQuery.of(context).size.width * 0.44,
+                                height: MediaQuery.of(context).size.width * 0.66,
+                                decoration: BoxDecoration(boxShadow: [
+                                  BoxShadow(
+                                      color: Color(0x7006070D),
+                                      spreadRadius: 0,
+                                      blurRadius: 7,
+                                      offset: Offset(0, 7))
+                                ], borderRadius: BorderRadius.circular(20)),
+                                child: ClipRRect(
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(20)),
+                                  child: Image.network(
+                                    book.cover,
+                                    fit: BoxFit.cover,
+                                  ),
+                                ),
+                              ),
+                              SizedBox(
+                                  height: MediaQuery.of(context).size.height * 0.01),
+                              SizedBox(
                                 width: MediaQuery.of(context).size.width * 0.44,
                                 child: Row(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     Expanded(
                                       child: Column(
-                                          crossAxisAlignment: CrossAxisAlignment.start,
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
                                           children: [
                                             Text(
                                               book.name,

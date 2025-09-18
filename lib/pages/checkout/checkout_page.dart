@@ -406,7 +406,7 @@ class CheckoutPage extends GetView<CheckoutController> {
                 SizedBox(height: MediaQuery.of(context).size.height * 0.05),
                 CustomButton(
                     width: MediaQuery.of(context).size.width,
-                    title: 'Ödemeyi Onayla',
+                    child: Text('Ödemeyi Onayla'),
                     onTap: () {
                       if (formKey.currentState!.validate()) {
                         debugPrint('═══════════════════════════════════════');

@@ -359,6 +359,12 @@ abstract class AppLocalizations {
   /// **'Add to Cart'**
   String get book_details_cart_button;
 
+  /// No description provided for @book_details_in_cart_button.
+  ///
+  /// In en, this message translates to:
+  /// **'In Cart'**
+  String get book_details_in_cart_button;
+
   /// No description provided for @wishlist_title.
   ///
   /// In en, this message translates to:

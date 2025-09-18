@@ -45,6 +45,7 @@
   "book_details_price": "Price",
   "book_details_buy_button": "Buy Now",
   "book_details_cart_button": "Add to Cart",
+  "book_details_in_cart_button": "In Cart",
   "wishlist_title":"Wishlist",
   "wishlist_dialog_title": "Remove from Wishlist",
   "wishlist_dialog_content": "Are you sure?",
