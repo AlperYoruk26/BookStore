@@ -42,6 +42,9 @@
   "app_settings": "App Settings",
   "language": "Language",
   "theme": "Theme",
+  "account_settings": "Account Settings",
+  "cards": "Cards",
+  "addresses": "Addresses",
   "book_details_price": "Price",
   "book_details_buy_button": "Buy Now",
   "book_details_cart_button": "Add to Cart",
@@ -79,5 +82,16 @@
   "card_holder_name_hint": "Enter the name on the card",
   "card_number_hint": "Enter your card number",
   "card_expired_date_hint": "Enter the expiration date",
-  "card_cvv_hint": "Enter your CVV number"
+  "card_expired_date_month_error": "Invalid month",
+  "card_cvv_hint": "Enter your CVV number",
+  "cards_title": "Cards",
+  "add_card_button": "Add Card",
+  "default_card": "Default",
+  "card_set_as_default": "Set as Default",
+  "card_edit": "Edit",
+  "card_delete": "Delete",
+  "card_dialog_update_title": "Update Card",
+  "card_dialog_add_title": "Add Card",
+  "card_dialog_cancel": "Cancel",
+  "card_dialog_save": "Save"
 }

@@ -1,7 +1,7 @@
 // ignore_for_file: deprecated_member_use
 
 import 'package:book_store/components/custom_button.dart';
-import 'package:book_store/core/utils/get_card_type_utils.dart';
+import 'package:book_store/core/utils/get_card_image_utils.dart';
 import 'package:book_store/l10n/app_localizations.dart';
 import 'package:book_store/pages/cart/cart_controller.dart';
 import 'package:book_store/pages/checkout/checkout_controller.dart';
@@ -262,7 +262,8 @@ class CheckoutPage extends GetView<CheckoutController> {
                                       .withAlpha(80))),
                           suffixIcon: Obx(() => Padding(
                               padding: const EdgeInsets.all(8.0),
-                              child: getCardType(controller.cardNumberText.value)))),
+                              child:
+                                  getCardImage(controller.cardNumberText.value)))),
                     ),
                     SizedBox(height: MediaQuery.of(context).size.height * 0.01),
                     SizedBox(

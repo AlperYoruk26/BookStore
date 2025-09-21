@@ -341,6 +341,24 @@ abstract class AppLocalizations {
   /// **'Theme'**
   String get theme;
 
+  /// No description provided for @account_settings.
+  ///
+  /// In en, this message translates to:
+  /// **'Account Settings'**
+  String get account_settings;
+
+  /// No description provided for @addresses.
+  ///
+  /// In en, this message translates to:
+  /// **'Addresses'**
+  String get addresses;
+
+  /// No description provided for @cards.
+  ///
+  /// In en, this message translates to:
+  /// **'Cards'**
+  String get cards;
+
   /// No description provided for @book_details_price.
   ///
   /// In en, this message translates to:
@@ -563,11 +581,77 @@ abstract class AppLocalizations {
   /// **'Enter the expiration date'**
   String get card_expired_date_hint;
 
+  /// No description provided for @card_expired_date_month_error.
+  ///
+  /// In en, this message translates to:
+  /// **'Invalid month'**
+  String get card_expired_date_month_error;
+
   /// No description provided for @card_cvv_hint.
   ///
   /// In en, this message translates to:
   /// **'Enter your CVV number'**
   String get card_cvv_hint;
+
+  /// No description provided for @cards_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Cards'**
+  String get cards_title;
+
+  /// No description provided for @add_card_button.
+  ///
+  /// In en, this message translates to:
+  /// **'Add Card'**
+  String get add_card_button;
+
+  /// No description provided for @default_card.
+  ///
+  /// In en, this message translates to:
+  /// **'Default'**
+  String get default_card;
+
+  /// No description provided for @card_set_as_default.
+  ///
+  /// In en, this message translates to:
+  /// **'Set as Default'**
+  String get card_set_as_default;
+
+  /// No description provided for @card_edit.
+  ///
+  /// In en, this message translates to:
+  /// **'Edit'**
+  String get card_edit;
+
+  /// No description provided for @card_delete.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete'**
+  String get card_delete;
+
+  /// No description provided for @card_dialog_update_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Update Card'**
+  String get card_dialog_update_title;
+
+  /// No description provided for @card_dialog_add_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Add Card'**
+  String get card_dialog_add_title;
+
+  /// No description provided for @card_dialog_cancel.
+  ///
+  /// In en, this message translates to:
+  /// **'Cancel'**
+  String get card_dialog_cancel;
+
+  /// No description provided for @card_dialog_save.
+  ///
+  /// In en, this message translates to:
+  /// **'Save'**
+  String get card_dialog_save;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

@@ -1,5 +1,7 @@
 import 'package:book_store/core/constants/app_routes_constant.dart';
+import 'package:book_store/pages/addresses/addresses_page.dart';
 import 'package:book_store/pages/book_details/book_details_page.dart';
+import 'package:book_store/pages/cards/cards_page.dart';
 import 'package:book_store/pages/cart/cart_binding.dart';
 import 'package:book_store/pages/cart/cart_page.dart';
 import 'package:book_store/pages/category_details/category_details_page.dart';
@@ -83,5 +85,7 @@ class AppPages {
         binding: CartBinding()),
     GetPage(name: AppRoutesConstants.CHECKOUT, page: () => CheckoutPage()),
     GetPage(name: AppRoutesConstants.SEARCH, page: () => SearchPage()),
+    GetPage(name: AppRoutesConstants.CARDS, page: () => CardsPage()),
+    GetPage(name: AppRoutesConstants.ADDRESSES, page: () => AddressesPage()),
   ];
 }

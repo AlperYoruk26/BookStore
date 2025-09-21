@@ -1,4 +1,6 @@
+import 'package:book_store/pages/addresses/addresses_controller.dart';
 import 'package:book_store/pages/book_details/book_details_controller.dart';
+import 'package:book_store/pages/cards/cards_controller.dart';
 import 'package:book_store/pages/cart/cart_controller.dart';
 import 'package:book_store/pages/category_details/category_details_controller.dart';
 import 'package:book_store/pages/checkout/checkout_controller.dart';
@@ -26,5 +28,7 @@ class MainBinding extends Bindings {
     Get.lazyPut(() => CartController());
     Get.lazyPut(() => CheckoutController());
     Get.lazyPut(() => SettingsController());
+    Get.lazyPut(() => CardsController());
+    Get.lazyPut(() => AddressesController());
   }
 }

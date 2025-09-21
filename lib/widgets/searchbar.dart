@@ -18,6 +18,10 @@ class Searchbar extends GetView<HomeController> {
             controller: controller.search,
             decoration: InputDecoration(
               // isDense: true,
+              hint: Text(
+                'Search Books...',
+                style: Theme.of(context).textTheme.bodyMedium,
+              ),
               contentPadding: EdgeInsets.symmetric(vertical: 2),
               prefixIcon: Icon(Icons.search,
                   color: Theme.of(context).colorScheme.onSecondary),

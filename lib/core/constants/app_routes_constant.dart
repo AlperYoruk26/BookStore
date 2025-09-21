@@ -15,4 +15,6 @@ abstract class AppRoutesConstants {
   static const CART = '/cart';
   static const CHECKOUT = '/checkout';
   static const SEARCH = '/search';
+  static const CARDS = '/cards';
+  static const ADDRESSES = '/addresses';
 }

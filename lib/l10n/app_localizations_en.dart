@@ -134,6 +134,15 @@ class AppLocalizationsEn extends AppLocalizations {
   String get theme => 'Theme';
 
   @override
+  String get account_settings => 'Account Settings';
+
+  @override
+  String get addresses => 'Addresses';
+
+  @override
+  String get cards => 'Cards';
+
+  @override
   String get book_details_price => 'Price';
 
   @override
@@ -245,5 +254,38 @@ class AppLocalizationsEn extends AppLocalizations {
   String get card_expired_date_hint => 'Enter the expiration date';
 
   @override
+  String get card_expired_date_month_error => 'Invalid month';
+
+  @override
   String get card_cvv_hint => 'Enter your CVV number';
+
+  @override
+  String get cards_title => 'Cards';
+
+  @override
+  String get add_card_button => 'Add Card';
+
+  @override
+  String get default_card => 'Default';
+
+  @override
+  String get card_set_as_default => 'Set as Default';
+
+  @override
+  String get card_edit => 'Edit';
+
+  @override
+  String get card_delete => 'Delete';
+
+  @override
+  String get card_dialog_update_title => 'Update Card';
+
+  @override
+  String get card_dialog_add_title => 'Add Card';
+
+  @override
+  String get card_dialog_cancel => 'Cancel';
+
+  @override
+  String get card_dialog_save => 'Save';
 }

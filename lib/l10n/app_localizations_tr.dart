@@ -134,6 +134,15 @@ class AppLocalizationsTr extends AppLocalizations {
   String get theme => 'Tema';
 
   @override
+  String get account_settings => 'Hesap Ayarları';
+
+  @override
+  String get addresses => 'Adresler';
+
+  @override
+  String get cards => 'Kartlar';
+
+  @override
   String get book_details_price => 'Fiyat';
 
   @override
@@ -143,7 +152,7 @@ class AppLocalizationsTr extends AppLocalizations {
   String get book_details_cart_button => 'Sepete Ekle';
 
   @override
-  String get book_details_in_cart_button => 'Kartta';
+  String get book_details_in_cart_button => 'Sepette';
 
   @override
   String get wishlist_title => 'İstek Listesi';
@@ -245,5 +254,38 @@ class AppLocalizationsTr extends AppLocalizations {
   String get card_expired_date_hint => 'Son kullanma tarihini giriniz';
 
   @override
+  String get card_expired_date_month_error => 'Geçersiz ay';
+
+  @override
   String get card_cvv_hint => 'CVV numarasını giriniz';
+
+  @override
+  String get cards_title => 'Kartlar';
+
+  @override
+  String get add_card_button => 'Kart Ekle';
+
+  @override
+  String get default_card => 'Varsayılan';
+
+  @override
+  String get card_set_as_default => 'Varsayılan Yap';
+
+  @override
+  String get card_edit => 'Düzenle';
+
+  @override
+  String get card_delete => 'Sil';
+
+  @override
+  String get card_dialog_update_title => 'Kartı Güncelle';
+
+  @override
+  String get card_dialog_add_title => 'Kartı Ekle';
+
+  @override
+  String get card_dialog_cancel => 'İptal';
+
+  @override
+  String get card_dialog_save => 'Kaydet';
 }
