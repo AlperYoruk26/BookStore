@@ -263,6 +263,12 @@ abstract class AppLocalizations {
   /// **'Email or password is incorrect'**
   String get login_error_message;
 
+  /// No description provided for @searchbar_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Search books...'**
+  String get searchbar_title;
+
   /// No description provided for @book_category_see_all.
   ///
   /// In en, this message translates to:
@@ -347,17 +353,17 @@ abstract class AppLocalizations {
   /// **'Account Settings'**
   String get account_settings;
 
-  /// No description provided for @addresses.
-  ///
-  /// In en, this message translates to:
-  /// **'Addresses'**
-  String get addresses;
-
   /// No description provided for @cards.
   ///
   /// In en, this message translates to:
   /// **'Cards'**
   String get cards;
+
+  /// No description provided for @addresses.
+  ///
+  /// In en, this message translates to:
+  /// **'Addresses'**
+  String get addresses;
 
   /// No description provided for @book_details_price.
   ///
@@ -461,6 +467,12 @@ abstract class AppLocalizations {
   /// **'Phone'**
   String get phone;
 
+  /// No description provided for @address_name.
+  ///
+  /// In en, this message translates to:
+  /// **'Address Name'**
+  String get address_name;
+
   /// No description provided for @country.
   ///
   /// In en, this message translates to:
@@ -478,6 +490,30 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'District'**
   String get disctrict;
+
+  /// No description provided for @neighborhood.
+  ///
+  /// In en, this message translates to:
+  /// **'Neighborhood'**
+  String get neighborhood;
+
+  /// No description provided for @street.
+  ///
+  /// In en, this message translates to:
+  /// **'Street'**
+  String get street;
+
+  /// No description provided for @building_number.
+  ///
+  /// In en, this message translates to:
+  /// **'Building Number'**
+  String get building_number;
+
+  /// No description provided for @apartment_number.
+  ///
+  /// In en, this message translates to:
+  /// **'Apartment Number'**
+  String get apartment_number;
 
   /// No description provided for @postal_code.
   ///
@@ -539,6 +575,12 @@ abstract class AppLocalizations {
   /// **'Enter your phone number'**
   String get phone_hint;
 
+  /// No description provided for @address_name_hint.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter an address name (e.g. Home, Office)'**
+  String get address_name_hint;
+
   /// No description provided for @country_hint.
   ///
   /// In en, this message translates to:
@@ -556,6 +598,30 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Enter your district'**
   String get disctrict_hint;
+
+  /// No description provided for @neighborhood_hint.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter your neighborhood'**
+  String get neighborhood_hint;
+
+  /// No description provided for @street_hint.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter your street or avenue'**
+  String get street_hint;
+
+  /// No description provided for @building_number_hint.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter your building number'**
+  String get building_number_hint;
+
+  /// No description provided for @apartment_number_hint.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter your apartment number'**
+  String get apartment_number_hint;
 
   /// No description provided for @postal_code_hint.
   ///
@@ -652,6 +718,90 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Save'**
   String get card_dialog_save;
+
+  /// No description provided for @card_dialog_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete Card'**
+  String get card_dialog_title;
+
+  /// No description provided for @card_dialog_content.
+  ///
+  /// In en, this message translates to:
+  /// **'Are you sure?'**
+  String get card_dialog_content;
+
+  /// No description provided for @addresses_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Addresses'**
+  String get addresses_title;
+
+  /// No description provided for @add_address_button.
+  ///
+  /// In en, this message translates to:
+  /// **'Add Address'**
+  String get add_address_button;
+
+  /// No description provided for @default_address.
+  ///
+  /// In en, this message translates to:
+  /// **'Default'**
+  String get default_address;
+
+  /// No description provided for @address_set_as_default.
+  ///
+  /// In en, this message translates to:
+  /// **'Set as Default'**
+  String get address_set_as_default;
+
+  /// No description provided for @address_edit.
+  ///
+  /// In en, this message translates to:
+  /// **'Edit'**
+  String get address_edit;
+
+  /// No description provided for @address_delete.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete'**
+  String get address_delete;
+
+  /// No description provided for @address_dialog_update_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Update Address'**
+  String get address_dialog_update_title;
+
+  /// No description provided for @address_dialog_add_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Add Address'**
+  String get address_dialog_add_title;
+
+  /// No description provided for @address_dialog_cancel.
+  ///
+  /// In en, this message translates to:
+  /// **'Cancel'**
+  String get address_dialog_cancel;
+
+  /// No description provided for @address_dialog_save.
+  ///
+  /// In en, this message translates to:
+  /// **'Save'**
+  String get address_dialog_save;
+
+  /// No description provided for @address_dialog_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete Address'**
+  String get address_dialog_title;
+
+  /// No description provided for @address_dialog_content.
+  ///
+  /// In en, this message translates to:
+  /// **'Are you sure?'**
+  String get address_dialog_content;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

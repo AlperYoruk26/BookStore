@@ -8,9 +8,9 @@ import 'package:get/get_state_manager/src/simple/get_view.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 
 class AddOrEditCard extends GetView<CardsController> {
-  final cardId;
-  final userId;
-  final mode;
+  final int? cardId;
+  final String userId;
+  final String mode;
   const AddOrEditCard(
       {this.cardId, required this.userId, required this.mode, super.key});
 
@@ -18,113 +18,153 @@ class AddOrEditCard extends GetView<CardsController> {
   Widget build(BuildContext context) {
     final local = AppLocalizations.of(context)!;
     final formKey = GlobalKey<FormState>();
-    return AlertDialog(
-      title: Text(mode == CardMode.add
-          ? local.card_dialog_add_title
-          : local.card_dialog_update_title),
-      content: SizedBox(
-        height: MediaQuery.of(context).size.height * 0.3,
-        child: Form(
-          key: formKey,
-          child: Column(
-            children: [
-              TextFormField(
-                controller: controller.cardHolderName,
-                style: TextStyle(color: Theme.of(context).colorScheme.onSecondary),
-                textInputAction: TextInputAction.next,
-                autovalidateMode: AutovalidateMode.onUserInteraction,
-                validator: (value) {
-                  if (value == null || value.isEmpty) {
-                    return local.card_holder_name_hint;
-                  }
-                },
-                decoration: InputDecoration(
-                    hint: Text(local.card_holder_name,
-                        style: TextStyle(
-                            color: Theme.of(context)
-                                .colorScheme
-                                .onSecondary
-                                .withAlpha(80)))),
-              ),
-              SizedBox(height: MediaQuery.of(context).size.height * 0.02),
-              TextFormField(
-                inputFormatters: [
-                  MaskTextInputFormatter(mask: '#### #### #### ####')
+    return SingleChildScrollView(
+      child: Form(
+        key: formKey,
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Text(mode == CardMode.add
+                ? local.card_dialog_add_title
+                : local.card_dialog_update_title),
+
+            SizedBox(height: MediaQuery.of(context).size.height * 0.01),
+
+            if (mode == CardMode.add)
+              Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  GestureDetector(
+                    onTap: () {
+                      debugPrint('Scan Card');
+                    },
+                    child: Row(
+                      children: [
+                        Icon(
+                          Icons.nfc,
+                          color: Theme.of(context).colorScheme.primary,
+                        ),
+                        SizedBox(width: MediaQuery.of(context).size.width * 0.01),
+                        Text(
+                          'Scan Card',
+                          style: TextStyle(
+                            color: Theme.of(context).colorScheme.primary,
+                          ),
+                        ),
+                      ],
+                    ),
+                  )
                 ],
-                keyboardType: TextInputType.number,
-                controller: controller.cardNumber,
-                style: TextStyle(color: Theme.of(context).colorScheme.onSecondary),
-                textInputAction: TextInputAction.next,
-                autovalidateMode: AutovalidateMode.onUserInteraction,
-                validator: (value) {
-                  if (value == null || value.isEmpty || value.length != 19) {
-                    return local.card_number_hint;
-                  }
-                },
-                decoration: InputDecoration(
-                    hint: Text(local.card_number,
-                        style: TextStyle(
-                            color: Theme.of(context)
-                                .colorScheme
-                                .onSecondary
-                                .withAlpha(80))),
-                    suffixIcon: Obx(() => Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: getCardImage(controller.cardNumberText.value)))),
               ),
-              SizedBox(height: MediaQuery.of(context).size.height * 0.02),
-              TextFormField(
-                inputFormatters: [MaskTextInputFormatter(mask: '##/##')],
-                controller: controller.cardExpiredDate,
-                style: TextStyle(color: Theme.of(context).colorScheme.onSecondary),
-                keyboardType: TextInputType.number,
-                textInputAction: TextInputAction.next,
-                autovalidateMode: AutovalidateMode.onUserInteraction,
-                validator: (value) {
-                  final month = int.tryParse(value?.split('/')[0] ?? '');
-                  if (value == null || value.isEmpty) {
-                    return local.card_expired_date_hint;
-                  }
-                  if (month == null || month < 1 || month > 12) {
-                    return local.card_expired_date_month_error;
-                  }
-                },
-                decoration: InputDecoration(
-                    hint: Text(local.card_expired_date,
-                        style: TextStyle(
-                            color: Theme.of(context)
-                                .colorScheme
-                                .onSecondary
-                                .withAlpha(80)))),
-              ),
-            ],
-          ),
+
+            SizedBox(height: MediaQuery.of(context).size.height * 0.01),
+
+            // Kart Sahibinin Adı
+            TextFormField(
+              controller: controller.cardHolderName,
+              style: TextStyle(color: Theme.of(context).colorScheme.onSecondary),
+              textInputAction: TextInputAction.next,
+              autovalidateMode: AutovalidateMode.onUserInteraction,
+              validator: (value) {
+                if (value == null || value.isEmpty) {
+                  return local.card_holder_name_hint;
+                }
+              },
+              decoration: InputDecoration(
+                  hint: Text(local.card_holder_name,
+                      style: TextStyle(
+                          color: Theme.of(context)
+                              .colorScheme
+                              .onSecondary
+                              .withAlpha(80)))),
+            ),
+
+            SizedBox(height: MediaQuery.of(context).size.height * 0.01),
+
+            // Kart Numarası
+            TextFormField(
+              inputFormatters: [MaskTextInputFormatter(mask: '#### #### #### ####')],
+              keyboardType: TextInputType.number,
+              controller: controller.cardNumber,
+              style: TextStyle(color: Theme.of(context).colorScheme.onSecondary),
+              textInputAction: TextInputAction.next,
+              autovalidateMode: AutovalidateMode.onUserInteraction,
+              validator: (value) {
+                if (value == null || value.isEmpty || value.length != 19) {
+                  return local.card_number_hint;
+                }
+              },
+              decoration: InputDecoration(
+                  hint: Text(local.card_number,
+                      style: TextStyle(
+                          color: Theme.of(context)
+                              .colorScheme
+                              .onSecondary
+                              .withAlpha(80))),
+                  suffixIcon: Obx(() => Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: getCardImage(controller.cardNumberText.value)))),
+            ),
+
+            SizedBox(height: MediaQuery.of(context).size.height * 0.01),
+
+            // Son Kullanma Tarihi
+            TextFormField(
+              inputFormatters: [MaskTextInputFormatter(mask: '##/##')],
+              controller: controller.cardExpiredDate,
+              style: TextStyle(color: Theme.of(context).colorScheme.onSecondary),
+              keyboardType: TextInputType.number,
+              textInputAction: TextInputAction.next,
+              autovalidateMode: AutovalidateMode.onUserInteraction,
+              validator: (value) {
+                final month = int.tryParse(value?.split('/')[0] ?? '');
+                if (value == null || value.isEmpty) {
+                  return local.card_expired_date_hint;
+                }
+                if (month == null || month < 1 || month > 12) {
+                  return local.card_expired_date_month_error;
+                }
+              },
+              decoration: InputDecoration(
+                  hint: Text(local.card_expired_date,
+                      style: TextStyle(
+                          color: Theme.of(context)
+                              .colorScheme
+                              .onSecondary
+                              .withAlpha(80)))),
+            ),
+
+            //Buttonlar
+            Row(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                TextButton(
+                  style: TextButton.styleFrom(
+                      textStyle: Theme.of(context).textTheme.labelLarge),
+                  child: Text(local.card_dialog_cancel),
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
+                ),
+                TextButton(
+                  style: TextButton.styleFrom(
+                      textStyle: Theme.of(context).textTheme.labelLarge),
+                  child: Text(local.card_dialog_save),
+                  onPressed: () async {
+                    if (formKey.currentState!.validate()) {
+                      Navigator.of(context).pop();
+                      mode == CardMode.add
+                          ? await controller.addCard(userId)
+                          : await controller.updateCard(cardId!);
+                      await controller.getCards(userId);
+                    }
+                  },
+                ),
+              ],
+            )
+          ],
         ),
       ),
-      actions: <Widget>[
-        TextButton(
-          style: TextButton.styleFrom(
-              textStyle: Theme.of(context).textTheme.labelLarge),
-          child: Text(local.card_dialog_cancel),
-          onPressed: () {
-            Navigator.of(context).pop();
-          },
-        ),
-        TextButton(
-          style: TextButton.styleFrom(
-              textStyle: Theme.of(context).textTheme.labelLarge),
-          child: Text(local.card_dialog_save),
-          onPressed: () async {
-            if (formKey.currentState!.validate()) {
-              mode == CardMode.add
-                  ? await controller.addCard(userId)
-                  : await controller.updateCard(cardId);
-              await controller.getCards(userId);
-              Navigator.of(context).pop();
-            }
-          },
-        ),
-      ],
     );
   }
 }

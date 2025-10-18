@@ -80,7 +80,7 @@ class CardsController extends GetxController {
         'p_id': id,
       });
     } catch (e) {
-      debugPrint('Error Add Card: $e');
+      debugPrint('Error Set Primary Card: $e');
     }
   }
 

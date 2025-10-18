@@ -95,6 +95,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get login_error_message => 'Email or password is incorrect';
 
   @override
+  String get searchbar_title => 'Search books...';
+
+  @override
   String get book_category_see_all => 'See All';
 
   @override
@@ -137,10 +140,10 @@ class AppLocalizationsEn extends AppLocalizations {
   String get account_settings => 'Account Settings';
 
   @override
-  String get addresses => 'Addresses';
+  String get cards => 'Cards';
 
   @override
-  String get cards => 'Cards';
+  String get addresses => 'Addresses';
 
   @override
   String get book_details_price => 'Price';
@@ -194,6 +197,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get phone => 'Phone';
 
   @override
+  String get address_name => 'Address Name';
+
+  @override
   String get country => 'Country';
 
   @override
@@ -201,6 +207,18 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get disctrict => 'District';
+
+  @override
+  String get neighborhood => 'Neighborhood';
+
+  @override
+  String get street => 'Street';
+
+  @override
+  String get building_number => 'Building Number';
+
+  @override
+  String get apartment_number => 'Apartment Number';
 
   @override
   String get postal_code => 'Postal Code';
@@ -233,6 +251,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get phone_hint => 'Enter your phone number';
 
   @override
+  String get address_name_hint => 'Enter an address name (e.g. Home, Office)';
+
+  @override
   String get country_hint => 'Enter your country';
 
   @override
@@ -240,6 +261,18 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get disctrict_hint => 'Enter your district';
+
+  @override
+  String get neighborhood_hint => 'Enter your neighborhood';
+
+  @override
+  String get street_hint => 'Enter your street or avenue';
+
+  @override
+  String get building_number_hint => 'Enter your building number';
+
+  @override
+  String get apartment_number_hint => 'Enter your apartment number';
 
   @override
   String get postal_code_hint => 'Enter your postal code';
@@ -288,4 +321,46 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get card_dialog_save => 'Save';
+
+  @override
+  String get card_dialog_title => 'Delete Card';
+
+  @override
+  String get card_dialog_content => 'Are you sure?';
+
+  @override
+  String get addresses_title => 'Addresses';
+
+  @override
+  String get add_address_button => 'Add Address';
+
+  @override
+  String get default_address => 'Default';
+
+  @override
+  String get address_set_as_default => 'Set as Default';
+
+  @override
+  String get address_edit => 'Edit';
+
+  @override
+  String get address_delete => 'Delete';
+
+  @override
+  String get address_dialog_update_title => 'Update Address';
+
+  @override
+  String get address_dialog_add_title => 'Add Address';
+
+  @override
+  String get address_dialog_cancel => 'Cancel';
+
+  @override
+  String get address_dialog_save => 'Save';
+
+  @override
+  String get address_dialog_title => 'Delete Address';
+
+  @override
+  String get address_dialog_content => 'Are you sure?';
 }

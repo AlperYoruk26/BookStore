@@ -47,6 +47,8 @@ class CheckoutPage extends GetView<CheckoutController> {
                                   Theme.of(context).navigationBarTheme.shadowColor!,
                               width: 1))),
                 ),
+
+                // Adres Bilgileri
                 ExpansionTile(
                   collapsedIconColor: Theme.of(context).colorScheme.primary,
                   initiallyExpanded: true,
@@ -209,6 +211,8 @@ class CheckoutPage extends GetView<CheckoutController> {
                     SizedBox(height: MediaQuery.of(context).size.height * 0.01),
                   ],
                 ),
+
+                // Ödeme Bilgileri
                 ExpansionTile(
                   collapsedIconColor: Theme.of(context).colorScheme.primary,
                   controller: paymentController,

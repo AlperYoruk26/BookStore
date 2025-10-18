@@ -95,6 +95,9 @@ class AppLocalizationsTr extends AppLocalizations {
   String get login_error_message => 'Email veya şifre hatalı';
 
   @override
+  String get searchbar_title => 'Kitap ara...';
+
+  @override
   String get book_category_see_all => 'Tümünü Gör';
 
   @override
@@ -137,10 +140,10 @@ class AppLocalizationsTr extends AppLocalizations {
   String get account_settings => 'Hesap Ayarları';
 
   @override
-  String get addresses => 'Adresler';
+  String get cards => 'Kartlar';
 
   @override
-  String get cards => 'Kartlar';
+  String get addresses => 'Adresler';
 
   @override
   String get book_details_price => 'Fiyat';
@@ -194,6 +197,9 @@ class AppLocalizationsTr extends AppLocalizations {
   String get phone => 'Telefon';
 
   @override
+  String get address_name => 'Adres Adı';
+
+  @override
   String get country => 'Ülke';
 
   @override
@@ -201,6 +207,18 @@ class AppLocalizationsTr extends AppLocalizations {
 
   @override
   String get disctrict => 'İlçe';
+
+  @override
+  String get neighborhood => 'Mahalle';
+
+  @override
+  String get street => 'Cadde / Sokak';
+
+  @override
+  String get building_number => 'Bina Numarası';
+
+  @override
+  String get apartment_number => 'Daire Numarası';
 
   @override
   String get postal_code => 'Posta Kodu';
@@ -233,6 +251,9 @@ class AppLocalizationsTr extends AppLocalizations {
   String get phone_hint => 'Telefon numaranızı giriniz';
 
   @override
+  String get address_name_hint => 'Bir adres adı girin (Örn: Ev, Ofis)';
+
+  @override
   String get country_hint => 'Ülke adını giriniz';
 
   @override
@@ -240,6 +261,18 @@ class AppLocalizationsTr extends AppLocalizations {
 
   @override
   String get disctrict_hint => 'İlçe adını giriniz';
+
+  @override
+  String get neighborhood_hint => 'Mahallenizi girin';
+
+  @override
+  String get street_hint => 'Caddenizi veya sokağınızı girin';
+
+  @override
+  String get building_number_hint => 'Bina numaranızı girin';
+
+  @override
+  String get apartment_number_hint => 'Daire numaranızı girin';
 
   @override
   String get postal_code_hint => 'Posta kodunu giriniz';
@@ -288,4 +321,46 @@ class AppLocalizationsTr extends AppLocalizations {
 
   @override
   String get card_dialog_save => 'Kaydet';
+
+  @override
+  String get card_dialog_title => 'Kartı Sil';
+
+  @override
+  String get card_dialog_content => 'Emin misiniz?';
+
+  @override
+  String get addresses_title => 'Adresler';
+
+  @override
+  String get add_address_button => 'Adres Ekle';
+
+  @override
+  String get default_address => 'Varsayılan';
+
+  @override
+  String get address_set_as_default => 'Varsayılan Yap';
+
+  @override
+  String get address_edit => 'Düzenle';
+
+  @override
+  String get address_delete => 'Sil';
+
+  @override
+  String get address_dialog_update_title => 'Adresi Güncelle';
+
+  @override
+  String get address_dialog_add_title => 'Adres Ekle';
+
+  @override
+  String get address_dialog_cancel => 'İptal';
+
+  @override
+  String get address_dialog_save => 'Kaydet';
+
+  @override
+  String get address_dialog_title => 'Adresi Sil';
+
+  @override
+  String get address_dialog_content => 'Emin misiniz?';
 }

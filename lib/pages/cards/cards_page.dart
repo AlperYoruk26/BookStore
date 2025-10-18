@@ -1,5 +1,7 @@
+import 'package:book_store/components/custom_alert_dialog.dart';
 import 'package:book_store/core/constants/card_mode.dart';
 import 'package:book_store/core/utils/get_card_color_unils.dart';
+import 'package:book_store/core/utils/show_form_bottom_sheet.dart';
 import 'package:book_store/l10n/app_localizations.dart';
 import 'package:book_store/pages/cards/cards_controller.dart';
 import 'package:book_store/pages/loading/loading_page.dart';
@@ -8,20 +10,33 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:u_credit_card/u_credit_card.dart';
 
-class CardsPage extends GetView<CardsController> {
+class CardsPage extends StatefulWidget {
   const CardsPage({super.key});
+  @override
+  State<CardsPage> createState() => _CardsPageState();
+}
+
+class _CardsPageState extends State<CardsPage> {
+  final controller = Get.find<CardsController>();
+  late final String userId;
+  bool _isInit = true;
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    if (_isInit) {
+      final args = ModalRoute.of(context)!.settings.arguments as Map;
+      userId = args['user_id'];
+
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        controller.getCards(userId);
+      });
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
     final local = AppLocalizations.of(context)!;
-
-    final args = ModalRoute.of(context)!.settings.arguments as Map;
-    final userId = args['user_id'];
-
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      controller.getCards(userId);
-    });
-
     return Scaffold(
         appBar: AppBar(),
         body: Obx(() {
@@ -49,13 +64,12 @@ class CardsPage extends GetView<CardsController> {
                     ),
                     ListTile(
                       trailing: GestureDetector(
-                        onTap: () {
+                        onTap: () async {
                           controller.loadCardInfo('', '', '');
-                          showDialog(
-                            context: context,
-                            builder: (context) =>
-                                AddOrEditCard(userId: userId, mode: CardMode.add),
-                          );
+                          await showFormBottomSheet(
+                              context: context,
+                              content:
+                                  AddOrEditCard(userId: userId, mode: CardMode.add));
                         },
                         child: Row(
                           mainAxisSize: MainAxisSize.min,
@@ -84,95 +98,120 @@ class CardsPage extends GetView<CardsController> {
                             children: controller.cards.map((card) {
                               return Column(
                                 children: [
-                                  ListTile(
-                                    title: CreditCardUi(
-                                      cardHolderFullName: card.cardHolderName,
-                                      cardNumber: card.cardNumber,
-                                      validThru: card.cardExpiredDate,
-                                      cardProviderLogo: card.isPrimary
-                                          ? Chip(
-                                              label: Text(local.default_card),
-                                              backgroundColor: const Color.fromARGB(
-                                                  255, 46, 105, 48),
-                                            )
-                                          : null,
-                                      showValidFrom: false,
-                                      doesSupportNfc: true,
-                                      topLeftColor: getCardColor(card.cardNumber),
-                                      bottomRightColor: Colors.black,
-                                    ),
-                                    trailing: MenuAnchor(
-                                      style: MenuStyle(
-                                          backgroundColor: MaterialStatePropertyAll(
-                                        Get.isDarkMode
-                                            ? Color(0xFF111111)
-                                            : Color(0xFFEEEEEE),
-                                      )),
-                                      builder: (context, controller, child) {
-                                        return IconButton(
-                                            onPressed: () {
-                                              controller.isOpen
-                                                  ? controller.close()
-                                                  : controller.open();
+                                  Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Row(children: [
+                                      Expanded(
+                                        child: CreditCardUi(
+                                          cardHolderFullName: card.cardHolderName,
+                                          cardNumber: card.cardNumber,
+                                          validThru: card.cardExpiredDate,
+                                          cardProviderLogo: card.isPrimary
+                                              ? Chip(
+                                                  label: Text(local.default_card),
+                                                  backgroundColor:
+                                                      const Color.fromARGB(
+                                                          255, 46, 105, 48),
+                                                )
+                                              : null,
+                                          showValidFrom: false,
+                                          doesSupportNfc: true,
+                                          topLeftColor:
+                                              getCardColor(card.cardNumber),
+                                          bottomRightColor: Colors.black,
+                                        ),
+                                      ),
+                                      MenuAnchor(
+                                        style: MenuStyle(
+                                            backgroundColor:
+                                                MaterialStatePropertyAll(
+                                          Get.isDarkMode
+                                              ? Color(0xFF111111)
+                                              : Color(0xFFEEEEEE),
+                                        )),
+                                        builder: (context, controller, child) {
+                                          return IconButton(
+                                              onPressed: () {
+                                                controller.isOpen
+                                                    ? controller.close()
+                                                    : controller.open();
+                                              },
+                                              icon: Icon(
+                                                Icons.more_vert,
+                                                color: Theme.of(context)
+                                                    .colorScheme
+                                                    .onSecondary,
+                                              ));
+                                        },
+                                        menuChildren: [
+                                          MenuItemButton(
+                                            onPressed: () async {
+                                              await controller.setPrimaryCard(
+                                                  userId, card.id);
+                                              await controller.getCards(userId);
                                             },
-                                            icon: Icon(
-                                              Icons.more_vert,
-                                              color: Theme.of(context)
-                                                  .colorScheme
-                                                  .onSecondary,
-                                            ));
-                                      },
-                                      menuChildren: [
-                                        MenuItemButton(
-                                          onPressed: () async {
-                                            await controller.setPrimaryCard(
-                                                userId, card.id);
-                                            await controller.getCards(userId);
-                                          },
-                                          child: Text(
-                                            local.card_set_as_default,
-                                            style: TextStyle(
-                                                color: Theme.of(context)
-                                                    .colorScheme
-                                                    .onSecondary),
+                                            child: Text(
+                                              local.card_set_as_default,
+                                              style: TextStyle(
+                                                  color: Theme.of(context)
+                                                      .colorScheme
+                                                      .onSecondary),
+                                            ),
                                           ),
-                                        ),
-                                        MenuItemButton(
-                                          onPressed: () {
-                                            controller.loadCardInfo(
-                                                card.cardHolderName,
-                                                card.cardNumber,
-                                                card.cardExpiredDate);
-                                            showDialog(
-                                                context: context,
-                                                builder: (context) => AddOrEditCard(
-                                                    cardId: card.id,
-                                                    userId: userId,
-                                                    mode: CardMode.edit));
-                                          },
-                                          child: Text(
-                                            local.card_edit,
-                                            style: TextStyle(
-                                                color: Theme.of(context)
-                                                    .colorScheme
-                                                    .onSecondary),
+                                          MenuItemButton(
+                                            onPressed: () async {
+                                              controller.loadCardInfo(
+                                                  card.cardHolderName,
+                                                  card.cardNumber,
+                                                  card.cardExpiredDate);
+                                              await showFormBottomSheet(
+                                                  context: context,
+                                                  content: AddOrEditCard(
+                                                      cardId: card.id,
+                                                      userId: userId,
+                                                      mode: CardMode.edit));
+                                            },
+                                            child: Text(
+                                              local.card_edit,
+                                              style: TextStyle(
+                                                  color: Theme.of(context)
+                                                      .colorScheme
+                                                      .onSecondary),
+                                            ),
                                           ),
-                                        ),
-                                        MenuItemButton(
-                                          onPressed: () async {
-                                            await controller.deleteCard(card.id);
-                                            await controller.getCards(userId);
-                                          },
-                                          child: Text(
-                                            local.card_delete,
-                                            style: TextStyle(
-                                                color: Theme.of(context)
-                                                    .colorScheme
-                                                    .onSecondary),
+                                          MenuItemButton(
+                                            onPressed: () => showDialog(
+                                              context: context,
+                                              builder: (context) =>
+                                                  CustomAlertDialog(
+                                                      title: local.card_dialog_title,
+                                                      content:
+                                                          local.card_dialog_content,
+                                                      cancelText:
+                                                          local.card_dialog_cancel,
+                                                      onCancel: () {
+                                                        Navigator.of(context).pop();
+                                                      },
+                                                      confirmText: local.card_delete,
+                                                      onConfirm: () async {
+                                                        await controller
+                                                            .deleteCard(card.id);
+                                                        await controller
+                                                            .getCards(userId);
+                                                        Navigator.of(context).pop();
+                                                      }),
+                                            ),
+                                            child: Text(
+                                              local.card_delete,
+                                              style: TextStyle(
+                                                  color: Theme.of(context)
+                                                      .colorScheme
+                                                      .onSecondary),
+                                            ),
                                           ),
-                                        ),
-                                      ],
-                                    ),
+                                        ],
+                                      ),
+                                    ]),
                                   ),
                                   SizedBox(
                                     height:
